@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "mongoose": "^4.10.1",
+    "nodemon": "^1.11.0"
+  }
+}
