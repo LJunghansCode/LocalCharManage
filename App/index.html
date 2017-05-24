@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link href="Static/css/main.css">
 </head>
 <body ng-controller="homeController">
-    <h1>DND MANAGER</h1>
-
-    <pre>
-        
-    </pre>
-
-
-
+    <ul>
+        <li><a href="/#!/players">Player</a></li>
+    </ul>
+    <main class="mainContentWrapper">
+        <ng-view></ng-view>
+    </main>
+    <!--Load angular and route app file.-->
     <script src="angular/angular.min.js"></script>
     <script src="angular-route/angular-route.js"></script>
     <script src="app.js"></script>
+    <!--Load class and behaviour scripts-->
+    <script src="Scripts/players/player.js"></script>
+    <script src="Controllers/homeController.js"></script>
+    <script src="Controllers/playerController.js"></script>
 </body>
 </html>

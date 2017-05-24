@@ -1,0 +1,31 @@
+<form>
+       <p>Campaign:</p> <input type="text" name="campaign" ng-model="newPlayer.campaign">
+        <p>Real Name:</p> <input type="" name="realName" ng-model="newPlayer.realName">
+        <p>Player Name:</p> <input type="" name="name" ng-model="newPlayer.name">
+        <p>Race: </p> <input type="" name="race"ng-model="newPlayer.race" >
+        <p>Class:</p>  <input type="" ng-model="newPlayer.classType" >
+        <p>Alignment:</p> <input type="" ng-model="newPlayer.alignment" >
+        <p>Sex:</p><input type="" ng-model="newPlayer.sex" >
+        <p>Size:</p> <input type="" ng-model="newPlayer.size" >
+        <p>Age:</p> <input type="" ng-model="newPlayer.age" >
+        <p>Height: </p> <input type="" ng-model="newPlayer.height" >
+        <p>Weight: </p> <input type="" ng-model="newPlayer.weight" >
+        <p>Level:</p> <input type="" ng-model="newPlayer.level" >
+        <p>Initiative:</p> <input type="" ng-model="newPlayer.initiative" >
+        <p>Speed: </p><input type="" ng-model="newPlayer.speed" >
+        <p>Strength: </p><input type="" ng-model="newPlayer.strength" >
+        <p>Dexterity: </p><input type="" ng-model="newPlayer.dexterity" >
+        <p>Constitution: </p><input type="" ng-model="newPlayer.constitution" >
+        <p>Intelligence: </p><input type="" ng-model="newPlayer.intelligence" >
+        <p>Wisdom: </p><input type="" ng-model="newPlayer.wisdom" >
+        <p>Charisma: </p><input type="" ng-model="newPlayer.charisma" >
+        <p>CurrentHitPoints:</p><input type="" ng-model="newPlayer.currentHitPoints" >
+        <p>TempHitPoints:</p> <input type="" ng-model="newPlayer.tempHitPoints" >
+        <input type="submit" value="add to campaign" ng-click="createNewPlayer()">
+    </form>
+
+ <ul ng-repeat="player in playerList">
+     <li><pre ng-bind="player">
+     
+     </pre></li>
+ </ul>
