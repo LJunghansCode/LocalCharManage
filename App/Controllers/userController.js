@@ -1,9 +1,33 @@
-app.controller('userController', [ '$location', '$scope', '$route', function(loc, scope, route){ 
+app.controller('userController', [ '$location', '$scope', '$route', 'userFactory', function(loc, scope, route, userFactory){ 
+    scope.statusMessage = " ";
+    scope.loginStatusMessage = " ";
     scope.newUser = () => {
         const userInstanceEmail = scope.newUser.email;
         const userInstancePassword = scope.newUser.password;
-        console.log(userInstanceEmail);
-        console.log(userInstancePassword);
-        
+        const userConfirm = scope.newUser.confirmPassword;
+        if(userConfirm !== userInstancePassword) {
+            scope.statusMessage = "Sorry, passwords don't match. Try again!";
+        } else if(!userInstanceEmail || !userInstancePassword){
+            scope.statusMessage = "Looks like you missed a field. Try again!";
+        } else {
+                userToSend = {email: userInstanceEmail, password: userInstancePassword};
+
+                userFactory.newUser(userToSend, (returnedData) => {
+                    scope.statusMessage = returnedData.data.message;
+                });
+            }
     };
+    scope.returnUser = () => {
+        const userInstanceEmail = scope.returnUser.email;
+        const userInstancePassword = scope.returnUser.password;
+        if(!userInstanceEmail || !userInstancePassword){
+            scope.loginStatusMessage = "Oops, you missed a field";
+        } else {
+        returnUser = {email: userInstanceEmail, password: userInstancePassword};
+        userFactory.loginReturnUser(returnUser, (returnedData) => {
+            scope.loginStatusMessage = returnedData.data.message;
+        });
+      }
+    };
+    
 }]);

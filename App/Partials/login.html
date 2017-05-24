@@ -1,3 +1,11 @@
-<label for="login-email-input">E-mail</label><input type="text" name="loginEmail" ng-model="newUser.email">
+<h2>Login</h2>
+<h4 ng-bind="loginStatusMessage"></h4>
+<label for="return-email-input">E-mail</label><input type="email" name="returnEmail" ng-model="returnUser.email">
+<label for="return-password-input">Password</label><input type="password" name="returnPassword" ng-model="returnUser.password">
+<input type="submit" ng-click="returnUser()">
+<h3>Or Register</h3>    
+<h4 ng-bind="statusMessage"></h4>
+<label for="login-email-input">E-mail</label><input type="email" name="loginEmail" ng-model="newUser.email">
 <label for="login-password-input">Password</label><input type="password" name="loginPassword" ng-model="newUser.password">
+<label for="login-confirmPassword-input">Confirm Password</label><input type="password" name="loginPassword" ng-model="newUser.confirmPassword">
 <input type="submit" ng-click="newUser()">

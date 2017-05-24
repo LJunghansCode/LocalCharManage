@@ -1,7 +1,8 @@
-const express  = require( 'express' ),
-      path     = require( 'path' ),
+const express  = require('express'),
+      path     = require('path'),
       bp       = require('body-parser'),
       session  = require('express-session'),
+      bcrypt   = require('bcrypt'),
       dir      = __dirname,
       port     = 3000,
       app      = express();
