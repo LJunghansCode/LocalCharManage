@@ -8,6 +8,8 @@
 <body ng-controller="homeController">
     <ul>
         <li><a href="/#!/players">Player</a></li>
+        <li><a href="/#!/home">Home</a></li>
+        <li><a href="/#!/login">Login</a></li>
     </ul>
     <main class="mainContentWrapper">
         <ng-view></ng-view>
@@ -20,5 +22,8 @@
     <script src="Scripts/players/player.js"></script>
     <script src="Controllers/homeController.js"></script>
     <script src="Controllers/playerController.js"></script>
+    <script src="Controllers/userController.js"></script>
+    <script src="Factories/playerFactory.js"></script>
+    <script src="Factories/userFactory.js"></script>
 </body>
 </html>

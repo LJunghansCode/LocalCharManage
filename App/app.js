@@ -1,5 +1,5 @@
 var app = angular.module('app', ['ngRoute']);
-console.log("Built by Luca Junghans, sup");
+
 app.config(($routeProvider, $locationProvider) => {
     $routeProvider
         .when('/home', {
@@ -9,6 +9,10 @@ app.config(($routeProvider, $locationProvider) => {
         .when('/players', {
             templateUrl: './partials/players.html',
             controller: 'playerController'
+        })
+        .when('/login', {
+            templateUrl: './partials/login.html',
+            controller: 'userController'
         })
         .otherwise('/', {
             redirectTo: '/home'

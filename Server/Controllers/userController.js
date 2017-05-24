@@ -1,27 +1,20 @@
 var mongoose = require('mongoose');
-var user = mongoose.model('user');
+var User = mongoose.model('user');
 
 
 module.exports = (() => {
     return {
         newUser : (req, res) => {
-                admin.findOne({cred: req.body.luca}, function(err, Admin){
-                if(Admin){
-                    req.session.admin = {luca: "Luca"};
-                    res.json({success:true});
+                user.findOne({email: req.body.email}, function(err, user){
+                if(user){
+                    //todo --> res with this
+                    console.log("this email is in use code");
                 }
                 else{
-                    res.json({fail:true});
+                    user = new User();
                 }       
         
             }); 
-        },
-        getadmin : function(req,res){
-            if(!req.session.admin || req.session.admin === null){
-                res.send(null);
-            }else{
-                res.json({admin: req.session.admin.luca});
-            }
         }
 
     };
