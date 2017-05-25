@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 var playerSchema = new mongoose.Schema({
+accountEmail: {type:String},
 campaign: {type:String},
 realName: {type:String},
 name: {type:String},
@@ -23,7 +24,5 @@ wisdom: {type:Number},
 charisma: {type:Number},
 currentHitPoints: {type:Number},
 tempHitPoints: {type:Number}
-
-
 });
 mongoose.model('player', playerSchema);

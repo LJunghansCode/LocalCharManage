@@ -1,14 +1,15 @@
-app.factory('userFactory', ['$http', '$location', function(http, loc){
+app.factory('playerFactory', ['$http', '$location', function(http, loc){
 	var factory = {};
-	factory.newPost = function( ){
-		http.post( ).then(function(returned_data){
+	factory.newPlayer = (player, callback) => {
+		http.post("/new_player", player).then((returned_data) => {
 			if(returned_data){
-			loc.url( );
+             callback(returned_data);
+			// loc.url( );
 			}
 		});
 	};
-    factory.getOne = function(id, callback){
-		http.get( ).then(function(returned_data){
+    factory.getPlayer = function(id, callback){
+		http.get().then(function(returned_data){
 			callback(returned_data);
 		});
 	};

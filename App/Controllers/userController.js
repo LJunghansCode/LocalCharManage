@@ -1,4 +1,5 @@
-app.controller('userController', [ '$location', '$scope', '$route', 'userFactory', function(loc, scope, route, userFactory){ 
+app.controller('userController', [ '$window', '$location', '$scope', '$route', 'userFactory', function( window, loc, scope, route, userFactory){
+    scope.currentUser = false;
     scope.statusMessage = " ";
     scope.loginStatusMessage = " ";
     scope.newUser = () => {
@@ -11,9 +12,10 @@ app.controller('userController', [ '$location', '$scope', '$route', 'userFactory
             scope.statusMessage = "Looks like you missed a field. Try again!";
         } else {
                 userToSend = {email: userInstanceEmail, password: userInstancePassword};
-
                 userFactory.newUser(userToSend, (returnedData) => {
+                    scope.currentUser = true;
                     scope.statusMessage = returnedData.data.message;
+                    window.location.reload();
                 });
             }
     };
@@ -25,9 +27,18 @@ app.controller('userController', [ '$location', '$scope', '$route', 'userFactory
         } else {
         returnUser = {email: userInstanceEmail, password: userInstancePassword};
         userFactory.loginReturnUser(returnUser, (returnedData) => {
+            scope.currentUser = true;
             scope.loginStatusMessage = returnedData.data.message;
+            window.location.reload();
         });
       }
+    };
+    scope.logOutUser = () => {
+        userFactory.logOutUser((data) => {
+            console.log(data);
+            window.location.reload();
+            loc.path('/home');
+        });
     };
     
 }]);

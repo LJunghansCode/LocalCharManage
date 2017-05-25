@@ -1,5 +1,6 @@
     class Player {
-        constructor ( campaign, realName, name, race, classType, alignment, sex, size, age, height, weight, level, initiative, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, currentHitPoints, tempHitPoints ) {
+        constructor ( accountEmail, campaign, realName, name, race, classType, alignment, sex, size, age, height, weight, level, initiative, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, currentHitPoints, tempHitPoints ) {
+            this.accountEmail = accountEmail;
             this.campaign = campaign;
             this.realName = realName;
             this.name = name;
@@ -16,6 +17,12 @@
             this.wisdom = wisdom;
             this.charisma = charisma;
             this.currentHitPoints = currentHitPoints;
-            this.tempHitPoints = tempHitPoints;
+            this.tempHitPoints = tempHitPoints;   
+        }
+        gainHealth(healthToGain){
+            this.currentHitPoints += healthToGain;
+        }
+        loseHealth(healthToLose){
+            this.currentHitPoints -= healthToLose;
         }
     }

@@ -1,3 +1,4 @@
+<section ng-if='!userEmail'>
 <h2>Login</h2>
 <h4 ng-bind="loginStatusMessage"></h4>
 <label for="return-email-input">E-mail</label><input type="email" name="returnEmail" ng-model="returnUser.email">
@@ -9,3 +10,9 @@
 <label for="login-password-input">Password</label><input type="password" name="loginPassword" ng-model="newUser.password">
 <label for="login-confirmPassword-input">Confirm Password</label><input type="password" name="loginPassword" ng-model="newUser.confirmPassword">
 <input type="submit" ng-click="newUser()">
+</section>
+<section ng-if='userEmail'>
+    <p>You are logged in as</p>
+    <h3 ng-if="userEmail" ng-bind="userEmail"></h3> 
+    <button ng-click="logOutUser()">Log Out?</button>
+</section>

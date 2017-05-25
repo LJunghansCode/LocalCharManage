@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('user');
 var bcrypt = require('bcrypt');
+var session = require('express-session')
 
 
 module.exports = (() => {
@@ -25,6 +26,8 @@ module.exports = (() => {
                                 if(err) {
                                     console.error(err);
                                 }else {
+                                    var sess = req.session;
+                                     sess.user = userToSave;
                                     res.json({message: "Success! Good luck in your trials!"});
                                 }
                             });
@@ -38,13 +41,12 @@ module.exports = (() => {
         loginUser : (req, res) => {
             User.findOne({email: req.body.email}, (err, userFound) => {
                 if(!req.body.email || !req.body.password){
-                    console.log(req.body);
                     res.json({message: "Something went wrong, please try again"});
                 } else if(userFound){
-                    console.log(userFound.password);
-                    console.log(req.body.password);
                     bcrypt.compare(req.body.password, userFound.password,(err, bcryptRes) => {
                         if(bcryptRes === true){
+                            var sess = req.session;
+                            sess.user = userFound;
                             res.json({message: "Welcome Back!"});
                         } else {
                             res.json({message: "Something went wrong, please try again"});
@@ -54,6 +56,26 @@ module.exports = (() => {
                     res.json({message: "Something went wrong, please try again"});
                 }
             });
+        },
+        getUser : (req, res) => {
+            var sess = req.session;
+            if(!sess.user) {
+                res.json({message: false});
+            } else {
+                res.json({message: sess.user.email});
+            }
+        },
+        logoutUser : (req, res) => {
+            var sess = req.session;
+            if(sess.user){
+                sess.destroy();
+                res.json({loggedOut: true});
+            }
+        },
+        getMyPlayers : (req, res) => {
+            var sess = req.session;
+            sess.user.players = [];
+            console.log(sess.user);
         }
 
     };
