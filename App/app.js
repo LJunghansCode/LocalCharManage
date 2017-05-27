@@ -14,6 +14,10 @@ app.config(($routeProvider, $locationProvider) => {
             templateUrl: './partials/login.html',
             controller: 'userController'
         })
+        .when('/campaignManager', {
+            templateUrl: './partials/campaign.html',
+            controller: 'campaignController'
+        })
         .otherwise('/', {
             redirectTo: '/home'
         });

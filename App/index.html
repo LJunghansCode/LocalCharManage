@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link href="Static/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.css">
 </head>
 <body ng-controller="homeController">
-    <ul>
-        <li><a href="/#!/players">Player</a></li>
-        <li><a href="/#!/home">Home</a></li>
-        <li><a href="/#!/login">Login</a></li>
-    </ul>
+    <nav class="nav">
+        <div class="nav-left">
+            <a class="nav-item" href="/#!/players">Player</a>
+            <a class="nav-item" href="/#!/home">Home</a>
+            <a class="nav-item" href="/#!/login">Login</a>
+            <a class="nav-item" href="/#!/campaignManager">Manage/Run a campaign</a>
+        </div>
+    </nav>
     <main class="mainContentWrapper">
-        <ng-view></ng-view>
+        <ng-view class="columns"></ng-view>
     </main>
     <!--Load angular and route app file.-->
     <script src="angular/angular.min.js"></script>
@@ -23,7 +27,9 @@
     <script src="Controllers/homeController.js"></script>
     <script src="Controllers/playerController.js"></script>
     <script src="Controllers/userController.js"></script>
+    <script src="Controllers/campaignController.js"></script>
     <script src="Factories/playerFactory.js"></script>
     <script src="Factories/userFactory.js"></script>
+    <script src="Factories/campaignFactory.js"></script>
 </body>
 </html>

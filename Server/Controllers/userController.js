@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('user');
+var Player = mongoose.model('player');
 var bcrypt = require('bcrypt');
 var session = require('express-session')
 
@@ -28,7 +29,8 @@ module.exports = (() => {
                                 }else {
                                     var sess = req.session;
                                      sess.user = userToSave;
-                                    res.json({message: "Success! Good luck in your trials!"});
+                                     sess.user.players = [];
+                                     res.json({message: "Success! Good luck in your trials!"});
                                 }
                             });
                             
@@ -47,6 +49,7 @@ module.exports = (() => {
                         if(bcryptRes === true){
                             var sess = req.session;
                             sess.user = userFound;
+                            sess.user.players = [];
                             res.json({message: "Welcome Back!"});
                         } else {
                             res.json({message: "Something went wrong, please try again"});
@@ -67,15 +70,18 @@ module.exports = (() => {
         },
         logoutUser : (req, res) => {
             var sess = req.session;
-            if(sess.user){
+            if(sess.user) {
                 sess.destroy();
                 res.json({loggedOut: true});
             }
         },
         getMyPlayers : (req, res) => {
-            var sess = req.session;
-            sess.user.players = [];
-            console.log(sess.user);
+            var currentUser = req.session.user;
+            console.log(currentUser.email);
+            Player.find({accountEmail: currentUser.email}, (err, playerArr) => {
+                console.log(playerArr);
+                 res.json({players: playerArr});
+            });
         }
 
     };

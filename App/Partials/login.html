@@ -1,18 +1,24 @@
-<section ng-if='!userEmail'>
-<h2>Login</h2>
-<h4 ng-bind="loginStatusMessage"></h4>
-<label for="return-email-input">E-mail</label><input type="email" name="returnEmail" ng-model="returnUser.email">
-<label for="return-password-input">Password</label><input type="password" name="returnPassword" ng-model="returnUser.password">
-<input type="submit" ng-click="returnUser()">
-<h3>Or Register</h3>    
-<h4 ng-bind="statusMessage"></h4>
-<label for="login-email-input">E-mail</label><input type="email" name="loginEmail" ng-model="newUser.email">
-<label for="login-password-input">Password</label><input type="password" name="loginPassword" ng-model="newUser.password">
-<label for="login-confirmPassword-input">Confirm Password</label><input type="password" name="loginPassword" ng-model="newUser.confirmPassword">
-<input type="submit" ng-click="newUser()">
+<section class="section" ng-if='!userEmail'>
+    <div class="columns">
+        <div class="column">
+            <h2>Login</h2>
+            <h4 ng-bind="loginStatusMessage"></h4>
+            <label class="label" for="return-email-input">E-mail</label><input class="input" type="email" name="returnEmail" ng-model="returnUser.email">
+            <label class="label" for="return-password-input">Password</label><input class="input" type="password" name="returnPassword" ng-model="returnUser.password">
+            <input class="button" type="submit" ng-click="returnUser()">
+        </div>
+        <div class="column">
+            <h3>Or Register</h3>    
+            <h4 ng-bind="statusMessage"></h4>
+            <label class="label" for="login-email-input">E-mail</label><input class="input" type="email" name="loginEmail" ng-model="newUser.email">
+            <label class="label" for="login-password-input">Password</label><input class="input" type="password" name="loginPassword" ng-model="newUser.password">
+            <label class="label" for="login-confirmPassword-input">Confirm Password</label><input class="input" type="password" name="loginPassword" ng-model="newUser.confirmPassword">
+            <input class="button" type="submit" ng-click="newUser()">
+        </div>
+    </div>
 </section>
-<section ng-if='userEmail'>
-    <p>You are logged in as</p>
-    <h3 ng-if="userEmail" ng-bind="userEmail"></h3> 
-    <button ng-click="logOutUser()">Log Out?</button>
+<section class="section" ng-if='userEmail'>
+    <p class="subtitle">You are logged in as</p>
+    <h3 class="title" ng-if="userEmail" ng-bind="userEmail"></h3> 
+    <button class="button" ng-click="logOutUser()">Log Out?</button>
 </section>

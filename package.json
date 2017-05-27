@@ -9,5 +9,8 @@
     "express-session": "^1.15.3",
     "mongoose": "^4.10.1",
     "nodemon": "^1.11.0"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
   }
 }

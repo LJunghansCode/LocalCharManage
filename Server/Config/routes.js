@@ -16,7 +16,7 @@ module.exports = (app) => {
     app.get('/logout', (req, res) => {
         userController.logoutUser(req, res);
     });
-    app.get('/getMyPlayers', (req, res)=> {
+    app.get('/getMyPlayers', (req, res) => {
         userController.getMyPlayers(req, res);
     });
     

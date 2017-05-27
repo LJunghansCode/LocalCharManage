@@ -14,15 +14,35 @@
             this.weight = weight;
             this.level = level;
             this.initiative = initiative;
+            this.speed = speed;
+            this.strength = strength;
+            this.dexterity = dexterity;
+            this.constitution = constitution;
             this.wisdom = wisdom;
             this.charisma = charisma;
             this.currentHitPoints = currentHitPoints;
             this.tempHitPoints = tempHitPoints;   
         }
-        gainHealth(healthToGain){
+        gainHealth(healthToGain) {
             this.currentHitPoints += healthToGain;
         }
-        loseHealth(healthToLose){
+        loseHealth(healthToLose) {
             this.currentHitPoints -= healthToLose;
+        }
+        gainLevel(player) {
+            switch(player.class){
+                case("paladin"):
+                    
+                  break;
+                case("barbarian"):
+                
+                  break;
+                case("paladin"):
+                
+                  break;
+                case("paladin"):
+                
+                  break;                                    
+            } 
         }
     }
