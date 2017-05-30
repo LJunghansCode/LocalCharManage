@@ -19,5 +19,8 @@ module.exports = (app) => {
     app.get('/getMyPlayers', (req, res) => {
         userController.getMyPlayers(req, res);
     });
+    app.post('/getPlayer/:id', (req, res) => {
+        playerController.getPlayer(req, res);
+    });
     
 };

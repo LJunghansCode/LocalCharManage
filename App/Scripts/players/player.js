@@ -29,10 +29,22 @@
         loseHealth(healthToLose) {
             this.currentHitPoints -= healthToLose;
         }
-        gainLevel(player) {
-            switch(player.class){
+        gainLevel() {
+            console.log(this);
+            let constitution = this.health;
+            let strength = this.strength;
+            let wisdom = this.wisdom;
+            let charisma = this.charisma;
+            let level = this.level;
+            let initiative = this.initiative;
+            let speed = this.speed;
+            let dexterity = this.dexterity;
+            let currentHitPoints = this.currentHitPoints;
+            let tempHitPoints = this.tempHitPoints;
+
+            switch(this.classType){
                 case("paladin"):
-                    
+                
                   break;
                 case("barbarian"):
                 

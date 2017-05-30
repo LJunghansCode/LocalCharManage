@@ -18,6 +18,10 @@ app.config(($routeProvider, $locationProvider) => {
             templateUrl: './partials/campaign.html',
             controller: 'campaignController'
         })
+        .when('/player/:id', {
+            templateUrl: './partials/singlePlayer.html',
+            controller: 'playerController'
+        })
         .otherwise('/', {
             redirectTo: '/home'
         });

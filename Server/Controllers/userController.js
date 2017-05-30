@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('user');
 var Player = mongoose.model('player');
 var bcrypt = require('bcrypt');
-var session = require('express-session')
+var session = require('express-session');
 
 
 module.exports = (() => {
@@ -77,9 +77,7 @@ module.exports = (() => {
         },
         getMyPlayers : (req, res) => {
             var currentUser = req.session.user;
-            console.log(currentUser.email);
             Player.find({accountEmail: currentUser.email}, (err, playerArr) => {
-                console.log(playerArr);
                  res.json({players: playerArr});
             });
         }

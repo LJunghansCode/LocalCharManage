@@ -15,7 +15,12 @@ app.controller('userController', [ '$window', '$location', '$scope', '$route', '
                 userFactory.newUser(userToSend, (returnedData) => {
                     scope.currentUser = true;
                     scope.statusMessage = returnedData.data.message;
-                    window.location.reload();
+                    if(returnedData.data.message !== "Welcome Back!"){
+                        return;
+                    } else {
+                        window.location.reload();
+                    }
+                    
                 });
             }
     };
@@ -29,7 +34,11 @@ app.controller('userController', [ '$window', '$location', '$scope', '$route', '
         userFactory.loginReturnUser(returnUser, (returnedData) => {
             scope.currentUser = true;
             scope.loginStatusMessage = returnedData.data.message;
-            window.location.reload();
+            if(returnedData.data.message !== "Welcome Back!"){
+                        return;
+                    } else {
+                        window.location.reload();
+                    }
         });
       }
     };

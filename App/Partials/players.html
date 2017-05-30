@@ -30,7 +30,8 @@
 
 <div class="column">
  <ul ng-repeat="player in totalPlayers">
-     <li><pre ng-bind="player">
+     <li><a href="/#!/player/{{player._id}}" ng-bind="player._id" ng-click="getPlayer(player._id)">
+         <a ng-bind="player.name"></a>
      </pre></li>
  </ul>
  </div>
