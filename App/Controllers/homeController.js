@@ -7,7 +7,7 @@ app.controller('homeController', [ '$location', '$scope', '$route','userFactory'
             } else if(data.data.message){
                 scope.userEmail = data.data.message;
                 userFactory.getLoggedInUserPlayers((data) => {
-                    console.log(data.data);
+                    
                 });
             }
         });

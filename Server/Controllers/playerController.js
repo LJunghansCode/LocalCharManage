@@ -12,11 +12,12 @@ module.exports = (() => {
             var playerToMake = new Player(req.body);
             playerToMake.accountEmail = sess.user.email;
             sess.user.players.push(playerToMake);
-            playerToMake.save();
+            playerToMake.save((err) => {
+                if (err) return handleError(err);
+            });
             res.json({playerMade: playerToMake});
         };
         PlayerController.getPlayer = (req, res) => {
-            console.log(req.params.id);
             Player.findOne({_id: req.params.id}, (err, foundPlayer) => {
                 if (foundPlayer) {
                     console.log(foundPlayer);

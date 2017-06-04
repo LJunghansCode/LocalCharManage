@@ -15,15 +15,22 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
         }
     });
     if (routeParams.id) {
-        console.log(routeParams.id);
+        
         playerFactory.getPlayer(routeParams.id, (data) => {
-            if(data.data.playerFound) {                
-                let playerOnDisplay = data.data.playerFound;
+            if(data.data.playerFound) {
+                var P = data.data.playerFound;                
+                let playerOnDisplay = new Player(P.accountEmail, P.campaign, P.realName, P.name, P.race, P.classType, P.alignment, P.sex, P.size, P.age, P.height, P.weight, P.level, P.initiative, P.speed, P.strength, P.dexterity, P.constitution, P.intelligence, P.wisdom, P.charisma, P.currentHitPoints, P.tempHitPoints);
+
+                
                 scope.player = playerOnDisplay;
             } else {
                 console.error("Something went wrong in the backend. Sorry!");
             }
     });
-
     }
+    scope.gainExperience = (expToGain) => {
+        scope.player.gainExperience(expToGain, (data) => {
+            scope.player = data;
+        });
+    };
     }]);

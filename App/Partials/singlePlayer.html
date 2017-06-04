@@ -1,4 +1,16 @@
 
 <div class="column">
-    <h1 class="Title" ng-bind="player"></h1>
+    <h1 class="title" ng-bind="player.name"></h1>
+        <h1 class="subtitle">Played By:</h1> <h1 class="subtitle" ng-bind="player.realName"></h1>
+        <p>Race:</p> <p ng-bind="player.race"></p>
+        <p>Class:</p> <p ng-bind="player.classType"></p>
+        <p>Alignment:</p> <p ng-bind="player.alignment"></p>
+        <p>Sex:</p> <p ng-bind="player.sex"></p>
+        <p>Size:</p> <p ng-bind="player.size"></p>
+        <p>Age:</p> <p ng-bind="player.age"></p>
+        <p>Level:</p> <p ng-bind="player.level"></p>
+        <p>Current Experience:</p> <p ng-bind="player.experience"></p>
+
+        <input type="text" ng-model="experienceToGain" name="" value="">
+        <button type="submit" name="levelUp" value="LevelUp" ng-click="gainExperience(experienceToGain)">Gain Experience </button>
 </div>
