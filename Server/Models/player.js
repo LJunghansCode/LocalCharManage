@@ -23,6 +23,7 @@ intelligence: {type:Number},
 wisdom: {type:Number},
 charisma: {type:Number},
 currentHitPoints: {type:Number},
-tempHitPoints: {type:Number}
+tempHitPoints: {type:Number},
+spells: {type: []}
 });
 mongoose.model('player', playerSchema);

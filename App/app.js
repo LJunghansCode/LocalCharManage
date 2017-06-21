@@ -22,6 +22,10 @@ app.config(($routeProvider, $locationProvider) => {
             templateUrl: './partials/singlePlayer.html',
             controller: 'playerController'
         })
+        .when('/session/:id', {
+            templateUrl:'./partials/session.html',
+            controller: 'sessionController'
+        })
         .otherwise('/', {
             redirectTo: '/home'
         });

@@ -13,4 +13,19 @@
 
         <input type="text" ng-model="experienceToGain" name="" value="">
         <button type="submit" name="levelUp" value="LevelUp" ng-click="gainExperience(experienceToGain)">Gain Experience </button>
+        <br>    
+          <select name="Die">
+            <option value="d20">d20</option>
+            <option value="d12">d12</option>
+            <option value="d10">d10</option>
+            <option value="d8">d8</option>
+            <option value="d6">d6</option>
+            <option value="d4">d4</option>
+        </select>
+        <input type="submit" ng-click="rollDie" value="Roll">
+
+       <p>Campaign:</p> <input class="text"  name="campaign" ng-model="campaign.title">
+       <p>Password for this campaign:</p>
+       <input class="text"  name="campaign" ng-model="campaign.password">
+       <button ng-click="joinCampaign(player, campaign)">Join</button>
 </div>

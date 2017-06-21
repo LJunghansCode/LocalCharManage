@@ -1,5 +1,6 @@
     class Player {
-        constructor ( accountEmail, campaign, realName, name, race, classType, alignment, sex, size, age, height, weight, level, initiative, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, currentHitPoints, tempHitPoints ) {
+        constructor ( id, accountEmail, campaign, realName, name, race, classType, alignment, sex, size, age, height, weight, level, initiative, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, currentHitPoints, tempHitPoints, spellList ) {
+            this.id = id;
             this.accountEmail = accountEmail;
             this.campaign = campaign;
             this.realName = realName;
@@ -22,6 +23,8 @@
             this.charisma = charisma;
             this.currentHitPoints = currentHitPoints;
             this.tempHitPoints = tempHitPoints; 
+            this.spellList = spellList;
+            this.DiceManager = new DiceRoller();
             this.experience = 0;  
         }
         normalizeTextLowerCase(text){
@@ -32,10 +35,6 @@
             }
             return lowerCase;
         }
-        rollDNum(num){
-            let roll = Math.floor(Math.random() * num) + 1;
-            return roll;
-        }
         gainHealth(healthToGain) {
             this.currentHitPoints += healthToGain;
         }
@@ -43,7 +42,6 @@
             this.currentHitPoints -= healthToLose;
         }
         gainExperience(toGain, callback) {
-            console.log(toGain);
             let currentLevel = this.level;
             const levelGuide = new LevelGuide();
             let newValue = this.experience + parseInt(toGain);
@@ -59,8 +57,12 @@
             }
 
         }
+        ActionRoll(RollsArray){
+            //send in format of ["d12", '"d20", "d20"]
+            return(this.DiceManager.rollDie(RollsArray));
+        }
         gainLevel() {
-            const DiceManager = new DiceRoller();
+            // var SpellManager = new SpellManager(this.spellList);
             let constitution = this.health;
             let strength = this.strength;
             let wisdom = this.wisdom;
@@ -73,8 +75,7 @@
             let tempHitPoints = this.tempHitPoints;
             switch(this.normalizeTextLowerCase(this.classType)){
                 case("paladin"):
-                console.log(DiceManager.rollDie(["d20", "d4"]));
-                
+
                   break;
                 case("barbarian"):
                 
