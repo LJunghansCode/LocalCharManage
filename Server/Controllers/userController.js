@@ -6,6 +6,9 @@ var session = require('express-session');
 
 
 module.exports = (() => {
+   const handleError = (err) => {
+        console.error(err);
+    };
     return {
         newUser : (req, res) => {
                 User.findOne({email: req.body.email}, (err, userFound) => {

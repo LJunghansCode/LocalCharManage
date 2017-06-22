@@ -7,6 +7,9 @@ var session = require('express-session');
 
 
 module.exports = (() => {
+    const handleError = (err) => {
+        console.error(err);
+    };
     var PlayerController = {};
        PlayerController.newPlayer = (req, res) => {
             var sess = req.session;
@@ -20,7 +23,7 @@ module.exports = (() => {
             res.json({playerMade: playerToMake});
         };
         PlayerController.getPlayer = (req, res) => {
-            Player.findOne({_id: req.params.id}, (err, foundPlayer) => {
+            Player.findOne({_id: req.body.id}, (err, foundPlayer) => {
                 if (foundPlayer) {
                     res.json({playerFound: foundPlayer});
                 } else {

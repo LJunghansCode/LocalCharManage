@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link href="Static/css/main.css">
+    <link rel="stylesheet" href="Static/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.css">
 </head>
 <body ng-controller="homeController">
@@ -16,13 +16,14 @@
         </div>
     </nav>
     <main class="mainContentWrapper">
-        <ng-view class="columns"></ng-view>
+        <ng-view></ng-view>
     </main>
     <!--Load angular and route app file.-->
     <script src="angular/angular.min.js"></script>
     <script src="angular-route/angular-route.js"></script>
     <script src="app.js"></script>
     <!--Load class and behaviour scripts-->
+    
      <script src="Scripts/GameLogic/diceRoller.js"></script>
     <script src="Scripts/GameLogic/levelGuide.js"></script>
     <script src="Scripts/GameLogic/campaign.js"></script>

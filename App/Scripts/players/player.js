@@ -1,5 +1,5 @@
     class Player {
-        constructor ( id, accountEmail, campaign, realName, name, race, classType, alignment, sex, size, age, height, weight, level, initiative, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, currentHitPoints, tempHitPoints, spellList ) {
+        constructor ( id, accountEmail, campaign, realName, name, race, classType, alignment, sex, size, age, height, weight, level, initiative, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, currentHitPoints, tempHitPoints, spellList, skills, personalityTraits, ideals, bonds, flaws, attacksSpellcasting, featuresTraits, equipment, proficienciesLanguages, appearance, alliesOrganizations, backStory, treasureInventory, spellcastingClass, spellcastingAbility,spellSaveDC, spellSaveBonus ) {
             this.id = id;
             this.accountEmail = accountEmail;
             this.campaign = campaign;
@@ -19,6 +19,7 @@
             this.strength = strength;
             this.dexterity = dexterity;
             this.constitution = constitution;
+            this.intelligence = intelligence;
             this.wisdom = wisdom;
             this.charisma = charisma;
             this.currentHitPoints = currentHitPoints;
@@ -26,6 +27,23 @@
             this.spellList = spellList;
             this.DiceManager = new DiceRoller();
             this.experience = 0;  
+            this.skills = skills;
+            this.personalityTraits = personalityTraits;
+            this.ideals = ideals;
+            this.bonds = bonds;
+            this.flaws = flaws;
+            this.attacksSpellcasting = attacksSpellcasting;
+            this.featuresTraits = featuresTraits;
+            this.equipment = equipment;
+            this.proficienciesLanguages = proficienciesLanguages;
+            this.appearance = appearance;
+            this.alliesOrganizations = alliesOrganizations;
+            this.backStory = backStory;
+            this.treasureInventory = treasureInventory;
+            this.spellcastingClass = spellcastingClass;
+            this.spellcastingAbility = spellcastingAbility;
+            this.spellSaveDC = spellSaveDC;
+            this.spellSaveBonus = spellSaveBonus;
         }
         normalizeTextLowerCase(text){
             let lowerCase = "";

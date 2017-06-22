@@ -1,12 +1,12 @@
-
+<div class="columns">
 <section class="column">
     <h2 class="title">Create a new campaign!</h2>
     <form>
         <label for="Campaign Title">Campaign Title: </label> 
-        <input type="text" ng-model="campaignInstance.title">
+        <input class="input" type="text" ng-model="campaignInstance.title">
 
         <label for="Campaign Password">Campaign Password: </label> 
-        <input type="text" ng-model="campaignInstance.password">
+        <input class="input" type="password" ng-model="campaignInstance.password">
 
         <button type="submit" ng-click="newCampaign()">Create Campaign</button>
     </form>
@@ -16,12 +16,13 @@
     <h2 class="title">Log into your campaign and start a session!</h2>
     <form>
         <label for="Campaign Title">Campaign Title: </label> 
-        <input type="text" ng-model="session.title">
+        <input class="input" type="text" ng-model="session.title">
 
         <label for="Campaign Password">Campaign Password: </label> 
-        <input type="text" ng-model="session.password">
+        <input class="input" type="password" ng-model="session.password">
 
         <button type="submit" ng-click="startCampaignSession()">Start Session</button>
     </form>
     
 </section>
+</div>

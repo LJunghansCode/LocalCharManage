@@ -22,7 +22,7 @@ module.exports = (app) => {
     app.post('/new_player', (req, res) => {
         playerController.newPlayer(req, res);
     });
-    app.post('/getPlayer/:id', (req, res) => {
+    app.post('/getPlayer', (req, res) => {
         playerController.getPlayer(req, res);
     });
     //Routes for Campaign Objects

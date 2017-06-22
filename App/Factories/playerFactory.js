@@ -8,7 +8,7 @@ app.factory('playerFactory', ['$http', '$location', function(http, loc){
 		});
 	};
     factory.getPlayer = (id, callback) => {
-		http.post("/getPlayer/" + id).then( (returned_data) => {
+		http.post("/getPlayer", {id: id}).then( (returned_data) => {
 			callback(returned_data);
 		});
 	};
@@ -17,5 +17,10 @@ app.factory('playerFactory', ['$http', '$location', function(http, loc){
             callback(returned_data);
         });
     };
+	factory.updateAndSave = (player, callback) => {
+		http.post('/updateAndSave').then((returned_data) => {
+			callback(returned_data);
+		});
+	};
 	return factory;
 }]);

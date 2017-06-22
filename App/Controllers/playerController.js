@@ -10,6 +10,12 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
                 }
             });  
     };
+    scope.toggleEdit = (player) => {
+        if(player.editing !== true){
+            player.editing = true;
+        } else{player.editing = false;}
+        
+    };
     playerFactory.getSessionPlayers((data) => {
         playersArray = data.data.players;
         for(var i = 0; i < playersArray.length; i++){
@@ -28,14 +34,9 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
             }
     });
     }
-    scope.gainExperience = (expToGain) => {
-        scope.player.gainExperience(expToGain, (data) => {
-            scope.player = data;
-        });
-    };
     scope.joinCampaign = (player, campaignCred) => {
         campaignFactory.addPlayer(player, campaignCred, (data) => {
-            console.log(data);
+            console.log(data.data.message);
         });
     };
     }]);

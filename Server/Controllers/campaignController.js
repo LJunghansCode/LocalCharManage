@@ -5,6 +5,9 @@ var Campaign = mongoose.model('campaign');
 var bcrypt = require('bcrypt');
 var session = require('express-session');
 module.exports = (() => {
+    const handleError = (err) => {
+        console.error(err);
+    };
     var CampaignController = {};
        CampaignController.newCampaign = (req, res) => {
        var campaignToMake = new Campaign({campaignTitle: req.body.title, campaignPassword: req.body.password});

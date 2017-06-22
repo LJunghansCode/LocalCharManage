@@ -1,7 +1,10 @@
-<div class="column">
-<div class="box">
+
+    
+
 <form>
-    <p> Want to join a campaign?</p>
+    <p class="title">Make a new Character Sheet Binded to your account, edit this sheet or add it to a Campaign with other players for stat tracking!</p>
+<div class="columns is-multiline is-mobile">
+    <div class="column is-one-quarter">
         <p>Real Name:</p> <input class="input" name="realName" ng-model="newPlayer.realName">
         <p>Player Name:</p> <input class="input"  name="name" ng-model="newPlayer.name">
         <p>Race: </p> <input class="input"  name="race"ng-model="newPlayer.race" >
@@ -10,6 +13,13 @@
         <p>Sex:</p><input class="input"  ng-model="newPlayer.sex" >
         <p>Size:</p> <input class="input" ng-model="newPlayer.size" >
         <p>Age:</p> <input class="input"  ng-model="newPlayer.age" >
+        <p>Ideals </p><textarea class="input" rows="10" style="height:7em;" ng-model="newPlayer.ideals"></textarea>
+        <p>Bonds </p><textarea class="input" rows="10" style="height:7em;" ng-model="newPlayer.bonds"></textarea>
+        <p>Flaws </p><textarea class="input" rows="10" style="height:7em;" ng-model="newPlayer.flaws"></textarea>
+    </div>
+
+
+    <div class="column is-one-quarter">
         <p>Height: </p> <input class="input"  ng-model="newPlayer.height" >
         <p>Weight: </p> <input class="input"  ng-model="newPlayer.weight" >
         <p>Level:</p> <input class="input"  ng-model="newPlayer.level" >
@@ -23,15 +33,31 @@
         <p>Charisma: </p><input class="input"  ng-model="newPlayer.charisma" >
         <p>CurrentHitPoints:</p><input class="input"  ng-model="newPlayer.currentHitPoints" >
         <p>TempHitPoints:</p> <input class="input"  ng-model="newPlayer.tempHitPoints" >
-        <input class="button"type="submit" value="add to campaign" ng-click="createNewPlayer()">
-    </form>    
+    </div>
+    <div class="column is-one-quarter">
+        <p>Skills </p> <textarea rows="10" style="height:7em;"class="input"ng-model="newPlayer.skills"></textarea>
+        <p>Personality Traits </p> <textarea rows="10" style="height:7em;"class="input"  ng-model="newPlayer.personalityTraits"></textarea>
+        <p>Attacks and Spellcasting </p><textarea class="input" rows="10" style="height:7em;" ng-model="newPlayer.attacksSpellcasting"></textarea>
+        <p>Features and Traits </p><textarea class="input"  rows="10" style="height:7em;"ng-model="newPlayer.featuresTraits"></textarea>
+        <p>Equipment </p><textarea class="input" rows="10" style="height:7em;" ng-model="newPlayer.equipment"></textarea>
+        <p>Proficiencies and Languages </p><textarea class="input" rows="10" style="height:7em;" ng-model="newPlayer.proficienciesLanguages"></textarea>
+        <p>Appearance</p><textarea class="input" rows="10" style="height:7em;" ng-model="newPlayer.appearance"></textarea>
+    </div>
+    <div class="column is-one-quarter">
+        <p>Allies and Organizations </p><textarea class="input" rows="10" style="height:7em;" ng-model="newPlayer.alliesOrganizations"></textarea>
+        <p>BackStory </p><textarea class="input" rows="10" style="height:7em;" ng-model="newPlayer.backStory"></textarea>
+        <p>Treasure </p><textarea class="input" rows="10" style="height:7em;" ng-model="newPlayer.treasureInventory"></textarea>
+        <p>Spellcasting Class </p><input class="input" ng-model="newPlayer.spellcastingClass">
+        <p>Spellcasting Ability </p><input class="input" ng-model="newPlayer.spellcastingAbility">
+        <p>SpellSaveDC</p><input class="input" ng-model="newPlayer.spellSaveDC">
+        <p>SpellSaveBonus</p><input class="input" ng-model="newPlayer.spellSaveBonus">
 </div>
 </div>
-
-<div class="column">
+</form>
+    <p class="title">All your characters click to edit, or join a campaign! Be sure to have the campaign password from your DM</p>
  <ul ng-repeat="player in totalPlayers">
-     <li><a href="/#!/player/{{player._id}}" ng-bind="player._id" ng-click="getPlayer(player._id)">
-         <a ng-bind="player.name"></a>
-     </pre></li>
+     <li><a class="link"href="/#!/player/{{player._id}}" ng-click="getPlayer(player._id)" ng-bind="player.name"></a>
+     </li>
  </ul>
- </div>
+
+
