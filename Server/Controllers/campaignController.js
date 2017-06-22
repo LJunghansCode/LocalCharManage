@@ -25,6 +25,7 @@ module.exports = (() => {
             Player.findOne({_id:playerInstance.id}, (err, playerFound) => {              
                 if (err) return handleError(err);
                 if(playerFound){
+                    //TO-DO : WRITE VALIDATION FOR PLAYER ALREADY ON CAMPAIGN
                     Campaign.findOne({campaignTitle: campaignTitle, campaignPassword: campaignPassword}, (err, foundCampaign) => {
                         if(foundCampaign){
                             foundCampaign.players.push(playerFound);

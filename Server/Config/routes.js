@@ -25,6 +25,9 @@ module.exports = (app) => {
     app.post('/getPlayer', (req, res) => {
         playerController.getPlayer(req, res);
     });
+    app.post('/updateAndSave', (req, res) => {
+        playerController.updateAndSave(req, res);
+    });
     //Routes for Campaign Objects
     app.post('/new_campaign', (req, res) => {
         campaignController.newCampaign(req, res);
@@ -38,6 +41,7 @@ module.exports = (app) => {
     app.post('/add_player', (req, res) => {
         campaignController.addPlayer(req, res);
     });
+    
     
 
 

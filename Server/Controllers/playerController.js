@@ -29,9 +29,18 @@ module.exports = (() => {
                 } else {
                     console.log('no find');
                 }
+            }); 
+        };
+        PlayerController.updateAndSave = (req, res) => {
+                Player.findOneAndUpdate({_id: req.body.id}, req.body, (err, foundPlayer) => {
+                if (foundPlayer) {
+                   foundPlayer.save();
+                } else {
+                    console.log('no find');
+                }
             });   
-        
-    };
+        };
+
     return PlayerController;
 
 })();

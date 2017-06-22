@@ -1,6 +1,6 @@
 
- <button ng-if="!player.editing" class="btn" ng-click="toggleEdit(player)">Edit</button>
-         <button ng-if="player.editing" ng-click="toggleEdit(player)"class="btn" type="submit">Save</button>
+         <button ng-if="!player.editing" class="btn" ng-click="toggleEdit(player)">Edit</button>
+         <button ng-if="player.editing" ng-click="toggleEdit(player); updateAndSave(player)"class="btn" type="submit">Save</button>
 <form >
     <p class="title">Make a new Character Sheet Binded to your account, edit this sheet or add it to a Campaign with other players for stat tracking!</p>
 <div class="columns is-multiline is-mobile">
@@ -17,8 +17,6 @@
         <p>Bonds </p><textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.bonds"></textarea><p ng-if="!player.editing" ng-bind="player.bonds">
         <p>Flaws </p><textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.flaws"></textarea><p ng-if="!player.editing" ng-bind="player.flaws">
     </div>
-
-
     <div class="column is-one-quarter">
         <p>Height: </p> <input ng-if="player.editing" class="input"  ng-model="player.height" ><p ng-if="!player.editing" ng-bind="player.height">
         <p>Weight: </p> <input ng-if="player.editing" class="input"  ng-model="player.weight" ><p ng-if="!player.editing" ng-bind="player.weight">
@@ -51,6 +49,12 @@
         <p>Spellcasting Ability </p><input ng-if="player.editing" class="input" ng-model="player.spellcastingAbility"><p ng-if="!player.editing" ng-bind="player.spellcastingAbility">
         <p>SpellSaveDC</p><input ng-if="player.editing" class="input" ng-model="player.spellSaveDC"><p ng-if="!player.editing" ng-bind="player.spellSaveDC">
         <p>SpellSaveBonus</p><input ng-if="player.editing" class="input" ng-model="player.spellSaveBonus"><p ng-if="!player.editing" ng-bind="player.spellSaveBonus">
+            <br>    
+        <h1 class="subtitle">Join a campaign</h1>
+        <p ng-bind="campaignJoinResponse"></p>
+        <input type="text" class="input" ng-model="campaignCred.title">
+        <input type="text" class="input" ng-model="campaignCred.password">
+        <button class="btn" ng-click="joinCampaign(player, campaignCred);">Join</button>
 </div>
 </div>
 </form>

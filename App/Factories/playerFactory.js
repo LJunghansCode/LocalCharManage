@@ -18,7 +18,7 @@ app.factory('playerFactory', ['$http', '$location', function(http, loc){
         });
     };
 	factory.updateAndSave = (player, callback) => {
-		http.post('/updateAndSave').then((returned_data) => {
+		http.post('/updateAndSave', player).then((returned_data) => {
 			callback(returned_data);
 		});
 	};
