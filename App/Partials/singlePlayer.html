@@ -1,60 +1,74 @@
 
-         <button ng-if="!player.editing" class="btn" ng-click="toggleEdit(player)">Edit</button>
-         <button ng-if="player.editing" ng-click="toggleEdit(player); updateAndSave(player)"class="btn" type="submit">Save</button>
+         <button ng-if="!player.editing" class="button" ng-click="toggleEdit(player)">Edit</button>
+         <button ng-if="player.editing" ng-click="toggleEdit(player); updateAndSave(player)"class="button" type="submit">Save</button>
 <form >
     <p class="title">Make a new Character Sheet Binded to your account, edit this sheet or add it to a Campaign with other players for stat tracking!</p>
 <div class="columns is-multiline is-mobile">
     <div class="column is-one-quarter">
-        <p>Real Name:</p> <input ng-if="player.editing" class="input" name="realName" ng-model="player.realName"><p ng-if="!player.editing" ng-bind="player.realName">
-        <p>Player Name:</p> <input ng-if="player.editing" class="input"  name="name" ng-model="player.name"><p ng-if="!player.editing" ng-bind="player.name">
-        <p>Race: </p> <input ng-if="player.editing" class="input"  name="race"ng-model="player.race" ><p ng-if="!player.editing" ng-bind="player.race">
-        <p>Class:</p>  <input ng-if="player.editing" class="input"  ng-model="player.classType" ><p ng-if="!player.editing" ng-bind="player.class">
-        <p>Alignment:</p> <input ng-if="player.editing" class="input"  ng-model="player.alignment" ><p ng-if="!player.editing" ng-bind="player.alignment">
-        <p>Sex:</p><input ng-if="player.editing" class="input"  ng-model="player.sex" ><p ng-if="!player.editing" ng-bind="player.sex">
-        <p>Size:</p> <input ng-if="player.editing" class="input" ng-model="player.size" ><p ng-if="!player.editing" ng-bind="player.size">
-        <p>Age:</p> <input ng-if="player.editing" class="input"  ng-model="player.age" ><p ng-if="!player.editing" ng-bind="player.age">
-        <p>Ideals </p><textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.ideals"></textarea><p ng-if="!player.editing" ng-bind="player.ideals">
-        <p>Bonds </p><textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.bonds"></textarea><p ng-if="!player.editing" ng-bind="player.bonds">
-        <p>Flaws </p><textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.flaws"></textarea><p ng-if="!player.editing" ng-bind="player.flaws">
+        <p>Real Name:</p><div class="box">  <input ng-if="player.editing" class="input" name="realName" ng-model="player.realName"><p ng-if="!player.editing" ng-bind="player.realName"></p></div>
+        <p>Player Name:</p> <div class="box"> <input ng-if="player.editing" class="input"  name="name" ng-model="player.name"><p ng-if="!player.editing" ng-bind="player.name"></p></div>
+        <p>Race: </p> <div class="box"> <input ng-if="player.editing" class="input"  name="race"ng-model="player.race" ><p ng-if="!player.editing" ng-bind="player.race"></p></div>
+        <p>Class:</p> <div class="box">  <input ng-if="player.editing" class="input"  ng-model="player.classType" ><p ng-if="!player.editing" ng-bind="player.class"></p></div>
+        <p>Alignment:</p><div class="box">  <input ng-if="player.editing" class="input"  ng-model="player.alignment" ><p ng-if="!player.editing" ng-bind="player.alignment"></p></div>
+        <p>Sex:</p><div class="box"> <input ng-if="player.editing" class="input"  ng-model="player.sex" ><p ng-if="!player.editing" ng-bind="player.sex"></p></div>
+        <p>Size:</p><div class="box">  <input ng-if="player.editing" class="input" ng-model="player.size" ><p ng-if="!player.editing" ng-bind="player.size"></p></div>
+        <p>Age:</p> <div class="box"> <input ng-if="player.editing" class="input"  ng-model="player.age" ><p ng-if="!player.editing" ng-bind="player.age"></p></div>
+        <p>Ideals </p><div class="box"> <textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.ideals"></textarea><p ng-if="!player.editing" ng-bind="player.ideals"></p></div>
+        <p>Bonds </p><div class="box"> <textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.bonds"></textarea><p ng-if="!player.editing" ng-bind="player.bonds"></p></div>
+        <p>Flaws </p><div class="box"> <textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.flaws"></textarea><p ng-if="!player.editing" ng-bind="player.flaws"></p></div>
     </div>
-    <div class="column is-one-quarter">
-        <p>Height: </p> <input ng-if="player.editing" class="input"  ng-model="player.height" ><p ng-if="!player.editing" ng-bind="player.height">
-        <p>Weight: </p> <input ng-if="player.editing" class="input"  ng-model="player.weight" ><p ng-if="!player.editing" ng-bind="player.weight">
-        <p>Level:</p> <input ng-if="player.editing" class="input"  ng-model="player.level" ><p ng-if="!player.editing" ng-bind="player.level">
-        <p>Initiative:</p> <input ng-if="player.editing" class="input"  ng-model="player.initiative" ><p ng-if="!player.editing" ng-bind="player.initiative">
-        <p>Speed: </p><input ng-if="player.editing" class="input"  ng-model="player.speed" ><p ng-if="!player.editing" ng-bind="player.speed">
-        <p>Strength: </p><input ng-if="player.editing" class="input" ng-model="player.strength" ><p ng-if="!player.editing" ng-bind="player.strength">
-        <p>Dexterity: </p><input ng-if="player.editing" class="input" ng-model="player.dexterity" ><p ng-if="!player.editing" ng-bind="player.dexterity">
-        <p>Constitution: </p><input ng-if="player.editing" class="input"  ng-model="player.constitution" ><p ng-if="!player.editing" ng-bind="player.constitution">
-        <p>Intelligence: </p><input ng-if="player.editing" class="input"  ng-model="player.intelligence" ><p ng-if="!player.editing" ng-bind="player.intelligence">
-        <p>Wisdom: </p><input ng-if="player.editing" class="input"  ng-model="player.wisdom" ><p ng-if="!player.editing" ng-bind="player.wisdom">
-        <p>Charisma: </p><input ng-if="player.editing" class="input"  ng-model="player.charisma" ><p ng-if="!player.editing" ng-bind="player.charisma">
-        <p>CurrentHitPoints:</p><input ng-if="player.editing" class="input"  ng-model="player.currentHitPoints" ><p ng-if="!player.editing" ng-bind="player.currentHitPoints">
-        <p>TempHitPoints:</p> <input ng-if="player.editing" class="input"  ng-model="player.tempHitPoints" ><p ng-if="!player.editing" ng-bind="player.tempHitPoints">
+    <div class="column">
+        <p>Height: </p> <div class="box"> <input ng-if="player.editing" class="input"  ng-model="player.height" ><p ng-if="!player.editing" ng-bind="player.height"></p></div>
+        <p>Weight: </p> <div class="box"> <input ng-if="player.editing" class="input"  ng-model="player.weight" ><p ng-if="!player.editing" ng-bind="player.weight"></p></div>
+        <p>Level:</p><div class="box">  <input ng-if="player.editing" class="input"  ng-model="player.level" ><p ng-if="!player.editing" ng-bind="player.level"></p></div>
+        <p>Initiative:</p><div class="box">  <input ng-if="player.editing" class="input"  ng-model="player.initiative" ><p ng-if="!player.editing" ng-bind="player.initiative"></p></div>
+        <p>Speed: </p><div class="box"> <input ng-if="player.editing" class="input"  ng-model="player.speed" ><p ng-if="!player.editing" ng-bind="player.speed"></p></div>
+        <p>Strength: </p><div class="box"> <input ng-if="player.editing" class="input" ng-model="player.strength" ><p ng-if="!player.editing" ng-bind="player.strength"></p></div>
+        <p>Dexterity: </p><div class="box"> <input ng-if="player.editing" class="input" ng-model="player.dexterity" ><p ng-if="!player.editing" ng-bind="player.dexterity"></p></div>
+        <p>Constitution: </p><div class="box"> <input ng-if="player.editing" class="input"  ng-model="player.constitution" ><p ng-if="!player.editing" ng-bind="player.constitution"></p></div>
+        <p>Intelligence: </p><div class="box"> <input ng-if="player.editing" class="input"  ng-model="player.intelligence" ><p ng-if="!player.editing" ng-bind="player.intelligence"></p></div>
+        <p>Wisdom: </p><div class="box"> <input ng-if="player.editing" class="input"  ng-model="player.wisdom" ><p ng-if="!player.editing" ng-bind="player.wisdom"></p></div>
+        <p>Charisma: </p><div class="box"> <input ng-if="player.editing" class="input"  ng-model="player.charisma" ><p ng-if="!player.editing" ng-bind="player.charisma"></p></div>
+        <p>CurrentHitPoints:</p><<div class="box"> input ng-if="player.editing" class="input"  ng-model="player.currentHitPoints" ><p ng-if="!player.editing" ng-bind="player.currentHitPoints"></p></div>
+        <p>TempHitPoints:</p><div class="box">  <input ng-if="player.editing" class="input"  ng-model="player.tempHitPoints" ><p ng-if="!player.editing" ng-bind="player.tempHitPoints"></p></div>
     </div>
-    <div class="column is-one-quarter">
-        <p>Skills </p> <textarea ng-if="player.editing" rows="10" style="height:7em;"class="input"ng-model="player.skills"></textarea><p ng-if="!player.editing" ng-bind="player.skills">
-        <p>Personality Traits </p> <textarea ng-if="player.editing" rows="10" style="height:7em;"class="input"  ng-model="player.personalityTraits"></textarea><p ng-if="!player.editing" ng-bind="player.personalityTraits">
-        <p>Attacks and Spellcasting </p><textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.attacksSpellcasting"></textarea><p ng-if="!player.editing" ng-bind="player.attacksSpellcasting">
-        <p>Features and Traits </p><textarea ng-if="player.editing" class="input"  rows="10" style="height:7em;"ng-model="player.featuresTraits"></textarea><p ng-if="!player.editing" ng-bind="player.featuresTraits">
-        <p>Equipment </p><textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.equipment"></textarea><p ng-if="!player.editing" ng-bind="player.equipment">        
-        <p>Proficiencies and Languages </p><textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.proficienciesLanguages"></textarea><p ng-if="!player.editing" ng-bind="player.proficienciesLanguages">
-        <p>Appearance</p><textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.appearance"></textarea><p ng-if="!player.editing" ng-bind="player.appearance">
+    <div class="column">
+        <p>Spells </p>
+        <button class="button" ng-click="addSpell()">Add Spell</button>
+        <div data-ng-repeat="spell in player.spellList">
+            <div class="box">
+                <p>Spell Name:</p> <textarea ng-if="player.editing" ng-model="spell.name" rows="10" style="height:7em;"class="input" ></textarea><p ng-if="!player.editing" ng-bind="spell.name"></p>
+                <p>Spell Description:</p> <textarea ng-if="player.editing" ng-model="spell.description" rows="10" style="height:7em;"class="input" ></textarea><p ng-if="!player.editing" ng-bind="spell.description"></p>
+                <button class="delete" ng-click="deleteSpell(spell)"></button>
+            </div>
+         </div>
+        <div class="box">
+            <h1 class="subtitle">Join a campaign</h1>
+            <p ng-bind="campaignJoinResponse"></p>
+            <p>Name: </p> <input type="text" class="input" ng-model="campaignCred.title">
+            <p>Password: </p> <input type="text" class="input" ng-model="campaignCred.password">
+            <button class="button" ng-click="joinCampaign(player, campaignCred);">Join</button>
+        </div>   
     </div>
-    <div class="column is-one-quarter">
-        <p>Allies and Organizations </p><textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.alliesOrganizations"></textarea><p ng-if="!player.editing" ng-bind="player.alliesOrganizations">
-        <p>BackStory </p><textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.backStory"></textarea><p ng-if="!player.editing" ng-bind="player.backStory">
-        <p>Treasure </p><textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.treasureInventory"></textarea><p ng-if="!player.editing" ng-bind="player.treasureInventory">
-        <p>Spellcasting Class </p><input ng-if="player.editing" class="input" ng-model="player.spellcastingClass"><p ng-if="!player.editing" ng-bind="player.spellcastingClass">
-        <p>Spellcasting Ability </p><input ng-if="player.editing" class="input" ng-model="player.spellcastingAbility"><p ng-if="!player.editing" ng-bind="player.spellcastingAbility">
-        <p>SpellSaveDC</p><input ng-if="player.editing" class="input" ng-model="player.spellSaveDC"><p ng-if="!player.editing" ng-bind="player.spellSaveDC">
-        <p>SpellSaveBonus</p><input ng-if="player.editing" class="input" ng-model="player.spellSaveBonus"><p ng-if="!player.editing" ng-bind="player.spellSaveBonus">
-            <br>    
-        <h1 class="subtitle">Join a campaign</h1>
-        <p ng-bind="campaignJoinResponse"></p>
-        <input type="text" class="input" ng-model="campaignCred.title">
-        <input type="text" class="input" ng-model="campaignCred.password">
-        <button class="btn" ng-click="joinCampaign(player, campaignCred);">Join</button>
+    <div class="column">
+         <p class="title is-4">Skills </p> <div class="box"> <textarea ng-if="player.editing" rows="10" style="height:7em;"class="input"ng-model="player.skills"></textarea><p ng-if="!player.editing" ng-bind="player.skills"></div>
+        <p class="title is-4">Personality Traits </p> <div class="box"> <textarea ng-if="player.editing" rows="10" style="height:7em;"class="input"  ng-model="player.personalityTraits"></textarea><p ng-if="!player.editing" ng-bind="player.personalityTraits"></div>
+        <p class="title is-4">Attacks and Spellcasting </p><div class="box"> <textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.attacksSpellcasting"></textarea><p ng-if="!player.editing" ng-bind="player.attacksSpellcasting"></div>
+        <p class="title is-4">Features and Traits </p><div class="box"> <textarea ng-if="player.editing" class="input"  rows="10" style="height:7em;"ng-model="player.featuresTraits"></textarea><p ng-if="!player.editing" ng-bind="player.featuresTraits"></div>
+        <p class="title is-4">Equipment </p><div class="box"> <textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.equipment"></textarea><p ng-if="!player.editing" ng-bind="player.equipment">        </div>
+        <p class="title is-4">Proficiencies and Languages </p><div class="box"> <textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.proficienciesLanguages"></textarea><p ng-if="!player.editing" ng-bind="player.proficienciesLanguages"></div>
+        <p class="title is-4">Appearance</p><div class="box"> <textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.appearance"></textarea><p ng-if="!player.editing" ng-bind="player.appearance"></div>
+        <p class="title is-4">Allies and Organizations </p><div class="box"> <textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.alliesOrganizations"></textarea><p ng-if="!player.editing" ng-bind="player.alliesOrganizations"></div>
+        <p class="title is-4">BackStory </p><div class="box"> <textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.backStory"></textarea><p ng-if="!player.editing" ng-bind="player.backStory"></div>
+        <p class="title is-4">Treasure </p><div class="box"> <textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.treasureInventory"></textarea><p ng-if="!player.editing" ng-bind="player.treasureInventory"></div>
+        <p class="title is-4">Spellcasting Class </p><div class="box"> <input ng-if="player.editing" class="input" ng-model="player.spellcastingClass"><p ng-if="!player.editing" ng-bind="player.spellcastingClass"></div>
+        <p class="title is-4">Spellcasting Ability </p><div class="box"> <input ng-if="player.editing" class="input" ng-model="player.spellcastingAbility"><p ng-if="!player.editing" ng-bind="player.spellcastingAbility"></div>
+        <p class="title is-4">SpellSaveDC</p><div class="box"> <input ng-if="player.editing" class="input" ng-model="player.spellSaveDC"><p ng-if="!player.editing" ng-bind="player.spellSaveDC"></div>
+        <p class="title is-4">SpellSaveBonus</p><div class="box"> <input ng-if="player.editing" class="input" ng-model="player.spellSaveBonus"><p ng-if="!player.editing" ng-bind="player.spellSaveBonus"></div>
+            <br> 
+      
 </div>
 </div>
 </form>
+         <button ng-if="!player.editing" class="button" ng-click="toggleEdit(player)">Edit</button>
+         <button ng-if="player.editing" ng-click="toggleEdit(player); updateAndSave(player)"class="button" type="submit">Save</button>

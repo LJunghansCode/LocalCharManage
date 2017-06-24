@@ -27,7 +27,7 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
     if (routeParams.id) {
         playerFactory.getPlayer(routeParams.id, (data) => {
             if(data.data.playerFound) {
-                var P = data.data.playerFound;                
+                var P = data.data.playerFound;   
                 let playerOnDisplay = new Player(P._id, P.accountEmail, P.campaign, P.realName, P.name, P.race, P.classType, P.alignment, P.sex, P.size, P.age, P.height, P.weight, P.level, P.initiative, P.speed, P.strength, P.dexterity, P.constitution, P.intelligence, P.wisdom, P.charisma, P.currentHitPoints, P.tempHitPoints, P.spellList, P.skills, P.personalityTraits, P.ideals, P.bonds, P.flaws, P.attacksSpellcasting, P.featuresTraits, P.equipment, P.proficienciesLanguages, P.appearance, P.alliesOrganizations, P.backStory, P.treasureInventory, P.spellcastingClass, P.spellcastingAbility,P.spellSaveDC, P.spellSaveBonus );
                 scope.player = playerOnDisplay;
             } else {
@@ -44,6 +44,18 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
         playerFactory.updateAndSave(player, (data) => {
             console.log(data);
         });
+    };
+    scope.addSpell = () => {
+        var newSpellNo = scope.player.spellList.length + 1;
+        scope.player.spellList.push({id: newSpellNo});
+    };
+    scope.deleteSpell = (spell) => {
+        scope.player.spellList.splice(spell.id - 1, 1);
+        //sort id/array relationship.
+        for(let i = 0; i < scope.player.spellList.length; i++){
+            let thisSpell = scope.player.spellList[i];
+            thisSpell.id = i + 1;
+        }
     };
 
     }]);

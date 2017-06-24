@@ -93,7 +93,7 @@
             let tempHitPoints = this.tempHitPoints;
             switch(this.normalizeTextLowerCase(this.classType)){
                 case("paladin"):
-
+                    
                   break;
                 case("barbarian"):
                 
