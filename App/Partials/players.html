@@ -1,8 +1,19 @@
-
-    
-
 <form>
-    <p class="title">Make a new Character Sheet Binded to your account, edit this sheet or add it to a Campaign with other players for stat tracking!</p>
+     <section class="hero is-danger">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Character Sheet
+      </h1>
+      <h2 class="subtitle">
+      Make a new Character Sheet Binded to your account, edit this sheet or add it to a Campaign with other players for stat tracking!
+      </h2>
+    </div>
+  </div>
+</section>
+<div class="container">
+ <button class="button is-warning" ng-click="createNewPlayer(newPlayer);">Save Character and Sheet!</button>   
+ </div>
 <div class="columns is-multiline is-mobile">
     <div class="column is-one-quarter">
         <p>Real Name:</p> <input class="input" name="realName" ng-model="newPlayer.realName">
@@ -17,8 +28,6 @@
         <p>Bonds </p><textarea class="input" rows="10" style="height:7em;" ng-model="newPlayer.bonds"></textarea>
         <p>Flaws </p><textarea class="input" rows="10" style="height:7em;" ng-model="newPlayer.flaws"></textarea>
     </div>
-
-
     <div class="column is-one-quarter">
         <p>Height: </p> <input class="input"  ng-model="newPlayer.height" >
         <p>Weight: </p> <input class="input"  ng-model="newPlayer.weight" >
@@ -55,6 +64,7 @@
 </div>
 </form>
     <p class="title">All your characters click to edit, or join a campaign! Be sure to have the campaign password from your DM</p>
+    <button class="button is-warning" ng-click="createNewPlayer(newPlayer);">Save Character and Sheet!</button>
  <ul ng-repeat="player in totalPlayers">
      <li><a class="link"href="/#!/player/{{player._id}}" ng-click="getPlayer(player._id)" ng-bind="player.name"></a>
      </li>

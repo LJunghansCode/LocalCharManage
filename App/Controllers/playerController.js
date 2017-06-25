@@ -36,9 +36,13 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
     });
     }
     scope.joinCampaign = (player, campaignCred) => {
+        if( ! campaignCred || !campaignCred.title || !campaignCred.password){
+            scope.campaignJoinResponse = "oops, missed a field";
+        } else {
         campaignFactory.addPlayer(player, campaignCred, (data) => {
             scope.campaignJoinResponse = data.data.message;
         });
+        }
     };
     scope.updateAndSave = (player) => {
         playerFactory.updateAndSave(player, (data) => {
@@ -55,6 +59,14 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
         for(let i = 0; i < scope.player.spellList.length; i++){
             let thisSpell = scope.player.spellList[i];
             thisSpell.id = i + 1;
+        }
+    };
+    scope.toggleJoinCampaign = () => {
+        let modal = document.getElementById("campaignModal");
+        if(modal.classList.contains('is-active')){
+            modal.classList.remove('is-active');
+        } else {
+            modal.classList.add('is-active');
         }
     };
 

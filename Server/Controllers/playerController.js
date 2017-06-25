@@ -16,7 +16,6 @@ module.exports = (() => {
             var playerToMake = new Player(req.body);
             playerToMake.accountEmail = sess.user.email;
             sess.user.players.push(playerToMake);
-            
             playerToMake.save((err) => {
                 if (err) return handleError(err);
             });
@@ -24,6 +23,7 @@ module.exports = (() => {
         };
         PlayerController.getPlayer = (req, res) => {
             Player.findOne({_id: req.body.id}, (err, foundPlayer) => {
+                if (err) return handleError(err);
                 if (foundPlayer) {
                     res.json({playerFound: foundPlayer});
                 } else {
@@ -33,6 +33,7 @@ module.exports = (() => {
         };
         PlayerController.updateAndSave = (req, res) => {
                 Player.findOneAndUpdate({_id: req.body.id}, req.body, (err, foundPlayer) => {
+                if (err) return handleError(err);
                 if (foundPlayer) {
                    foundPlayer.save();
                    res.json({player: foundPlayer});
