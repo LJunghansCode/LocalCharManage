@@ -1,5 +1,33 @@
-app.controller('playerController', [ '$location', '$scope', '$route','$routeParams', 'playerFactory','campaignFactory', function(loc, scope, route, routeParams, playerFactory, campaignFactory) { 
+app.controller('playerController', [ '$location', '$scope', '$route','$routeParams', 'playerFactory','campaignFactory','userFactory', function(loc, scope, route, routeParams, playerFactory, campaignFactory, userFactory) { 
+    let currUser = userFactory.getCurUser((data) => {
+        if(data.data.message === false) {
+            loc.path('/login');
+        }
+        });
+    
     //TO-DO GLOBAL MESSAGE DISPLAY
+    if (routeParams.id) {
+        playerFactory.getPlayer(routeParams.id, (data) => {
+            if(data.data.playerFound) {
+                var P = data.data.playerFound;   
+                let playerOnDisplay = new Player(P._id, P.accountEmail, P.campaign, P.realName, P.name, P.race, P.classType, P.alignment, P.sex, P.size, P.age, P.height, P.weight, P.level, P.initiative, P.speed, P.strength, P.dexterity, P.constitution, P.intelligence, P.wisdom, P.charisma, P.currentHitPoints, P.tempHitPoints, P.spellList, P.skills, P.personalityTraits, P.ideals, P.bonds, P.flaws, P.attacksSpellcasting, P.featuresTraits, P.equipment, P.proficienciesLanguages, P.appearance, P.alliesOrganizations, P.backStory, P.treasureInventory, P.spellcastingClass, P.spellcastingAbility,P.spellSaveDC, P.spellSaveBonus );
+                scope.player = playerOnDisplay;
+                let primaryStats = [{stat: "strength", value: scope.player.strength}, {stat: "dexterity", value: scope.player.dexterity}, {stat:"constitution", value: scope.player.constitution}, {stat:"intelligence", value: scope.player.intelligence}, {stat: "wisdom", value: scope.player.wisdom}, {stat:"charisma", value: scope.player.charisma}];
+                scope.calculateModifiers(primaryStats);
+            } else {
+                console.error("Something went wrong. Sorry!");
+            }
+    });
+    scope.calculateModifiers = (stats) => {
+        for(let i = 0; i<stats.length; i++){
+            let name = stats[i].stat + "Mod";
+            let modValue = stats[i].value - 10;
+            modValue = Math.floor(modValue/2);
+            scope.player[name] = "modifier: " + modValue;
+        }
+    };
+
+    }
     scope.totalPlayers = [];    
     scope.campaignJoinResponse = "";
     scope.createNewPlayer = () => {
@@ -12,29 +40,12 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
                 }
             });  
     };
-    scope.toggleEdit = (player) => {
-        if(player.editing !== true){
-            player.editing = true;
-        } else{player.editing = false;}
-        
-    };
     playerFactory.getSessionPlayers((data) => {
         playersArray = data.data.players;
         for(var i = 0; i < playersArray.length; i++){
             scope.totalPlayers.push(playersArray[i]);
         }
     });
-    if (routeParams.id) {
-        playerFactory.getPlayer(routeParams.id, (data) => {
-            if(data.data.playerFound) {
-                var P = data.data.playerFound;   
-                let playerOnDisplay = new Player(P._id, P.accountEmail, P.campaign, P.realName, P.name, P.race, P.classType, P.alignment, P.sex, P.size, P.age, P.height, P.weight, P.level, P.initiative, P.speed, P.strength, P.dexterity, P.constitution, P.intelligence, P.wisdom, P.charisma, P.currentHitPoints, P.tempHitPoints, P.spellList, P.skills, P.personalityTraits, P.ideals, P.bonds, P.flaws, P.attacksSpellcasting, P.featuresTraits, P.equipment, P.proficienciesLanguages, P.appearance, P.alliesOrganizations, P.backStory, P.treasureInventory, P.spellcastingClass, P.spellcastingAbility,P.spellSaveDC, P.spellSaveBonus );
-                scope.player = playerOnDisplay;
-            } else {
-                console.error("Something went wrong. Sorry!");
-            }
-    });
-    }
     scope.joinCampaign = (player, campaignCred) => {
         if( ! campaignCred || !campaignCred.title || !campaignCred.password){
             scope.campaignJoinResponse = "oops, missed a field";
@@ -69,5 +80,16 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
             modal.classList.add('is-active');
         }
     };
-
+    scope.toggleEdit = (player) => {
+        if(player.editing !== true){
+            player.editing = true;
+        } else{player.editing = false;}
+        
+    };
+    scope.toggleSpellEdit = (spell) => {
+        if(spell.spellEditing !== true){
+            spell.spellEditing = true;
+        } else{spell.spellEditing = false;}
+        
+    };
     }]);

@@ -42,12 +42,6 @@ spellcastingClass: {type: String},
 spellcastingAbility: {type: String},
 spellSaveDC: {type: String},
 spellSaveBonus: {type: String},
-strengthMod: {type: Number},
-dexterityMod: {type: Number},
-constitutionMod: {type: Number},
-intelligenceMod: {type: Number},
-wisdomMod: {type: Number},
-charismaMod: {type: Number},
 armorClass: {type: Number},
 proficiencyBonus: {type: Number}
 });

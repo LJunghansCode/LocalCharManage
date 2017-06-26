@@ -44,9 +44,8 @@ app.controller('userController', [ '$window', '$location', '$scope', '$route', '
     };
     scope.logOutUser = () => {
         userFactory.logOutUser((data) => {
-            console.log(data);
-            window.location.reload();
             loc.path('/home');
+            route.reload();
         });
     };
     

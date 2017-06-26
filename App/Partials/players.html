@@ -63,8 +63,9 @@
 </div>
 </div>
 </form>
+
+<button class="button is-warning" ng-click="createNewPlayer(newPlayer);">Save Character and Sheet!</button>
     <p class="title">All your characters click to edit, or join a campaign! Be sure to have the campaign password from your DM</p>
-    <button class="button is-warning" ng-click="createNewPlayer(newPlayer);">Save Character and Sheet!</button>
  <ul ng-repeat="player in totalPlayers">
      <li><a class="link"href="/#!/player/{{player._id}}" ng-click="getPlayer(player._id)" ng-bind="player.name"></a>
      </li>
