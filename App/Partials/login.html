@@ -3,6 +3,7 @@
             <header class="card-header">
                 <h2 class="card-header-title">Login</h2>    
             </header>
+            <form>
             <div class="card-content">
                 <h4 ng-bind="loginStatusMessage"></h4>
                 <label class="label" for="return-email-input">E-mail</label><input class="input" type="email" name="returnEmail" ng-model="returnUser.email">
@@ -11,12 +12,14 @@
             <footer class="card-footer">
                 <button class="button" type="submit" ng-click="returnUser()"> Login </button>
             </footer>
+             </form>
         </div>
 
         <div class="card container">
             <header class="card-header">
                 <h2 class="card-header-title">Register</h2>    
             </header>  
+            <form>
              <div class="card-content">
                 <h4 ng-bind="statusMessage"></h4>
                 <label class="label" for="login-email-input">E-mail</label><input class="input" type="email" name="loginEmail" ng-model="newUser.email">
@@ -27,6 +30,7 @@
             <footer class="card-footer">
                 <button class="button" type="submit" ng-click="newUser()">Register</button>
             </footer>
+            </form>
         </div>
 </section>
 <section ng-if='userEmail'>

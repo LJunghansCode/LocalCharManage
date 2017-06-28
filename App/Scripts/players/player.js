@@ -1,5 +1,5 @@
     class Player {
-        constructor ( id, accountEmail, campaign, realName, name, race, classType, alignment, sex, size, age, height, weight, level, initiative, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, currentHitPoints, tempHitPoints, spellList, skills, personalityTraits, ideals, bonds, flaws, attacksSpellcasting, featuresTraits, equipment, proficienciesLanguages, appearance, alliesOrganizations, backStory, treasureInventory, spellcastingClass, spellcastingAbility,spellSaveDC, spellSaveBonus ) {
+        constructor ( id, accountEmail, campaign, realName, name, race, classType, alignment, sex, size, age, height, weight, level, initiative, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, currentHitPoints, tempHitPoints, spellList, skills, personalityTraits, ideals, bonds, flaws, attacksSpellcasting, featuresTraits, equipment, proficienciesLanguages, appearance, alliesOrganizations, backStory, treasureInventory, spellcastingClass, spellcastingAbility,spellSaveDC, spellSaveBonus, armorClass, proficiencyBonus, borderColor ) {
             this.id = id;
             this.accountEmail = accountEmail;
             this.campaign = campaign;
@@ -44,6 +44,9 @@
             this.spellcastingAbility = spellcastingAbility;
             this.spellSaveDC = spellSaveDC;
             this.spellSaveBonus = spellSaveBonus;
+            this.armorClass = armorClass;
+            this.proficiencyBonus = proficiencyBonus;
+            this.borderColor = borderColor;
         }
         normalizeTextLowerCase(text){
             let lowerCase = "";

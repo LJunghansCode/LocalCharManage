@@ -26,6 +26,25 @@ app.factory('campaignFactory', ['$http', '$location', function(http, loc){
             callback(returnedData);
         });
     };
+    factory.removePlayer = (player, campaign, callback) => {
+        var removeInfo = {player: player, campaign: campaign};
+        http.post('/remove_player', removeInfo).then((returnedData)=>{
+            callback(returnedData);
+        });
+    };
+    factory.all = [];
+    factory.startCombat = (players, enemies) => {  
+        for(let i=0; i<players.length; i++){
+            factory.all.push(players[i]);
+        }
+        for(let i=0; i<enemies.length; i++){
+            factory.all.push(enemies[i]);
+        }
+    };
+    factory.getFighters = (callback) => {
+        
+        callback(factory.all);
+    };
 
     return factory;
 }]);

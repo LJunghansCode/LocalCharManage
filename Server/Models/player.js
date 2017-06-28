@@ -43,6 +43,7 @@ spellcastingAbility: {type: String},
 spellSaveDC: {type: String},
 spellSaveBonus: {type: String},
 armorClass: {type: Number},
-proficiencyBonus: {type: Number}
+proficiencyBonus: {type: Number},
+borderColor: {type: String}
 });
 mongoose.model('player', playerSchema);

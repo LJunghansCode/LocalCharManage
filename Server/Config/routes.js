@@ -41,7 +41,9 @@ module.exports = (app) => {
     app.post('/add_player', (req, res) => {
         campaignController.addPlayer(req, res);
     });
-    
+    app.post('/remove_player', (req, res)=>{
+        campaignController.removePlayer(req, res);
+    });
     
 
 

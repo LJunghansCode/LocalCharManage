@@ -1,0 +1,22 @@
+<div ng-repeat="fighter in fighterArray | orderBy: 'initiative' : true " ng-class="yourTurn($index)" >
+    <div class="card">
+  <div class="card-image">
+  </div>
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+          <img src="http://bulma.io/images/placeholders/96x96.png" alt="Image">
+        </figure>
+      </div>
+      <div class="media-content">
+        <p data-ng-bind="fighter.name"></p>
+        <p data-ng-bind="fighter.initiative"></p>
+        <p data-ng-bind="fighter.currentHitPoints"></p>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+<button type="" class="button" ng-click="nextTurn()">Next Turn</button>
+

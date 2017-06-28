@@ -65,6 +65,7 @@
          </div>
         <div id="campaignModal"class="modal">
             <div ng-click="toggleJoinCampaign()" class="modal-background"></div>
+             <form>
             <div class="modal-card">
                     <header class="modal-card-head">
                         <p class="modal-card-title">Join a campaign</p>
@@ -73,14 +74,14 @@
                     <section class="modal-card-body">
                         <p class="title is-5"ng-bind="campaignJoinResponse"></p>
                         <p>Name: </p> <input type="text" class="input" ng-model="campaignCred.title">
-                        <p>Password: </p> <input type="text" class="input" ng-model="campaignCred.password">
+                        <p>Password: </p> <input type="password" class="input" ng-model="campaignCred.password">
                     </section>
                     <footer class="modal-card-foot">
                         <button class="button is-primary" ng-click="joinCampaign(player, campaignCred);">Join</button>
                     </footer>
             </div>
-        </div>   
-    </div>
+             </form>
+        </div>
     <div class="column">
          <p class="title is-6">Skills </p> <div class="box"> <textarea ng-if="player.editing" rows="10" style="height:7em;"class="input"ng-model="player.skills"></textarea><p ng-if="!player.editing" ng-bind="player.skills"></div>
         <p class="title is-6">Personality Traits </p> <div class="box"> <textarea ng-if="player.editing" rows="10" style="height:7em;"class="input"  ng-model="player.personalityTraits"></textarea><p ng-if="!player.editing" ng-bind="player.personalityTraits"></div>

@@ -1,12 +1,11 @@
+
 <section class="columns is-multiline is-mobile">
-    <div data-ng-repeat="player in currentPlayers" class="column card"> 
-         <button ng-if="!player.editing" class="button" ng-click="toggleEdit(player)">Edit</button>
-         <button ng-if="player.editing" ng-click="toggleEdit(player)"class="button" type="submit">Save</button>
-         <form>
-         
+    <div data-ng-repeat="player in currentPlayers | orderBy: 'name' " ng-class="getColor(player)"class="column playerInSessionContainer"> 
+        <div class="card">
              <div="card-header">
-                <p class="card-header-title">Real Name:</p> <input ng-if="player.editing" class="input" name="realName" ng-model="player.realName"><p ng-if="!player.editing" ng-bind="player.realName">
-         
+                <input ng-if="player.editing" class="input" name="realName" ng-model="player.name"><p  class="card-header-title title" ng-if="!player.editing" ng-bind="player.name">
+                </p>
+             </div>   
             <div class="card-content">
                 <p>Height: </p> <input ng-if="player.editing" class="input"  ng-model="player.height" ><p ng-if="!player.editing" ng-bind="player.height">
                 <p>Weight: </p> <input ng-if="player.editing" class="input"  ng-model="player.weight" ><p ng-if="!player.editing" ng-bind="player.weight">
@@ -27,14 +26,53 @@
                 <p>SpellSaveDC</p><input ng-if="player.editing" class="input" ng-model="player.spellSaveDC"><p ng-if="!player.editing" ng-bind="player.spellSaveDC">
                 <p>SpellSaveBonus</p><input ng-if="player.editing" class="input" ng-model="player.spellSaveBonus"><p ng-if="!player.editing" ng-bind="player.spellSaveBonus">
             </div>
+            <select name="colorPicker" ng-model="colorChoice">
+                    <option value="is-red">red</option>
+                    <option value="is-blue">blue</option>
+                    <option value="is-purple">purple</option>
+                    <option value="is-teal">teal</option>
+                    <option value="is-pink">pink</option>
+                    <option value="is-orange">orange</option>
+                    <option value="is-gray">gray</option>
+                </select>
+                <button class="button is-small" ng-click="pickColor(colorChoice, player)">Pick Color</button>
+              <br>    
+              <button ng-if="!player.editing" class="button" ng-click="toggleEdit(player)">Edit</button>
+              <button ng-if="player.editing" ng-click="toggleEdit(player)"class="button" type="submit">Save</button>
+              <br>
+              <button class="button is-small is-danger" ng-if="player.youOwnThis" ng-click="leaveCampaign(player)">Leave Campaign</button>
          </div>
-        
-</div>
-</form>
-</div>
-</div>
+    </div>
  </section>
-        <div  data-ng-repeat="die in dieRolls">    
+ <button class="button is-info" ng-click="toggleStartCombat()">start combat</button>
+         <div id="combatModal"class="modal">
+            <div ng-click="toggleStartCombat()" class="modal-background"></div>
+             <form>
+            <div class="modal-card">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Okay, but first, lets roll for Initiative!</p>
+                        <button class="delete is-medium" ng-click="toggleStartCombat()"></button>
+                    </header>
+                    <section class="modal-card-body ">
+                        <div data-ng-repeat="player in currentPlayers">
+                            <p data-ng-bind="player.name"></p>
+                            <input type="text" ng-model="player.initiative" placeholder="Roll For Initiative!">
+                        </div>
+                        <p class="title is-4">Enemies in Battle</p>
+                        <div data-ng-repeat="enemy in currentEnemies">
+                            <p placeholder="enemy" data-ng-bind="enemy.name"></p>
+                            <input type="text" ng-model="enemy.name" placeholder="Name">
+                            <input type="text" ng-model="enemy.initiative" placeholder="Initiative">
+                        </div>
+                    </section>
+                    <footer class="modal-card-foot">
+                        <button class="button is-small" ng-click="addEnemy()">Add Enemy</button>
+                        <button class="button is-primary" ng-click="startCombat(currentPlayers)">Join</button>
+                    </footer>
+            </div>
+             </form>
+        </div>
+        <div data-ng-repeat="die in dieRolls">    
           <select class="DieSelect" name="Die" ng-model="die.choice">
             <option value="d20">d20</option>
             <option value="d12">d12</option>
@@ -50,6 +88,6 @@
         <div class="column">
             <div data-ng-repeat=" roll in rollsResults">
                 <p class="title">You rolled a {{roll.rollValue}} with your {{roll.dice}}</p>
-            </div>
+</div>
 
  

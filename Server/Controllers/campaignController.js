@@ -61,6 +61,24 @@ module.exports = (() => {
                 }
             });
         };
+        CampaignController.removePlayer = (req, res) => {
+            let campaignToFindId = req.body.campaign.id;
+            let playerToRemoveId = req.body.player.id;
+            Campaign.findById(campaignToFindId, (err, foundCampaign) => {
+                if(foundCampaign){
+                    let playerList = foundCampaign.players;
+                    for(let i=0; i<playerList.length; i++){
+                        //dynamic typing garbage below
+                        if(playerToRemoveId == playerList[i]._id){
+                            playerList.splice(i, 1);
+                        }
+                    }
+                    foundCampaign.save();
+                    res.json({players: playerList})
+                }
+            });
+
+        };
     return CampaignController;
 
 })();
