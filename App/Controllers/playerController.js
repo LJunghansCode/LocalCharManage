@@ -4,7 +4,7 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
             loc.path('/login');
         }
         });
-    
+
     //TO-DO GLOBAL MESSAGE DISPLAY
     if (routeParams.id) {
         playerFactory.getPlayer(routeParams.id, (data) => {
@@ -14,6 +14,11 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
                 scope.player = playerOnDisplay;
                 let primaryStats = [{stat: "strength", value: scope.player.strength}, {stat: "dexterity", value: scope.player.dexterity}, {stat:"constitution", value: scope.player.constitution}, {stat:"intelligence", value: scope.player.intelligence}, {stat: "wisdom", value: scope.player.wisdom}, {stat:"charisma", value: scope.player.charisma}];
                 scope.calculateModifiers(primaryStats);
+                userFactory.getCurUser((data) =>{
+                    if(data.data.message === scope.player.accountEmail){
+                        scope.player.youOwnThis = true;
+                    }
+                });
             } else {
                 console.error("Something went wrong. Sorry!");
             }

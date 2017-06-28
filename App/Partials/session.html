@@ -3,8 +3,18 @@
     <div data-ng-repeat="player in currentPlayers | orderBy: 'name' " ng-class="getColor(player)"class="column playerInSessionContainer"> 
         <div class="card">
              <div="card-header">
-                <input ng-if="player.editing" class="input" name="realName" ng-model="player.name"><p  class="card-header-title title" ng-if="!player.editing" ng-bind="player.name">
-                </p>
+            <div class="color-choice-row">
+                <button class="color-choice-red" ng-click="pickColor('is-red', player)"></button>
+                <button class="color-choice-blue" ng-click="pickColor('is-blue', player)"></button>
+                <button class="color-choice-purple" ng-click="pickColor('is-purple', player)"></button>
+                <button class="color-choice-teal" ng-click="pickColor('is-teal', player)"></button>
+                <button class="color-choice-pink" ng-click="pickColor('is-pink', player)"></button>
+                <button class="color-choice-orange" ng-click="pickColor('is-orange', player)"></button>
+                <button class="color-choice-green" ng-click="pickColor('is-green', player)"></button>
+                <button class="color-choice-gray" ng-click="pickColor('is-gray', player)"></button>
+            </div>
+            <input ng-if="player.editing" class="input" name="realName" ng-model="player.name"><a href="/#!/player/{{player.id}}" class="card-header-title title" ng-if="!player.editing" ng-bind="player.name">
+                </a>
              </div>   
             <div class="card-content">
                 <p>Height: </p> <input ng-if="player.editing" class="input"  ng-model="player.height" ><p ng-if="!player.editing" ng-bind="player.height">
@@ -26,21 +36,9 @@
                 <p>SpellSaveDC</p><input ng-if="player.editing" class="input" ng-model="player.spellSaveDC"><p ng-if="!player.editing" ng-bind="player.spellSaveDC">
                 <p>SpellSaveBonus</p><input ng-if="player.editing" class="input" ng-model="player.spellSaveBonus"><p ng-if="!player.editing" ng-bind="player.spellSaveBonus">
             </div>
-            <select name="colorPicker" ng-model="colorChoice">
-                    <option value="is-red">red</option>
-                    <option value="is-blue">blue</option>
-                    <option value="is-purple">purple</option>
-                    <option value="is-teal">teal</option>
-                    <option value="is-pink">pink</option>
-                    <option value="is-orange">orange</option>
-                    <option value="is-gray">gray</option>
-                </select>
-                <button class="button is-small" ng-click="pickColor(colorChoice, player)">Pick Color</button>
               <br>    
-              <button ng-if="!player.editing" class="button" ng-click="toggleEdit(player)">Edit</button>
-              <button ng-if="player.editing" ng-click="toggleEdit(player)"class="button" type="submit">Save</button>
-              <br>
-              <button class="button is-small is-danger" ng-if="player.youOwnThis" ng-click="leaveCampaign(player)">Leave Campaign</button>
+              <button ng-if="!player.editing && player.youOwnThis"  class="button" ng-click="toggleEdit(player)">Edit</button>
+              <button ng-if="player.editing && player.youOwnThis" ng-click="toggleEdit(player)"class="button" type="submit">Save</button>
          </div>
     </div>
  </section>
@@ -57,17 +55,19 @@
                         <div data-ng-repeat="player in currentPlayers">
                             <p data-ng-bind="player.name"></p>
                             <input type="text" ng-model="player.initiative" placeholder="Roll For Initiative!">
+                            <button type="text" class="button is-info is-small" ng-click="initiativeRoll(player)">Roll For Initiative</button>
                         </div>
                         <p class="title is-4">Enemies in Battle</p>
                         <div data-ng-repeat="enemy in currentEnemies">
                             <p placeholder="enemy" data-ng-bind="enemy.name"></p>
                             <input type="text" ng-model="enemy.name" placeholder="Name">
-                            <input type="text" ng-model="enemy.initiative" placeholder="Initiative">
+                            <input type="text" ng-model="enemy.initiative" placeholder="Initiative"><button type="text" class="button is-info is-small" ng-click="initiativeRoll(enemy)">Roll For Initiative</button>
+                            <input type="text" ng-model="enemy.currentHitPoints" placeholder="HP">
                         </div>
                     </section>
                     <footer class="modal-card-foot">
                         <button class="button is-small" ng-click="addEnemy()">Add Enemy</button>
-                        <button class="button is-primary" ng-click="startCombat(currentPlayers)">Join</button>
+                        <button class="button is-warning" ng-click="startCombat(currentPlayers)">BEGIN COMBAT!!</button>
                     </footer>
             </div>
              </form>

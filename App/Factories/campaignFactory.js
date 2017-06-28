@@ -42,7 +42,6 @@ app.factory('campaignFactory', ['$http', '$location', function(http, loc){
         }
     };
     factory.getFighters = (callback) => {
-        
         callback(factory.all);
     };
 

@@ -20,6 +20,7 @@ app.controller('sessionController', ['$location', '$scope', '$route','$routePara
                                 playerInstance.youOwnThis = true;
                             }
                         });
+
                         currentPlayers.push(playerInstance);
                     });
                 }
@@ -84,6 +85,9 @@ app.controller('sessionController', ['$location', '$scope', '$route','$routePara
                 scope.rollsResults.push(rollResult[i]);
             }
         }
+    };
+    scope.initiativeRoll = (player) => {
+        player.initiative = diceRoll.rollDie(['d20'])[0].rollValue;
     };
     //Edit Functionality
     scope.toggleEdit = (player) => {

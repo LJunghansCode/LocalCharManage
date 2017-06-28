@@ -11,9 +11,9 @@
   </div>
 </section>
 <section class="">
-         <button ng-if="!player.editing" class="button is-info" ng-click="toggleEdit(player)">Edit</button>
-         <button ng-if="player.editing" ng-click="toggleEdit(player); updateAndSave(player)" class="button is-primary" type="submit">Save</button>
-         <button class="button is-primary" ng-click="toggleJoinCampaign()">Join a campaign!</button>
+         <button ng-if="!player.editing && player.youOwnThis" class="button is-info" ng-click="toggleEdit(player)">Edit</button>
+         <button ng-if="player.editing && player.youOwnThis" ng-click="toggleEdit(player); updateAndSave(player)" class="button is-primary" type="submit">Save</button>
+         <button class="button is-primary" ng-if="player.youOwnThis" ng-click="toggleJoinCampaign()">Join a campaign!</button>
 </section>
 <div class="columns is-multiline is-mobile">
     <div class="column is-one-quarter">
@@ -46,7 +46,7 @@
     </div>
     <div class="column">
         <p class="title is-6"> Spells </p>
-        <button class="button is-danger" ng-click="addSpell()">Add Spell</button>
+        <button class="button is-danger" ng-if="player.youOwnThis" ng-click="addSpell()">Add Spell</button>
         <div data-ng-repeat="spell in player.spellList">
             <div class="card">
                 <div class="card-header">
@@ -100,5 +100,3 @@
 </div>
 </div>
 </form>
-         <button ng-if="!player.editing" class="button" ng-click="toggleEdit(player)">Edit</button>
-         <button ng-if="player.editing" ng-click="toggleEdit(player); updateAndSave(player)"class="button" type="submit">Save</button>
