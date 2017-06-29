@@ -37,14 +37,15 @@ app.controller('userController', [ '$window', '$location', '$scope', '$route', '
             if(returnedData.data.message !== "Welcome Back!"){
                         return;
                     } else {
-                        window.location.reload();
+                        loc.url('/players');
                     }
         });
       }
     };
     scope.logOutUser = () => {
         userFactory.logOutUser((data) => {
-            loc.path('/home');
+            scope.currentUser = false;
+            loc.path('/login');
             route.reload();
         });
     };

@@ -31,6 +31,6 @@ app.config(($routeProvider, $locationProvider) => {
             controller: 'sessionController'
         })
         .otherwise('/', {
-            redirectTo: '/home'
+            redirectTo: '/login'
         });
 });

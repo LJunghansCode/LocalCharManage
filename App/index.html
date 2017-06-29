@@ -4,19 +4,24 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="Static/css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.css">
+    <link rel="stylesheet" href="Static/css/vendor/bulma/bulma.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body ng-controller="homeController">
-    <nav class="nav">
+    <nav class="nav mainNav">
         <div class="nav-left">
-            <a class="nav-item" href="/#!/players">Player</a>
-            <a class="nav-item" href="/#!/home">Home</a>
+            <a class="nav-item" href="/#!/players">Player Manager</a>
             <a class="nav-item" href="/#!/login">Login</a>
             <a class="nav-item" href="/#!/campaignManager">Manage/Run a campaign</a>
         </div>
+         <div class="nav-center">
+            <a href="/#!/players" class="title">Dnd Character Manager</a> 
+        <a target="_blank"href="https://github.com/LJunghansCode/LocalCharManage" class="nav-item">
+        </a>
+  </div>
     </nav>
-    <main class="mainContentWrapper">
-        <ng-view></ng-view>
+    <main class="section mainContentWrapper">
+        <ng-view ></ng-view>
     </main>
     <!--Load angular and route app file.-->
     <script href="https://cdnjs.com/libraries/lodash.js/"></script>
@@ -42,4 +47,18 @@
     <script src="Factories/campaignFactory.js"></script>
     <script src="Factories/sessionFactory.js"></script>
 </body>
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        <strong>D n D Character Manager</strong>
+      </p>
+      <p>
+        <a class="icon" href="https://github.com/jgthms/bulma">
+          <i class="fa fa-github"></i>
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
 </html>

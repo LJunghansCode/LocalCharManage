@@ -70,6 +70,18 @@ app.controller('sessionController', ['$location', '$scope', '$route','$routePara
         }
     };
     //Dice Roller
+    scope.toggleDieRoller = () => {
+        let modal = document.getElementById("diceRollerModal");
+        if(modal.classList.contains('is-active')){
+            modal.classList.remove('is-active');
+        } else {
+            modal.classList.add('is-active');
+        }
+    };
+    scope.resetDie = () => {
+        scope.rollsResults = [];
+        scope.dieRolls = [{id: 1}];
+    };
     scope.addDie = () => {
         var newDieNo = scope.dieRolls.length + 1;
         scope.dieRolls.push({id: newDieNo});

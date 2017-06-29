@@ -1,21 +1,20 @@
-<form >
-    <section class="hero is-primary">
-  <div class="hero-body">
+<form>
+<section class="hero is-bold is-dark ">
+  <div class="singlePlayerHero hero-body">
     <div class="container">
-      <h1  data-ng-bind="player.name" class="title">
+      <h1 data-ng-bind="player.name" class="title is-1">
       </h1>
-      <h2 class="subtitle">
-       Edit this sheet or add it to a Campaign with other players for stat tracking!
-      </h2>
+      <h1 class="subtitle">{{player.name}} the level {{player.level}} {{player.classType}}..
+      </h1>
     </div>
   </div>
 </section>
-<section class="">
+<section class="section">
          <button ng-if="!player.editing && player.youOwnThis" class="button is-info" ng-click="toggleEdit(player)">Edit</button>
          <button ng-if="player.editing && player.youOwnThis" ng-click="toggleEdit(player); updateAndSave(player)" class="button is-primary" type="submit">Save</button>
-         <button class="button is-primary" ng-if="player.youOwnThis" ng-click="toggleJoinCampaign()">Join a campaign!</button>
+         <button class="button is-dark" ng-if="player.youOwnThis" ng-click="toggleJoinCampaign()">Join a campaign!</button>
 </section>
-<div class="columns is-multiline is-mobile">
+<div class="charSheet columns is-multiline is-mobile">
     <div class="column is-one-quarter">
         <p class="title is-6">Real Name:</p><div class="box">  <input ng-if="player.editing" class="input" name="realName" ng-model="player.realName"><p ng-if="!player.editing" ng-bind="player.realName"></p></div>
         <p class="title is-6">Player Name:</p> <div class="box"> <input ng-if="player.editing" class="input"  name="name" ng-model="player.name"><p ng-if="!player.editing" ng-bind="player.name"></p></div>
@@ -45,13 +44,13 @@
         <p class="title is-6">TempHitPoints:</p><div class="box">  <input ng-if="player.editing" class="input"  ng-model="player.tempHitPoints" ><p ng-if="!player.editing" ng-bind="player.tempHitPoints"></p></div>
     </div>
     <div class="column">
-        <p class="title is-6"> Spells </p>
-        <button class="button is-danger" ng-if="player.youOwnThis" ng-click="addSpell()">Add Spell</button>
+         <p class="title is-3"> {{player.name}}'s Spell List </p>
+                <button class="button is-primary fa fa-plus" ng-if="player.youOwnThis" ng-click="addSpell()"></button>
         <div data-ng-repeat="spell in player.spellList">
-            <div class="card">
+            <div class="spellCard card">
                 <div class="card-header">
                     <p ng-bind="spell.name" class="card-header-title"></p>
-                    <a class="delete is-small card-header-icon" ng-click="deleteSpell(spell)"></a>
+                    <button class="button is-danger fa fa-trash-o is-info card-header-icon" ng-click="deleteSpell(spell)"></button>
                 </div>
                 <div class="card-content">
                     <input ng-if="spell.spellEditing" placeholder="Spell name" ng-model="spell.name" class="input"></input>
@@ -81,6 +80,7 @@
                     </footer>
             </div>
              </form>
+        </div>
         </div>
     <div class="column">
          <p class="title is-6">Skills </p> <div class="box"> <textarea ng-if="player.editing" rows="10" style="height:7em;"class="input"ng-model="player.skills"></textarea><p ng-if="!player.editing" ng-bind="player.skills"></div>

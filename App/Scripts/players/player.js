@@ -62,19 +62,17 @@
         loseHealth(healthToLose) {
             this.currentHitPoints -= healthToLose;
         }
-        gainExperience(toGain, callback) {
+        gainExperience(toGain) {
             let currentLevel = this.level;
             const levelGuide = new LevelGuide();
             let newValue = this.experience + parseInt(toGain);
             let experienceNeeded = levelGuide.experienceNeeded(currentLevel);
-            if(this.experience >= experienceNeeded){
+            if(newValue >= experienceNeeded){
                 this.gainLevel();
-                this.experience = 0;
+                this.experience = newValue - experienceNeeded;
                 this.level += 1;
-                callback(this);
             }else {
             this.experience = newValue;
-            callback(this);
             }
 
         }
