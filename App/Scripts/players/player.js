@@ -1,5 +1,5 @@
     class Player {
-        constructor ( id, accountEmail, campaign, realName, name, race, classType, alignment, sex, size, age, height, weight, level, initiative, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, currentHitPoints, tempHitPoints, spellList, skills, personalityTraits, ideals, bonds, flaws, attacksSpellcasting, featuresTraits, equipment, proficienciesLanguages, appearance, alliesOrganizations, backStory, treasureInventory, spellcastingClass, spellcastingAbility,spellSaveDC, spellSaveBonus, armorClass, proficiencyBonus, borderColor ) {
+        constructor ( id, accountEmail, campaign, realName, name, race, classType, alignment, sex, size, age, height, weight, level, initiative, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, currentHitPoints, tempHitPoints, spellList, skills, personalityTraits, ideals, bonds, flaws, attacksSpellcasting, featuresTraits, equipment, proficienciesLanguages, appearance, alliesOrganizations, backStory, treasureInventory, spellcastingClass, spellcastingAbility,spellSaveDC, spellSaveBonus, armorClass, proficiencyBonus, borderColor, companions ) {
             this.id = id;
             this.accountEmail = accountEmail;
             this.campaign = campaign;
@@ -47,6 +47,7 @@
             this.armorClass = armorClass;
             this.proficiencyBonus = proficiencyBonus;
             this.borderColor = borderColor;
+            this.companions = companions;
         }
         normalizeTextLowerCase(text){
             let lowerCase = "";
@@ -55,6 +56,15 @@
                 lowerCase += letter;
             }
             return lowerCase;
+        }
+        calculateModifiers (stats)  {
+            this.statsArray = stats;
+            for(let i = 0; i<stats.length; i++){
+                let name = stats[i].stat + "Mod";
+                let modValue = stats[i].value - 10;
+                modValue = Math.floor(modValue/2);
+                this[name] = "modifier: " + modValue;
+                }
         }
         gainHealth(healthToGain) {
             this.currentHitPoints += healthToGain;
@@ -76,6 +86,31 @@
             }
 
         }
+        addEquipment(id) {
+            this.equipment.push({id: id});
+        }
+        addCompanion(id) {
+            this.companions.push({id: id});
+        }
+        addSpell(id) {
+            this.spellList.push({id: id});
+        }
+        deleteEquipment(equipment){
+        this.equipment.splice(equipment.id - 1, 1);
+        //sort id/array relationship.
+        for(let i = 0; i < this.equipment.length; i++){
+            let thisEquip = this.equipment[i];
+            thisEquip.id = i + 1;
+            }
+        }
+        deleteSpell(spell){
+        this.spellList.splice(spell.id - 1, 1);
+        //sort id/array relationship.
+        for(let i = 0; i < this.spellList.length; i++){
+            let thisSpell = this.spellList[i];
+            thisSpell.id = i + 1;
+            }
+        }       
         ActionRoll(RollsArray){
             //send in format of ["d12", '"d20", "d20"]
             return(this.DiceManager.rollDie(RollsArray));

@@ -62,6 +62,24 @@
                 </div>
             </div>
          </div>
+          <p class="title is-3"> {{player.name}}'s Equipment List </p>
+         <button class="button is-primary fa fa-plus" ng-if="player.youOwnThis" ng-click="addEquipment()"></button>
+        <div data-ng-repeat="equipment in player.equipment">
+            <div class="spellCard card">
+                <div class="card-header">
+                    <p ng-bind="equipment.name" class="card-header-title"></p>
+                    <button class="button is-danger fa fa-trash-o is-info card-header-icon" ng-click="deleteEquipment(equipment)"></button>
+                </div>
+                <div class="card-content">
+                    <input ng-if="equipment.equipmentEditing" placeholder="Equipment name" ng-model="equipment.name" class="input"></input>
+                    <textarea ng-if="equipment.equipmentEditing" placeholder="Add a description!" ng-model="equipment.description" rows="10" style="height:7em;"class="input" ></textarea><p ng-if="!equipment.equipmentEditing" ng-bind="equipment.description"></p>
+                </div>
+                <div class="card-footer">
+                     <button ng-if="!equipment.equipmentEditing" class="button is-small is-info" ng-click="toggleEquipmentEdit(equipment)">Edit</button>
+                     <button ng-if="equipment.equipmentEditing" ng-click="toggleEquipmentEdit(equipment); updateAndSave(player)" class="button is-small is-primary" type="submit">Save</button>
+                </div>
+            </div>
+         </div>
         <div id="campaignModal"class="modal">
             <div ng-click="toggleJoinCampaign()" class="modal-background"></div>
              <form>
@@ -87,7 +105,6 @@
         <p class="title is-6">Personality Traits </p> <div class="box"> <textarea ng-if="player.editing" rows="10" style="height:7em;"class="input"  ng-model="player.personalityTraits"></textarea><p ng-if="!player.editing" ng-bind="player.personalityTraits"></div>
         <p class="title is-6">Attacks and Spellcasting </p><div class="box"> <textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.attacksSpellcasting"></textarea><p ng-if="!player.editing" ng-bind="player.attacksSpellcasting"></div>
         <p class="title is-6">Features and Traits </p><div class="box"> <textarea ng-if="player.editing" class="input"  rows="10" style="height:7em;"ng-model="player.featuresTraits"></textarea><p ng-if="!player.editing" ng-bind="player.featuresTraits"></div>
-        <p class="title is-6">Equipment </p><div class="box"> <textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.equipment"></textarea><p ng-if="!player.editing" ng-bind="player.equipment">        </div>
         <p class="title is-6">Proficiencies and Languages </p><div class="box"> <textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.proficienciesLanguages"></textarea><p ng-if="!player.editing" ng-bind="player.proficienciesLanguages"></div>
         <p class="title is-6">Appearance</p><div class="box"> <textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.appearance"></textarea><p ng-if="!player.editing" ng-bind="player.appearance"></div>
         <p class="title is-6">Allies and Organizations </p><div class="box"> <textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.alliesOrganizations"></textarea><p ng-if="!player.editing" ng-bind="player.alliesOrganizations"></div>
