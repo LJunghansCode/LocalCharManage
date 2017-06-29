@@ -57,11 +57,15 @@
             }
             return lowerCase;
         }
-        calculateModifiers (stats)  {
+        constuctStatsArray (stats) {
             this.statsArray = stats;
-            for(let i = 0; i<stats.length; i++){
-                let name = stats[i].stat + "Mod";
-                let modValue = stats[i].value - 10;
+        }
+        calculateModifiers ()  {
+             let primaryStats = [{stat: "strength", value: this.strength}, {stat: "dexterity", value: this.dexterity}, {stat:"constitution", value: this.constitution}, {stat:"intelligence", value: this.intelligence}, {stat: "wisdom", value: this.wisdom}, {stat:"charisma", value: this.charisma}];
+            this.constuctStatsArray(primaryStats);
+            for(let i = 0; i<primaryStats.length; i++){
+                let name = primaryStats[i].stat + "Mod";
+                let modValue = primaryStats[i].value - 10;
                 modValue = Math.floor(modValue/2);
                 this[name] = "modifier: " + modValue;
                 }

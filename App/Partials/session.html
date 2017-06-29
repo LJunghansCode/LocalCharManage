@@ -22,25 +22,44 @@
                                 <button class="color-choice-gray" ng-click="pickColor('is-gray', player)"></button>
                             </div>
             </div>  
-            <div class="card-content">
-                <p>Height: </p> <input ng-if="player.editing" class="input"  ng-model="player.height" ><p ng-if="!player.editing" ng-bind="player.height">
-                <p>Weight: </p> <input ng-if="player.editing" class="input"  ng-model="player.weight" ><p ng-if="!player.editing" ng-bind="player.weight">
+            <div class="card-content columns">
+               <div class="column">
                 <p>Level:</p> <input ng-if="player.editing" class="input"  ng-model="player.level" ><p ng-if="!player.editing" ng-bind="player.level">
+               
+
                 <p>Initiative:</p> <input ng-if="player.editing" class="input"  ng-model="player.initiative" ><p ng-if="!player.editing" ng-bind="player.initiative">
+
                 <p>Speed: </p><input ng-if="player.editing" class="input"  ng-model="player.speed" ><p ng-if="!player.editing" ng-bind="player.speed">
-                <p>Strength: </p><input ng-if="player.editing" class="input" ng-model="player.strength" ><p ng-if="!player.editing" ng-bind="player.strength">
-                <p>Dexterity: </p><input ng-if="player.editing" class="input" ng-model="player.dexterity" ><p ng-if="!player.editing" ng-bind="player.dexterity">
-                <p>Constitution: </p><input ng-if="player.editing" class="input"  ng-model="player.constitution" ><p ng-if="!player.editing" ng-bind="player.constitution">
-                <p>Intelligence: </p><input ng-if="player.editing" class="input"  ng-model="player.intelligence" ><p ng-if="!player.editing" ng-bind="player.intelligence">
-                <p>Wisdom: </p><input ng-if="player.editing" class="input"  ng-model="player.wisdom" ><p ng-if="!player.editing" ng-bind="player.wisdom">
-                <p>Charisma: </p><input ng-if="player.editing" class="input"  ng-model="player.charisma" ><p ng-if="!player.editing" ng-bind="player.charisma">
+
+                <p>Strength: </p><input ng-if="player.editing" class="input" ng-model="player.strength" ><p ng-if="!player.editing" ng-bind="player.strength"><p ng-bind="player.strengthMod"></p>
+
+                <p>Dexterity: </p><input ng-if="player.editing" class="input" ng-model="player.dexterity" ><p ng-if="!player.editing" ng-bind="player.dexterity"><p ng-bind="player.dexterityMod"></p>
+
+                <p>Constitution: </p><input ng-if="player.editing" class="input"  ng-model="player.constitution" ><p ng-if="!player.editing" ng-bind="player.constitution"><p ng-bind="player.constitutionMod"></p>
+
+                <p>Intelligence: </p><input ng-if="player.editing" class="input"  ng-model="player.intelligence" ><p ng-if="!player.editing" ng-bind="player.intelligence"><p ng-bind="player.intelligenceMod"></p>
+
+                <p>Wisdom: </p><input ng-if="player.editing" class="input"  ng-model="player.wisdom" ><p ng-if="!player.editing" ng-bind="player.wisdom"><p ng-bind="player.wisdomMod"></p>
+
+                <p>Charisma: </p><input ng-if="player.editing" class="input"  ng-model="player.charisma" ><p ng-if="!player.editing" ng-bind="player.charisma"><p ng-bind="player.charismayMod"></p>
+
                 <p>CurrentHitPoints:</p><input ng-if="player.editing" class="input"  ng-model="player.currentHitPoints" ><p ng-if="!player.editing" ng-bind="player.currentHitPoints">
+
                 <p>TempHitPoints:</p> <input ng-if="player.editing" class="input"  ng-model="player.tempHitPoints" ><p ng-if="!player.editing" ng-bind="player.tempHitPoints">
-                <p>Equipment </p><textarea ng-if="player.editing" class="input" rows="10" style="height:7em;" ng-model="player.equipment"></textarea><p ng-if="!player.editing" ng-bind="player.equipment">        
+                </div>
+                <div class="column">
+                <p>Equipment <ul class="list" data-ng-repeat="equip in player.equipment">
+                    <li ng-bind="equip.name"></li>
+                    </ul> 
+
                 <p>Spellcasting Class </p><input ng-if="player.editing" class="input" ng-model="player.spellcastingClass"><p ng-if="!player.editing" ng-bind="player.spellcastingClass">
+
                 <p>Spellcasting Ability </p><input ng-if="player.editing" class="input" ng-model="player.spellcastingAbility"><p ng-if="!player.editing" ng-bind="player.spellcastingAbility">
+
                 <p>SpellSaveDC</p><input ng-if="player.editing" class="input" ng-model="player.spellSaveDC"><p ng-if="!player.editing" ng-bind="player.spellSaveDC">
+
                 <p>SpellSaveBonus</p><input ng-if="player.editing" class="input" ng-model="player.spellSaveBonus"><p ng-if="!player.editing" ng-bind="player.spellSaveBonus">
+                </div>
             </div>
               <br>    
               <button ng-if="!player.editing && player.youOwnThis"  class="button is-info" ng-click="toggleEdit(player)">Edit</button>

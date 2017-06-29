@@ -14,13 +14,13 @@ app.controller('sessionController', ['$location', '$scope', '$route','$routePara
                 let playersArray = CampData.data.campaign.players;
                 for(let i = 0; i < playersArray.length; i++) {
                     playerFactory.getPlayer(playersArray[i]._id, (data) => {   
-                        let playerInstance = new Player(data.data.playerFound._id, data.data.playerFound.accountEmail, CampData.data.campaign.campaignTitle, data.data.playerFound.realName, data.data.playerFound.name, data.data.playerFound.race, data.data.playerFound.classType, data.data.playerFound.alignment, data.data.playerFound.sex, data.data.playerFound.size, data.data.playerFound.age, data.data.playerFound.height, data.data.playerFound.weight, data.data.playerFound.level, data.data.playerFound.initiative, data.data.playerFound.speed, data.data.playerFound.strength, data.data.playerFound.dexterity, data.data.playerFound.constitution,data.data.intelligence, data.data.playerFound.wisdom, data.data.playerFound.charisma, data.data.playerFound.currentHitPoints, data.data.playerFound.tempHitPoints, data.data.playerFound.spellList, data.data.playerFound.skills, data.data.playerFound.personalityTraits, data.data.playerFound.ideals, data.data.playerFound.bonds, data.data.playerFound.flaws, data.data.playerFound.attacksSpellcasting, data.data.playerFound.featuresTraits, data.data.playerFound.equipment, data.data.playerFound.proficienciesLanguages, data.data.playerFound.appearance, data.data.playerFound.alliesOrganizations, data.data.playerFound.backStory, data.data.playerFound.treasureInventory, data.data.playerFound.spellcastingClass, data.data.playerFound.spellcastingAbility,data.data.playerFound.spellSaveDC, data.data.playerFound.spellSaveBonus,data.data.playerFound.armorClass,data.data.playerFound.proficiencyBonus,data.data.playerFound.borderColor);
+                        let playerInstance = new Player(data.data.playerFound._id, data.data.playerFound.accountEmail, CampData.data.campaign.campaignTitle, data.data.playerFound.realName, data.data.playerFound.name, data.data.playerFound.race, data.data.playerFound.classType, data.data.playerFound.alignment, data.data.playerFound.sex, data.data.playerFound.size, data.data.playerFound.age, data.data.playerFound.height, data.data.playerFound.weight, data.data.playerFound.level, data.data.playerFound.initiative, data.data.playerFound.speed, data.data.playerFound.strength, data.data.playerFound.dexterity, data.data.playerFound.constitution,data.data.playerFound.intelligence, data.data.playerFound.wisdom, data.data.playerFound.charisma, data.data.playerFound.currentHitPoints, data.data.playerFound.tempHitPoints, data.data.playerFound.spellList, data.data.playerFound.skills, data.data.playerFound.personalityTraits, data.data.playerFound.ideals, data.data.playerFound.bonds, data.data.playerFound.flaws, data.data.playerFound.attacksSpellcasting, data.data.playerFound.featuresTraits, data.data.playerFound.equipment, data.data.playerFound.proficienciesLanguages, data.data.playerFound.appearance, data.data.playerFound.alliesOrganizations, data.data.playerFound.backStory, data.data.playerFound.treasureInventory, data.data.playerFound.spellcastingClass, data.data.playerFound.spellcastingAbility,data.data.playerFound.spellSaveDC, data.data.playerFound.spellSaveBonus,data.data.playerFound.armorClass,data.data.playerFound.proficiencyBonus,data.data.playerFound.borderColor, data.data.companions);
                         userFactory.getCurUser((data) =>{
                             if(data.data.message === playerInstance.accountEmail){
                                 playerInstance.youOwnThis = true;
                             }
                         });
-
+                        playerInstance.calculateModifiers();
                         currentPlayers.push(playerInstance);
                     });
                 }
@@ -55,6 +55,7 @@ app.controller('sessionController', ['$location', '$scope', '$route','$routePara
     var updateAllStats = () => {
         for(let i=0; i<scope.currentPlayers.length; i++){
             playerFactory.updateAndSave(scope.currentPlayers[i], (data) => {});
+            scope.currentPlayers[i].calculateModifiers();
         }
     };
     //EnemyForCombatArrayManagement
