@@ -20,7 +20,13 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
                 scope.player = playerOnDisplay;
                 let primaryStats = [{stat: "strength", value: scope.player.strength}, {stat: "dexterity", value: scope.player.dexterity}, {stat:"constitution", value: scope.player.constitution}, {stat:"intelligence", value: scope.player.intelligence}, {stat: "wisdom", value: scope.player.wisdom}, {stat:"charisma", value: scope.player.charisma}];
                 //Get Modifiers
-                scope.player.calculateModifiers(primaryStats);
+                scope.player.calculateModifiers();
+                var masterStat = scope.player.organizeStatsArray();
+                scope.basicInformation = masterStat.basicInformation;
+                scope.charDetails = masterStat.charDetails;
+                scope.primaryStats = masterStat.primaryStats;
+                scope.spellDetails = masterStat.spellDetails;
+                scope.vitals = masterStat.vitals;
                 userFactory.getCurUser((data) =>{
                     if(data.data.message === scope.player.accountEmail){
                         scope.player.youOwnThis = true;

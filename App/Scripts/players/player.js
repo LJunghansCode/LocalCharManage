@@ -57,12 +57,25 @@
             }
             return lowerCase;
         }
-        constuctStatsArray (stats) {
-            this.statsArray = stats;
+        organizeStatsArray () {
+            const masterStatArraysObj = 
+            {
+                primaryStats : [{stat: "strength", value: this.strength}, {stat: "dexterity", value: this.dexterity}, {stat:"constitution", value: this.constitution}, {stat:"intelligence", value: this.intelligence}, {stat: "wisdom", value: this.wisdom}, {stat:"charisma", value: this.charisma} ],
+
+                vitals : [{stat:"level", value: this.level}, {stat:"speed",value:this.speed}, {stat:"currentHitPoints", value:this.currentHitPoints}, {stat:"tempHitPoints", value: this.tempHitPoints}, {stat:"height", value: this.height}, {stat:"weight", value: this.weight} ],
+
+                basicInformation : [{stat:"realName", value: this.realName}, {stat:"name",value:this.name}, {stat:"race", value:this.race}, {stat:"classType", value: this.classType}, {stat:"alignment", value: this.alignment}, {stat:"age", value: this.age}, {stat:"ideals", value: this.ideals}, {stat:"backStory", value: this.backStory}, {stat:"sex", value: this.sex}, {stat:"size", value: this.size} ],
+
+                charDetails : [{stat:"skills", value: this.skills}, {stat:"personalityTraits",value:this.personalityTraits}, {stat:"attacksSpellcasting", value:this.attacksSpellcasting}, {stat:"featuresTraits", value: this.featuresTraits},{stat:"proficienciesLanguages", value: this.proficienciesLanguages}, {stat:"appearance", value: this.appearance},{stat:"alliesOrganizations", value: this.alliesOrganizations}, {stat:"treasureInventory", value: this.treasureInventory} ],
+
+                spellDetails : [{stat:"spellcastingClass", value: this.spellcastingClass}, {stat:"spellcastingAbility",value:this.spellcastingAbility}, {stat:"spellSaveDC", value:this.spellSaveDC}, {stat:"spellSaveBonus", value: this.spellSaveBonus}]
+            };
+
+            return masterStatArraysObj;
+
         }
         calculateModifiers ()  {
-             let primaryStats = [{stat: "strength", value: this.strength}, {stat: "dexterity", value: this.dexterity}, {stat:"constitution", value: this.constitution}, {stat:"intelligence", value: this.intelligence}, {stat: "wisdom", value: this.wisdom}, {stat:"charisma", value: this.charisma}];
-            this.constuctStatsArray(primaryStats);
+            let primaryStats = [{stat: "strength", value: this.strength}, {stat: "dexterity", value: this.dexterity}, {stat:"constitution", value: this.constitution}, {stat:"intelligence", value: this.intelligence}, {stat: "wisdom", value: this.wisdom}, {stat:"charisma", value: this.charisma} ]
             for(let i = 0; i<primaryStats.length; i++){
                 let name = primaryStats[i].stat + "Mod";
                 let modValue = primaryStats[i].value - 10;
