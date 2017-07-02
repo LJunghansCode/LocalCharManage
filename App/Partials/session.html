@@ -10,7 +10,7 @@
                     </div>
                 </section>
              </div> 
-             <div class="card-content">
+             <div class="card-content" ng-if="player.youOwnThis">
                                 <div class="color-choice-row">
                                 <button class="color-choice-red" ng-click="pickColor('is-red', player)"></button>
                                 <button class="color-choice-blue" ng-click="pickColor('is-blue', player)"></button>
@@ -28,7 +28,8 @@
                    <div class="tile is-child notification is-dark">
                        <p class="title">Vitals</p>
                         <div ng-repeat="stat in player.masterStats.vitals" class="stat-container">
-                            <button ng-click="editStat(stat, player);"class="button is-info is-small"><p ng-bind="stat.stat"></p></button>
+                            <p ng-bind="stat.stat" ng-if="!player.youOwnThis"></p>
+                            <button ng-if="player.youOwnThis" ng-click="editStat(stat, player);"class="button is-info is-small"><p ng-bind="stat.stat"></p></button>
                                 <p class="playerStatItem" ng-if="!stat.editing && !player.editing"ng-bind="player[stat.stat]"></p>
                                 <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
                         </div>
@@ -36,7 +37,8 @@
                 <div class="tile is-child notification is-dark">
                        <p class="title">Spell Details</p>
                         <div ng-repeat="stat in player.masterStats.spellDetails" class="stat-container">
-                            <button ng-click="editStat(stat, player);" class="button is-info is-small"><p ng-bind="stat.stat"></p></button>
+                             <p ng-bind="stat.stat" ng-if="!player.youOwnThis"></p>
+                            <button ng-if="player.youOwnThis" ng-click="editStat(stat, player);" class="button is-info is-small"><p ng-bind="stat.stat"></p></button>
                                 <p class="playerStatItem" ng-click="editStat(stat, player);" ng-if="!stat.editing && !player.editing"ng-bind="player[stat.stat]"></p>
                                 <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
                         </div>
