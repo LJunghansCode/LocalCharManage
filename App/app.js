@@ -30,7 +30,8 @@ app.config(($routeProvider, $locationProvider) => {
             templateUrl:'./partials/session.html',
             controller: 'sessionController'
         })
-        .otherwise('/', {
-            redirectTo: '/login'
+        .otherwise( {
+            redirectTo: '/login',
+            controller:'homeController'
         });
 });

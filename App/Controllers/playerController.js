@@ -62,9 +62,14 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
     //For html access to saving
     scope.updateAndSave = (player) => {
         playerFactory.updateAndSave(player, (data) => {
-            return data;
+            if(data.data.player){
+            }else{
+                
+            }
         });
+    scope.player.calculateModifiers();
     };
+    
     //----------------------
 
     //PLAYER CLASS ACCESS
@@ -94,6 +99,13 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
         } else {
             modal.classList.add('is-active');
         }
+    };
+    scope.editStat = (stat) => {
+         if(stat.editing !== true){
+            stat.editing = true;
+        } else{
+            scope.updateAndSave(scope.player);
+            stat.editing = false;}
     };
     scope.toggleEdit = (player) => {
         if(player.editing !== true){

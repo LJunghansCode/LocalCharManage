@@ -8,23 +8,27 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body ng-controller="homeController">
-    <nav class="nav mainNav">
-        <div class="nav-left">
-            <a class="nav-item" href="/#!/players">Player Manager</a>
-            <a class="nav-item" href="/#!/login">Login</a>
-            <a class="nav-item" href="/#!/campaignManager">Manage/Run a campaign</a>
-        </div>
-         <div class="nav-center">
-            <a href="/#!/players" class="title">Dnd Character Manager</a> 
-        <a target="_blank"href="https://github.com/LJunghansCode/LocalCharManage" class="nav-item">
-        </a>
+<nav class="nav has-shadow has-text-black">
+  <div class="nav-left">
+    <a href="/#!/players" class="nav-item"><img src="Static/img/4e.jpg"></a> 
   </div>
-    </nav>
+  <div class="nav-center">
+    <a class="nav-item" target="_blank" href="https://github.com/LJunghansCode/LocalCharManage" >
+    <span class="icon">
+      <i class="fa fa-github"></i>
+    </span>
+    </a>
+  </div>
+  <div class="nav-right">
+    <a class="nav-item" href="/#!/players">Player Manager</a>
+    <a class="nav-item" href="/#!/login">Login</a>
+    <a class="nav-item" href="/#!/campaignManager">Manage/Run a campaign</a>
+  </div>
+</nav>
     <main class="section mainContentWrapper">
         <ng-view ></ng-view>
     </main>
     <!--Load angular and route app file.-->
-    <script href="https://cdnjs.com/libraries/lodash.js/"></script>
     <script src="angular/angular.min.js"></script>
     <script src="angular-route/angular-route.js"></script>
     <script src="app.js"></script>
@@ -54,7 +58,7 @@
         <strong>D n D Character Manager</strong>
       </p>
       <p>
-        <a class="icon" href="https://github.com/jgthms/bulma">
+        <a class="icon" href="https://github.com/LJunghansCode/LocalCharManage">
           <i class="fa fa-github"></i>
         </a>
       </p>

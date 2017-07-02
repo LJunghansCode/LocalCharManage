@@ -21,6 +21,7 @@ app.controller('sessionController', ['$location', '$scope', '$route','$routePara
                             }
                         });
                         playerInstance.calculateModifiers();
+                        playerInstance.masterStats = playerInstance.organizeStatsArray();
                         currentPlayers.push(playerInstance);
                     });
                 }
@@ -57,6 +58,16 @@ app.controller('sessionController', ['$location', '$scope', '$route','$routePara
             playerFactory.updateAndSave(scope.currentPlayers[i], (data) => {});
             scope.currentPlayers[i].calculateModifiers();
         }
+    };
+    scope.editStat = (stat, player) => {
+         if(stat.editing !== true){
+            stat.editing = true;
+        } else{
+           playerFactory.updateAndSave(player, (data) => {
+               console.log(data.data.player)
+               return data.data.player;
+           });
+            stat.editing = false;}
     };
     //EnemyForCombatArrayManagement
     scope.addEnemy = () => {

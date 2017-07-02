@@ -85,7 +85,6 @@ textarea {
     width: 30px;
     background-color: gray;
 }
-
 .your-combat{
     border: 5px solid hotpink;
 }
@@ -111,11 +110,14 @@ textarea {
 .mainNav {
     margin-top: 18px; 
 }
-.button{
-    margin-top: 1px;
-}
 
 .spellCard {
     margin: 2%;
     padding: 1%;
+}
+.playerStatItem {
+    display: inline-block;
+}
+.stat-container{
+    margin: 2.5%;
 }

@@ -22,50 +22,34 @@
                                 <button class="color-choice-gray" ng-click="pickColor('is-gray', player)"></button>
                             </div>
             </div>  
-            <div class="card-content columns">
-               <div class="column">
-                <p>Level:</p> <input ng-if="player.editing" class="input"  ng-model="player.level" ><p ng-if="!player.editing" ng-bind="player.level">
-               
-
-                <p>Initiative:</p> <input ng-if="player.editing" class="input"  ng-model="player.initiative" ><p ng-if="!player.editing" ng-bind="player.initiative">
-
-                <p>Speed: </p><input ng-if="player.editing" class="input"  ng-model="player.speed" ><p ng-if="!player.editing" ng-bind="player.speed">
-
-                <p>Strength: </p><input ng-if="player.editing" class="input" ng-model="player.strength" ><p ng-if="!player.editing" ng-bind="player.strength"><p ng-bind="player.strengthMod"></p>
-
-                <p>Dexterity: </p><input ng-if="player.editing" class="input" ng-model="player.dexterity" ><p ng-if="!player.editing" ng-bind="player.dexterity"><p ng-bind="player.dexterityMod"></p>
-
-                <p>Constitution: </p><input ng-if="player.editing" class="input"  ng-model="player.constitution" ><p ng-if="!player.editing" ng-bind="player.constitution"><p ng-bind="player.constitutionMod"></p>
-
-                <p>Intelligence: </p><input ng-if="player.editing" class="input"  ng-model="player.intelligence" ><p ng-if="!player.editing" ng-bind="player.intelligence"><p ng-bind="player.intelligenceMod"></p>
-
-                <p>Wisdom: </p><input ng-if="player.editing" class="input"  ng-model="player.wisdom" ><p ng-if="!player.editing" ng-bind="player.wisdom"><p ng-bind="player.wisdomMod"></p>
-
-                <p>Charisma: </p><input ng-if="player.editing" class="input"  ng-model="player.charisma" ><p ng-if="!player.editing" ng-bind="player.charisma"><p ng-bind="player.charismayMod"></p>
-
-                <p>CurrentHitPoints:</p><input ng-if="player.editing" class="input"  ng-model="player.currentHitPoints" ><p ng-if="!player.editing" ng-bind="player.currentHitPoints">
-
-                <p>TempHitPoints:</p> <input ng-if="player.editing" class="input"  ng-model="player.tempHitPoints" ><p ng-if="!player.editing" ng-bind="player.tempHitPoints">
+            
+            <div class="card-content tile is-ancestor">
+               <div class="tile is-vertical is-parent">
+                   <div class="tile is-child notification is-dark">
+                       <p class="title">Vitals</p>
+                        <div ng-repeat="stat in player.masterStats.vitals" class="stat-container">
+                            <button ng-click="editStat(stat, player);"class="button is-info is-small"><p ng-bind="stat.stat"></p></button>
+                                <p class="playerStatItem" ng-if="!stat.editing && !player.editing"ng-bind="player[stat.stat]"></p>
+                                <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
+                        </div>
                 </div>
-                <div class="column">
-                <p>Equipment <ul class="list" data-ng-repeat="equip in player.equipment">
-                    <li ng-bind="equip.name"></li>
-                    </ul> 
-
-                <p>Spellcasting Class </p><input ng-if="player.editing" class="input" ng-model="player.spellcastingClass"><p ng-if="!player.editing" ng-bind="player.spellcastingClass">
-
-                <p>Spellcasting Ability </p><input ng-if="player.editing" class="input" ng-model="player.spellcastingAbility"><p ng-if="!player.editing" ng-bind="player.spellcastingAbility">
-
-                <p>SpellSaveDC</p><input ng-if="player.editing" class="input" ng-model="player.spellSaveDC"><p ng-if="!player.editing" ng-bind="player.spellSaveDC">
-
-                <p>SpellSaveBonus</p><input ng-if="player.editing" class="input" ng-model="player.spellSaveBonus"><p ng-if="!player.editing" ng-bind="player.spellSaveBonus">
+                <div class="tile is-child notification is-dark">
+                       <p class="title">Spell Details</p>
+                        <div ng-repeat="stat in player.masterStats.spellDetails" class="stat-container">
+                            <button ng-click="editStat(stat, player);" class="button is-info is-small"><p ng-bind="stat.stat"></p></button>
+                                <p class="playerStatItem" ng-click="editStat(stat, player);" ng-if="!stat.editing && !player.editing"ng-bind="player[stat.stat]"></p>
+                                <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
+                        </div>
                 </div>
             </div>
-              <br>    
-              <button ng-if="!player.editing && player.youOwnThis"  class="button is-info" ng-click="toggleEdit(player)">Edit</button>
-              <button ng-if="player.editing && player.youOwnThis" ng-click="toggleEdit(player)"class="button is-primary" type="submit">Save</button>
-              <button ng-if="player.editing && player.youOwnThis" ng-click="leaveCampaign(player)"class="button is-danger" type="submit">Leave Campaign</button>
          </div>
+        <div class="card-footer">
+            <div class="content">
+                <button ng-if="!player.editing && player.youOwnThis"  class="button is-info" ng-click="toggleEdit(player)">Edit</button>
+                <button ng-if="player.editing && player.youOwnThis" ng-click="toggleEdit(player)"class="button is-primary" type="submit">Save</button>
+                <button ng-if="player.editing && player.youOwnThis" ng-click="leaveCampaign(player)"class="button is-danger" type="submit">Leave Campaign</button>
+              </div>
+        </div>      
     </div>
  </section>
  <button class="button is-small is-dark" ng-click="toggleStartCombat()">start combat</button>
