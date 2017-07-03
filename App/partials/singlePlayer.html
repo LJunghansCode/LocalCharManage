@@ -11,18 +11,20 @@
 </section>
 
 <section class="section">
+    <div class="container playerButtons">
          <button ng-if="!player.editing && player.youOwnThis" class="button is-info" ng-click="toggleEdit(player)">Edit</button>
          <button ng-if="player.editing && player.youOwnThis" ng-click="toggleEdit(player); updateAndSave(player)" class="button is-primary" type="submit">Save</button>
          <button class="button is-dark" ng-if="player.youOwnThis" ng-click="toggleJoinCampaign()">Join a campaign!</button>
+    </div>
 </section>
-<div class="tile is-ancestor">
+<div class="tile">
   <div class="tile is-vertical is-8">
     <div class="tile">
       <div class="tile is-parent is-vertical">
         <article class="tile is-child content notification is-dark">
             <h1 class="title">Basic Information</h1>
             <div ng-repeat="stat in basicInformation" class="stat-container">
-                <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.stat" ></p></button>
+                <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title" ></p></button>
                 <p class="playerStatItem" ng-if="!stat.editing && !player.editing"ng-bind="player[stat.stat]"></p>
                 <input class="input playerStatItem" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
             </div>
@@ -33,7 +35,7 @@
         <article class="tile is-child notification is-dark">
         <p class="title">Vitals</p>
         <div ng-repeat="stat in vitals" class="stat-container">
-             <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.stat"></p></button>
+             <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title"></p></button>
                 <p class="playerStatItem" ng-if="!stat.editing && !player.editing"ng-bind="player[stat.stat]"></p>
                 <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
         </div>
@@ -44,7 +46,7 @@
         <div class="content">
         <p class="title">Primary Stats</p>
         <div ng-repeat="stat in primaryStats" class="stat-container">
-             <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.stat"></p></button>
+             <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title"></p></button>
                 <p class="playerStatItem" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p><p ng-bind="stat.statMod"></p>
                 <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
         </div>
@@ -52,7 +54,7 @@
         <div class="content">
          <p class="title">Spell Details</p>
         <div ng-repeat="stat in spellDetails" class="stat-container">
-             <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.stat" ></p></button>
+             <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title" ></p></button>
                 <p class="playerStatItem" ng-if="!stat.editing && !player.editing"ng-bind="player[stat.stat]"></p>
                 <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
         </div>
@@ -65,7 +67,7 @@
             <div class="content">
         <p class="title is-3"> {{player.name}}'s Spell List </p>
         <button class="button is-small  is-primary fa fa-plus" ng-if="player.youOwnThis" ng-click="addSpell()"></button>
-        <div data-ng-repeat="spell in player.spellList">
+        <div data-ng-repeat="spell in spellsForPlayer">
             <div class="spellCard card">
                 <div class="card-header">
                     <p ng-bind="spell.name" class="card-header-title"></p>
@@ -90,7 +92,7 @@
                 <div class="content">
         <p class="title">Details</p>
         <div ng-repeat="stat in charDetails" class="stat-container">
-             <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.stat" ></p></button>
+             <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title" ></p></button>
                 <p class="playerStatItem" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
                 <textarea class="textarea" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]"></textarea>
         </div>

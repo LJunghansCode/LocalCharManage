@@ -27,6 +27,7 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
                 scope.primaryStats = masterStat.primaryStats;
                 scope.spellDetails = masterStat.spellDetails;
                 scope.vitals = masterStat.vitals;
+                scope.spellsForPlayer = scope.player.spellList.allSpells();
                 userFactory.getCurUser((data) =>{
                     if(data.data.message === scope.player.accountEmail){
                         scope.player.youOwnThis = true;

@@ -24,7 +24,7 @@
             this.charisma = charisma;
             this.currentHitPoints = currentHitPoints;
             this.tempHitPoints = tempHitPoints; 
-            this.spellList = spellList;
+            this.spellList = new SpellManager(spellList);
             this.DiceManager = new DiceRoller();
             this.experience = 0;  
             this.skills = skills;
@@ -60,17 +60,16 @@
         organizeStatsArray () {
             const masterStatArraysObj = 
             {
-                primaryStats : [{stat: "strength",statMod:this.strengthMod, value: this.strength}, {stat: "dexterity", statMod:this.dexterityMod, value: this.dexterity}, {stat:"constitution", statMod:this.constitutionMod, value: this.constitution}, {stat:"intelligence", statMod:this.intelligenceMod, value: this.intelligence}, {stat: "wisdom", statMod:this.wisdomMod, value: this.wisdom}, {stat:"charisma", statMod:this.charismaMod, value: this.charisma} ],
+                primaryStats : [{title:"Strength", stat: "strength",statMod:this.strengthMod, value: this.strength}, {title:"Dexterity", stat: "dexterity", statMod:this.dexterityMod, value: this.dexterity}, {title:"Constitution", stat:"constitution", statMod:this.constitutionMod, value: this.constitution}, {title:"Intelligence", stat:"intelligence", statMod:this.intelligenceMod, value: this.intelligence}, {title:"Wisdom", stat: "wisdom", statMod:this.wisdomMod, value: this.wisdom}, {title:"Charisma", stat:"charisma", statMod:this.charismaMod, value: this.charisma} ],
 
-                vitals : [{stat:"level", value: this.level}, {stat:"speed",value:this.speed},{stat:"armorClass",value:this.armorClass}, {stat:"currentHitPoints", value:this.currentHitPoints}, {stat:"tempHitPoints", value: this.tempHitPoints}, {stat:"height", value: this.height}, {stat:"weight", value: this.weight} ],
+                vitals : [{title: "Level", stat:"level", value: this.level}, {title: "Speed", stat:"speed",value:this.speed},{title: "Armor Class", stat:"armorClass",value:this.armorClass}, {title: "HP", stat:"currentHitPoints", value:this.currentHitPoints}, {title: "Temp HP", stat:"tempHitPoints", value: this.tempHitPoints}, {title: "Height", stat:"height", value: this.height}, {title: "Weight", stat:"weight", value: this.weight} ,{title: "Initiative", stat: "initiative", value: this.initiative} ],
 
-                basicInformation : [{stat:"realName", value: this.realName}, {stat:"name",value:this.name}, {stat:"race", value:this.race}, {stat:"classType", value: this.classType}, {stat:"alignment", value: this.alignment}, {stat:"age", value: this.age}],
+                basicInformation : [{title: "Real Name", stat:"realName", value: this.realName}, {title: "Player Name", stat:"name", value:this.name}, {title: "Race", stat:"race", value:this.race}, {title: "Class", stat:"classType", value: this.classType}, {title: "Alignment", stat:"alignment", value: this.alignment}, {title: "Age", stat:"age", value: this.age}],
 
-                charDetails : [{stat:"skills", value: this.skills}, {stat:"personalityTraits",value:this.personalityTraits}, {stat:"attacksSpellcasting", value:this.attacksSpellcasting}, {stat:"featuresTraits", value: this.featuresTraits},{stat:"proficienciesLanguages", value: this.proficienciesLanguages}, {stat:"appearance", value: this.appearance},{stat:"alliesOrganizations", value: this.alliesOrganizations}, {stat:"treasureInventory", value: this.treasureInventory},{stat:"ideals", value: this.ideals}, {stat:"backStory", value: this.backStory} ],
+                charDetails : [{title: "Skills", stat:"skills", value: this.skills}, {title: "Personality Traits", stat:"personalityTraits",value:this.personalityTraits}, {title: "Attacks and Spellcasting Details", stat:"attacksSpellcasting", value:this.attacksSpellcasting}, {title: "Features and Traits", stat:"featuresTraits", value: this.featuresTraits}, {title: "Proficiencies and Languages", stat:"proficienciesLanguages", value: this.proficienciesLanguages}, {title: "Appearance", stat:"appearance", value: this.appearance},{title: "Allies and Organizations", stat:"alliesOrganizations", value: this.alliesOrganizations}, {title: "Treasure and Inventory", stat:"treasureInventory", value: this.treasureInventory},{title: "Personal Ideals", stat:"ideals", value: this.ideals}, {title: "Back Story", stat:"backStory", value: this.backStory} ],
 
-                spellDetails : [{stat:"spellcastingClass", value: this.spellcastingClass}, {stat:"spellcastingAbility",value:this.spellcastingAbility}, {stat:"spellSaveDC", value:this.spellSaveDC}, {stat:"spellSaveBonus", value: this.spellSaveBonus}]
+                spellDetails : [{title: "Spell Casting Class", stat:"spellcastingClass", value: this.spellcastingClass}, {title: "Spell Casting Ability", stat:"spellcastingAbility",value:this.spellcastingAbility}, {title: "Spell Save DC", stat:"spellSaveDC", value:this.spellSaveDC}, {title: "Spell Save Bonus", stat:"spellSaveBonus", value: this.spellSaveBonus}]
             };
-
             return masterStatArraysObj;
 
         }
@@ -109,9 +108,6 @@
         addCompanion(id) {
             this.companions.push({id: id});
         }
-        addSpell(id) {
-            this.spellList.push({id: id});
-        }
         deleteEquipment(equipment){
         this.equipment.splice(equipment.id - 1, 1);
         //sort id/array relationship.
@@ -120,14 +116,6 @@
             thisEquip.id = i + 1;
             }
         }
-        deleteSpell(spell){
-        this.spellList.splice(spell.id - 1, 1);
-        //sort id/array relationship.
-        for(let i = 0; i < this.spellList.length; i++){
-            let thisSpell = this.spellList[i];
-            thisSpell.id = i + 1;
-            }
-        }       
         ActionRoll(RollsArray){
             //send in format of ["d12", '"d20", "d20"]
             return(this.DiceManager.rollDie(RollsArray));
