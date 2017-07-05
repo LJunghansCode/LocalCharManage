@@ -137,6 +137,9 @@ textarea {
     white-space: pre-wrap;
     display: inline-block;
 }
+.playerStatItemDetails{
+    white-space: pre-wrap;
+}
 .stat-container{
     margin-top: 6%;
 }
