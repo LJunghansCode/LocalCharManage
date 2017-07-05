@@ -5,7 +5,7 @@
              <div class="card-content">
                  <section class="hero-sess-player hero is-dark">
                      <div class="hero-body">
-                           <input ng-if="player.editing" class="input" name="realName" ng-model="player.name"><a href="/#!/player/{{player.id}}" class="title-white card-header-title" ng-if="!player.editing" ng-bind="player.name">
+                           <input ng-if="player.editing" class="input" name="realName" ng-model="player.name"><a href="/#!/player/{{player.id}}" class="title card-header-title" ng-if="!player.editing" ng-bind="player.name">
                     </a>
                     </div>
                 </section>
@@ -28,8 +28,8 @@
                    <div class="tile is-child notification is-dark">
                        <p class="title">Vitals</p>
                         <div ng-repeat="stat in player.masterStats.vitals" class="stat-container">
-                            <p ng-bind="stat.stat" ng-if="!player.youOwnThis === true"></p>
-                            <button ng-if="player.youOwnThis === true" ng-click="editStat(stat, player);"class="button is-info is-small"><p ng-bind="stat.stat"></p></button>
+                            <p ng-bind="stat.title" ng-if="!player.youOwnThis === true"></p>
+                            <button ng-if="player.youOwnThis === true" ng-click="editStat(stat, player);"class="button is-info is-small"><p ng-bind="stat.title"></p></button>
                                 <p class="playerStatItem" ng-if="!stat.editing && !player.editing"ng-bind="player[stat.stat]"></p>
                                 <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
                         </div>

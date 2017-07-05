@@ -1,4 +1,4 @@
-<form>
+<div class="page-container">
 <section class="hero is-bold is-dark ">
   <div class="singlePlayerHero hero-body">
     <div class="container">
@@ -15,6 +15,7 @@
          <button ng-if="!player.editing && player.youOwnThis" class="button is-info" ng-click="toggleEdit(player)">Edit</button>
          <button ng-if="player.editing && player.youOwnThis" ng-click="toggleEdit(player); updateAndSave(player)" class="button is-primary" type="submit">Save</button>
          <button class="button is-dark" ng-if="player.youOwnThis" ng-click="toggleJoinCampaign()">Join a campaign!</button>
+         <button ng-if="!player.editing && player.youOwnThis" ng-click="toggleDeletePlayer()" class="button is-danger" type="submit">Delete Player</button>
     </div>
 </section>
 <div class="tile">
@@ -33,27 +34,29 @@
     </div>
         </article>
         <article class="tile is-child notification is-dark">
-        <p class="title">Vitals</p>
-        <div ng-repeat="stat in vitals" class="stat-container">
+        <p class="title">Spell Details</p>
+        <div ng-repeat="stat in spellDetails" class="stat-container">
              <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title"></p></button>
                 <p class="playerStatItem" ng-if="!stat.editing && !player.editing"ng-bind="player[stat.stat]"></p>
                 <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
         </div>
         </article>
       </div>
-      <div class="tile is-parent">
+      <div class="tile is-6 is-parent">
         <article class="tile is-child notification is-dark">
         <div class="content">
         <p class="title">Primary Stats</p>
         <div ng-repeat="stat in primaryStats" class="stat-container">
              <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title"></p></button>
-                <p class="playerStatItem" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p><p ng-if="!stat.editing && !player.editing" ng-bind="statModCalc(stat.stat)"></p>
+                <p class="playerStatItem" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p><p ng-if="!stat.editing && !player.editing" class="pStatMod"ng-bind="statModCalc(stat.stat)"></p>
                 <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
         </div>
         </div>
+        </article>
+        <article class="tile is-child notification is-dark">
         <div class="content">
-         <p class="title">Spell Details</p>
-        <div ng-repeat="stat in spellDetails" class="stat-container">
+         <p class="title">Vitals</p>
+        <div ng-repeat="stat in vitals" class="stat-container">
              <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title" ></p></button>
                 <p class="playerStatItem" ng-if="!stat.editing && !player.editing"ng-bind="player[stat.stat]"></p>
                 <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
@@ -65,9 +68,9 @@
     <div class="tile is-parent">
       <article class="tile is-child notification is-dark">
         <div class="content">
-        <p class="title is-3"> {{player.name}}'s Spell List </p>
-        <button class="button is-small  is-primary fa fa-plus" ng-if="player.youOwnThis" ng-click="addSpell()"></button>
-        <div data-ng-repeat="spell in player.spellList">
+        <p class="cardTitle title is-3"> {{player.name}}'s Spell List </p>
+        <button class="cardAddButton button is-small  is-primary fa fa-plus" ng-if="player.youOwnThis" ng-click="addSpell()"></button>
+        <div data-ng-repeat="spell in player.spellList | orderBy: '-'">
             <div class="spellCard card">
                 <div class="card-header">
                     <p ng-bind="spell.name" class="card-header-title"></p>
@@ -75,7 +78,7 @@
                 </div>
                 <div class="card-content">
                     <input ng-if="spell.spellEditing" placeholder="Spell name" ng-model="spell.name" class="input">
-                    <textarea ng-if="spell.spellEditing" placeholder="Add a description!" ng-model="spell.description" rows="10" style="height:7em;"class="input" ></textarea><p class="spellDescription"ng-if="!spell.spellEditing" ng-bind="spell.description"></p>
+                    <textarea ng-if="spell.spellEditing" placeholder="Add a description!" ng-model="spell.description" rows="10" style="height:7em;"class="input" ></textarea><p class="cardDescription"ng-if="!spell.spellEditing" ng-bind="spell.description"></p>
                 </div>
                 <div class="card-footer">
                      <button ng-if="!spell.spellEditing" class="button is-small is-info" ng-click="toggleSpellEdit(spell)">Edit</button>
@@ -87,9 +90,9 @@
       </article>
       <article class="tile is-child notification is-dark">
         <div class="content">
-        <p class="title is-3"> {{player.name}}'s Equipment List </p>
-         <button class="button is-small is-primary fa fa-plus" ng-if="player.youOwnThis" ng-click="addEquipment()"></button>
-        <div data-ng-repeat="equipment in player.equipment">
+        <p class="cardTitle title is-3"> {{player.name}}'s Equipment List </p>
+         <button class="cardAddButton button is-small is-primary fa fa-plus" ng-if="player.youOwnThis" ng-click="addEquipment()"></button>
+        <div data-ng-repeat="equipment in player.equipment | orderBy: '-'">
             <div class="spellCard card">
                 <div class="card-header">
                     <p ng-bind="equipment.name" class="card-header-title"></p>
@@ -97,7 +100,7 @@
                 </div>
                 <div class="card-content">
                     <input ng-if="equipment.equipmentEditing" placeholder="Equipment name" ng-model="equipment.name" class="input">
-                    <textarea ng-if="equipment.equipmentEditing" placeholder="Add a description!" ng-model="equipment.description" rows="10" style="height:7em;"class="input" ></textarea><p ng-if="!equipment.equipmentEditing" ng-bind="equipment.description"></p>
+                    <textarea ng-if="equipment.equipmentEditing" placeholder="Add a description!" ng-model="equipment.description" rows="10" style="height:7em;"class="input" ></textarea><p class="cardDescription"ng-if="!equipment.equipmentEditing" ng-bind="equipment.description"></p>
                 </div>
                 <div class="card-footer">
                      <button ng-if="!equipment.equipmentEditing" class="button is-small is-info" ng-click="toggleEquipmentEdit(equipment)">Edit</button>
@@ -111,11 +114,11 @@
   </div>
   <div class="tile is-parent">
     <article class="tile is-child notification is-dark">
-                <div class="content">
+         <div class="content">
         <p class="title">Details</p>
         <div ng-repeat="stat in charDetails" class="stat-container">
              <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title" ></p></button>
-                <p class="playerStatItem" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
+                <p class="playerStatItemDetails" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
                 <textarea class="textarea" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]"></textarea>
         </div>
         </div>
@@ -145,4 +148,18 @@
                     </footer>
             </div>
              </form>
+</div>
+<div id="deleteModal" class="modal">
+            <div ng-click="toggleDeletePlayer()" class="modal-background"></div>
+             <form>
+            <div class="modal-card">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Are you sure you want to delete {{player.name}} forever?..</p>
+                        <button class="delete is-medium" ng-click="toggleDeletePlayer()"></button>
+                    </header>
+                    <button ng-click="toggleDeletePlayer()" class="button is-large is-primary">No Take me Back</button>
+                    <button ng-click="deletePlayer(player.id)"class="button is-large is-danger">Delete Forever</button>
+            </div>
+             </form>
+</div>
 </div>

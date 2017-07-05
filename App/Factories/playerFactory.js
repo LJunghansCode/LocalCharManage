@@ -7,20 +7,33 @@ app.factory('playerFactory', ['$http', '$location', function(http, loc){
 			}
 		});
 	};
+	factory.deletePlayerById = (id, callback) => {
+		http.post("delete_player", {id: id}).then((returned_data) =>{
+			if(returned_data){
+				callback(returned_data);
+			}
+		});
+	};
     factory.getPlayer = (id, callback) => {
 		http.post("/getPlayer", {id: id}).then( (returned_data) => {
-			callback(returned_data);
+			if(returned_data){
+				callback(returned_data);
+			}
 		});
 	};
     factory.getSessionPlayers = (callback) => {
         http.get('/getMyPlayers').then((returned_data) => {
-            callback(returned_data);
+            if(returned_data){
+				callback(returned_data);
+			}
         });
     };
 	factory.updateAndSave = (player, callback) => {
 		player.calculateModifiers();
 		http.post('/updateAndSave', player).then((returned_data) => {
-			callback(returned_data);
+			if(returned_data){
+				callback(returned_data);
+			}
 		});
 	};
 	return factory;

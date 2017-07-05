@@ -27,7 +27,18 @@ module.exports = (() => {
                 if (foundPlayer) {
                     res.json({playerFound: foundPlayer});
                 } else {
-                    console.log('no find');
+                    console.error('no find');
+                }
+            }); 
+        };
+        PlayerController.deletePlayer = (req, res) => {
+
+            Player.findOneAndRemove({_id: req.body.id}, (err, foundPlayer) => {
+                if (err) return handleError(err);
+                if (foundPlayer) {
+                    res.json({message: true});
+                } else {
+                    res.json({message: false});
                 }
             }); 
         };
@@ -38,7 +49,7 @@ module.exports = (() => {
                    foundPlayer.save();
                    res.json({player: foundPlayer});
                 } else {
-                    console.log('no find');
+                    console.error('no find');
                 }
             });   
         };

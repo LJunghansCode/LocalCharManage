@@ -28,6 +28,9 @@ module.exports = (app) => {
     app.post('/updateAndSave', (req, res) => {
         playerController.updateAndSave(req, res);
     });
+    app.post('/delete_player', (req, res) => {
+        playerController.deletePlayer(req, res);
+    });
     //Routes for Campaign Objects
     app.post('/new_campaign', (req, res) => {
         campaignController.newCampaign(req, res);

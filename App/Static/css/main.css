@@ -55,34 +55,42 @@ textarea {
 }
 .color-choice-red{
     width: 30px;
+    height: 30px;
     background-color: red;
 }
 .color-choice-purple{
     width: 30px;
+    height: 30px;
     background-color: purple;
 }
 .color-choice-green{
     width: 30px;
+    height: 30px;
     background-color: forestgreen;
 }
 .color-choice-teal{
     width: 30px;
+    height: 30px;
     background-color: teal;
 }
 .color-choice-pink{
     width: 30px;
+    height: 30px;
     background-color: hotpink;
 }
 .color-choice-blue{
     width: 30px;
+    height: 30px;
     background-color: blue;
 }
 .color-choice-orange{
     width: 30px;
+    height: 30px;
     background-color: orange;
 }
 .color-choice-gray{
     width: 30px;
+    height: 30px;
     background-color: gray;
 }
 .your-combat{
@@ -90,8 +98,8 @@ textarea {
 }
 .charMenuContainer {
     background-image: url('../img/wilds.jpg');
-    background-repeat: no-repeat;
-    background-position: inherit;
+    background-size: 100%;
+    padding: 1%;
 }
 .charMenuContainer p {
     color: white;
@@ -110,17 +118,36 @@ textarea {
 .mainNav {
     margin-top: 18px; 
 }
-
+.newCharTitle {
+    margin-top: 2%;
+    padding: 1%;
+}
+.cardAddButton {
+    display: inline-block;
+    margin-left: 5%;
+}
+.cardTitle {
+    display: inline-block;
+}
 .spellCard {
     margin: 2%;
     padding: 1%;
 }
 .playerStatItem {
     white-space: pre-wrap;
+    display: inline-block;
 }
 .stat-container{
-    margin: 2.5%;
+    margin-top: 6%;
 }
-.spellDescription {
+.cardDescription {
     white-space: pre-wrap;
+}
+
+.createResponse {
+    margin-top: 1%;
+}
+.deletePlayer{
+    display: inline-block;
+    margin-left: 80%;
 }
