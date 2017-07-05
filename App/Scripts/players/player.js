@@ -24,7 +24,7 @@
             this.charisma = charisma;
             this.currentHitPoints = currentHitPoints;
             this.tempHitPoints = tempHitPoints; 
-            this.spellList = new SpellManager(spellList);
+            this.spellList = spellList;
             this.DiceManager = new DiceRoller();
             this.experience = 0;  
             this.skills = skills;
@@ -79,8 +79,13 @@
                 let name = primaryStats[i].stat + "Mod";
                 let modValue = primaryStats[i].value - 10;
                 modValue = Math.floor(modValue/2);
-                this[name] = "modifier: " + modValue;
+                this[name] = modValue;
                 }
+        }
+        singleModCalc (stat) {
+            var modifier = stat + "Mod";
+            this[modifier] = Math.floor((this[stat] - 10) / 2);
+            return("Modifer: " + this[modifier]);
         }
         gainHealth(healthToGain) {
             this.currentHitPoints += healthToGain;
@@ -97,17 +102,35 @@
                 this.gainLevel();
                 this.experience = newValue - experienceNeeded;
                 this.level += 1;
-            }else {
+            } else {
             this.experience = newValue;
             }
 
         }
-        addEquipment(id) {
+        addEquipment() {
+            var id = this.equipment.length + 1;
             this.equipment.push({id: id});
         }
-        addCompanion(id) {
+        addCompanion() {
+            var id = this.companions.length + 1;
             this.companions.push({id: id});
         }
+        addSpell() {
+            var id = this.spellList.length + 1;
+            this.spellList.push({id: id});
+        }
+        addSkill(){
+            var id = this.skills.length + 1;
+            this.skills.push({id: id});
+        }
+        deleteSpell(spell){
+        this.spellList.splice(spell.id - 1, 1);
+        //sort id/array relationship.
+        for(let i = 0; i < this.spellList.length; i++){
+            let thisSpell = this.spellList[i];
+            thisSpell.id = i + 1;
+            }
+        }   
         deleteEquipment(equipment){
         this.equipment.splice(equipment.id - 1, 1);
         //sort id/array relationship.
@@ -116,6 +139,15 @@
             thisEquip.id = i + 1;
             }
         }
+        deleteSKill(skill){
+        this.skills.splice(equipment.id - 1, 1);
+        //sort id/array relationship.
+        for(let i = 0; i < this.equipment.length; i++){
+            let thisEquip = this.equipment[i];
+            thisEquip.id = i + 1;
+            }
+        }
+
         ActionRoll(RollsArray){
             //send in format of ["d12", '"d20", "d20"]
             return(this.DiceManager.rollDie(RollsArray));

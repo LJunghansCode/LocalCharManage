@@ -19,6 +19,7 @@ app.controller('sessionController', ['$location', '$scope', '$route','$routePara
                             if(data.data.message === playerInstance.accountEmail){
                                 playerInstance.youOwnThis = true;
                             }
+                            
                         });
                         playerInstance.calculateModifiers();
                         playerInstance.masterStats = playerInstance.organizeStatsArray();

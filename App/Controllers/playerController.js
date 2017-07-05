@@ -27,7 +27,6 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
                 scope.primaryStats = masterStat.primaryStats;
                 scope.spellDetails = masterStat.spellDetails;
                 scope.vitals = masterStat.vitals;
-                scope.spellsForPlayer = scope.player.spellList.allSpells();
                 userFactory.getCurUser((data) =>{
                     if(data.data.message === scope.player.accountEmail){
                         scope.player.youOwnThis = true;
@@ -64,25 +63,25 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
     scope.updateAndSave = (player) => {
         playerFactory.updateAndSave(player, (data) => {
             if(data.data.player){
-            }else{
-                
+                 scope.player.calculateModifiers();
             }
         });
-    scope.player.calculateModifiers();
     };
     
     //----------------------
 
     //PLAYER CLASS ACCESS
     scope.addEquipment = () => {
-        var newEquipmentNo = scope.player.equipment.length + 1;
-        scope.player.addEquipment(newEquipmentNo);
+        scope.player.addEquipment();
         scope.toggleEquipmentEdit(scope.player.equipment[scope.player.equipment.length - 1]);
     };
     scope.addSpell = () => {
-        var newSpellNo = scope.player.spellList.length + 1;
-        scope.player.addSpell(newSpellNo);
+        scope.player.addSpell();
         scope.toggleSpellEdit(scope.player.spellList[scope.player.spellList.length - 1]);
+    };
+    scope.addSkill = () => {
+        scope.player.addSkill();
+        scope.toggleSkillEdit(scope.player.skills[scope.player.skills.length -1]);
     };
     scope.deleteEquipment = (equipment) => {
         scope.player.deleteEquipment(equipment);
@@ -92,6 +91,10 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
         scope.player.deleteSpell(spell);
         playerFactory.updateAndSave(scope.player, (data)=>{return;});
     };
+    scope.statModCalc = (stat) => {
+        let statMod = scope.player.singleModCalc(stat);
+        return statMod;
+    }
     //UI TOGGLES
     scope.toggleJoinCampaign = () => {
         let modal = document.getElementById("campaignModal");
@@ -124,5 +127,10 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
         if(equipment.equipmentEditing !== true){
             equipment.equipmentEditing = true;
         } else{equipment.equipmentEditing = false;}
+    };
+    scope.toggleSkillEdit = (skill) => {
+        if(skill.skillEditing !== true){
+            skill.skillEditing = true;
+        } else{skill.skillEditing = false;}
     };
     }]);
