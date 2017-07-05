@@ -45,6 +45,7 @@ spellSaveBonus: {type: String},
 armorClass: {type: Number},
 proficiencyBonus: {type: Number},
 borderColor: {type: String},
-companions:{type: []}
+companions:{type: []},
+notes: {type: String}
 });
 mongoose.model('player', playerSchema);

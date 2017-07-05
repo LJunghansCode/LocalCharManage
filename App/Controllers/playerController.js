@@ -9,7 +9,7 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
         playerFactory.getPlayer(routeParams.id, (data) => {
             if(data.data.playerFound) {
                 var P = data.data.playerFound;   
-                let playerOnDisplay = new Player(P._id, P.accountEmail, P.campaign, P.realName, P.name, P.race, P.classType, P.alignment, P.sex, P.size, P.age, P.height, P.weight, P.level, P.initiative, P.speed, P.strength, P.dexterity, P.constitution, P.intelligence, P.wisdom, P.charisma, P.currentHitPoints, P.tempHitPoints, P.spellList, P.skills, P.personalityTraits, P.ideals, P.bonds, P.flaws, P.attacksSpellcasting, P.featuresTraits, P.equipment, P.proficienciesLanguages, P.appearance, P.alliesOrganizations, P.backStory, P.treasureInventory, P.spellcastingClass, P.spellcastingAbility,P.spellSaveDC, P.spellSaveBonus, P.armorClass, P.proficiencyBonus, P.borderColor, P.companions );
+                let playerOnDisplay = new Player(P._id, P.accountEmail, P.campaign, P.realName, P.name, P.race, P.classType, P.alignment, P.sex, P.size, P.age, P.height, P.weight, P.level, P.initiative, P.speed, P.strength, P.dexterity, P.constitution, P.intelligence, P.wisdom, P.charisma, P.currentHitPoints, P.tempHitPoints, P.spellList, P.skills, P.personalityTraits, P.ideals, P.bonds, P.flaws, P.attacksSpellcasting, P.featuresTraits, P.equipment, P.proficienciesLanguages, P.appearance, P.alliesOrganizations, P.backStory, P.treasureInventory, P.spellcastingClass, P.spellcastingAbility,P.spellSaveDC, P.spellSaveBonus, P.armorClass, P.proficiencyBonus, P.borderColor, P.companions, P.notes );
                 scope.player = playerOnDisplay;
                 let primaryStats = [{stat: "strength", value: scope.player.strength}, {stat: "dexterity", value: scope.player.dexterity}, {stat:"constitution", value: scope.player.constitution}, {stat:"intelligence", value: scope.player.intelligence}, {stat: "wisdom", value: scope.player.wisdom}, {stat:"charisma", value: scope.player.charisma}];
                 //Get Modifiers
@@ -92,12 +92,20 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
         scope.player.addSkill();
         scope.toggleSkillEdit(scope.player.skills[scope.player.skills.length -1]);
     };
+    scope.addCompanion = () => {
+        scope.player.addCompanion();
+        scope.toggleCompanionEdit(scope.player.companions[scope.player.companions.length -1]);
+    };
     scope.deleteEquipment = (equipment) => {
         scope.player.deleteEquipment(equipment);
         playerFactory.updateAndSave(scope.player, (data)=>{return;});
     };
     scope.deleteSpell = (spell) => {
         scope.player.deleteSpell(spell);
+        playerFactory.updateAndSave(scope.player, (data)=>{return;});
+    };
+    scope.deleteCompanion = (c) => {
+        scope.player.deleteCompanion(c);
         playerFactory.updateAndSave(scope.player, (data)=>{return;});
     };
     scope.statModCalc = (stat) => {
@@ -128,26 +136,31 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
             scope.updateAndSave(scope.player);
             stat.editing = false;}
     };
-    scope.toggleEdit = (player) => {
-        if(player.editing !== true){
-            player.editing = true;
-        } else{player.editing = false;}
+    scope.toggleEdit = (p) => {
+        if(p.editing !== true){
+            p.editing = true;
+        } else{p.editing = false;}
         
     };
-    scope.toggleSpellEdit = (spell) => {
-        if(spell.spellEditing !== true){
-            spell.spellEditing = true;
-        } else{spell.spellEditing = false;}
+    scope.toggleSpellEdit = (sp) => {
+        if(sp.spellEditing !== true){
+            sp.spellEditing = true;
+        } else{sp.spellEditing = false;}
         
     };
-    scope.toggleEquipmentEdit = (equipment) => {
-        if(equipment.equipmentEditing !== true){
-            equipment.equipmentEditing = true;
-        } else{equipment.equipmentEditing = false;}
+    scope.toggleEquipmentEdit = (e) => {
+        if(e.equipmentEditing !== true){
+            e.equipmentEditing = true;
+        } else{e.equipmentEditing = false;}
     };
-    scope.toggleSkillEdit = (skill) => {
-        if(skill.skillEditing !== true){
-            skill.skillEditing = true;
-        } else{skill.skillEditing = false;}
+    scope.toggleSkillEdit = (s) => {
+        if(s.skillEditing !== true){
+            s.skillEditing = true;
+        } else{s.skillEditing = false;}
+    };
+        scope.toggleCompanionEdit = (c) => {
+        if(c.companionEditing !== true){
+            c.companionEditing = true;
+        } else{c.companionEditing = false;}
     };
     }]);

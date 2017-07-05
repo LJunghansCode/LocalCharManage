@@ -1,5 +1,5 @@
     class Player {
-        constructor ( id, accountEmail, campaign, realName, name, race, classType, alignment, sex, size, age, height, weight, level, initiative, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, currentHitPoints, tempHitPoints, spellList, skills, personalityTraits, ideals, bonds, flaws, attacksSpellcasting, featuresTraits, equipment, proficienciesLanguages, appearance, alliesOrganizations, backStory, treasureInventory, spellcastingClass, spellcastingAbility,spellSaveDC, spellSaveBonus, armorClass, proficiencyBonus, borderColor, companions ) {
+        constructor ( id, accountEmail, campaign, realName, name, race, classType, alignment, sex, size, age, height, weight, level, initiative, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, currentHitPoints, tempHitPoints, spellList, skills, personalityTraits, ideals, bonds, flaws, attacksSpellcasting, featuresTraits, equipment, proficienciesLanguages, appearance, alliesOrganizations, backStory, treasureInventory, spellcastingClass, spellcastingAbility,spellSaveDC, spellSaveBonus, armorClass, proficiencyBonus, borderColor, companions, notes) {
             this.id = id;
             this.accountEmail = accountEmail;
             this.campaign = campaign;
@@ -48,6 +48,7 @@
             this.proficiencyBonus = proficiencyBonus;
             this.borderColor = borderColor;
             this.companions = companions;
+            this.notes = notes;
         }
         normalizeTextLowerCase(text){
             let lowerCase = "";
@@ -67,7 +68,7 @@
 
                 basicInformation : [{title: "Real Name", stat:"realName", value: this.realName}, {title: "Player Name", stat:"name", value:this.name}, {title: "Race", stat:"race", value:this.race}, {title: "Class", stat:"classType", value: this.classType}, {title: "Alignment", stat:"alignment", value: this.alignment}, {title: "Age", stat:"age", value: this.age}],
 
-                charDetails : [ {title: "Attacks and Spellcasting Details", stat:"attacksSpellcasting", value:this.attacksSpellcasting}, {title: "Features and Traits", stat:"featuresTraits", value: this.featuresTraits}, {title: "Proficiencies and Languages", stat:"proficienciesLanguages", value: this.proficienciesLanguages}, {title: "Appearance", stat:"appearance", value: this.appearance},{title: "Allies and Organizations", stat:"alliesOrganizations", value: this.alliesOrganizations}, {title: "Treasure and Inventory", stat:"treasureInventory", value: this.treasureInventory}, {title: "Back Story", stat:"backStory", value: this.backStory}, {title: "Ideals", stat:"ideals", value: this.ideals}, {title: "Bonds", stat:"bonds",value:this.bonds},{title: "Flaws", stat:"flaws",value:this.flaws},{title: "Personality Traits", stat:"personalityTraits",value:this.pbonersonalityTraits} ],
+                charDetails : [ {title: "Treasure and Inventory", stat:"treasureInventory", value: this.treasureInventory}, {title: "Attacks and Spellcasting Details", stat:"attacksSpellcasting", value:this.attacksSpellcasting}, {title: "Features and Traits", stat:"featuresTraits", value: this.featuresTraits}, {title: "Proficiencies and Languages", stat:"proficienciesLanguages", value: this.proficienciesLanguages}, {title: "Appearance", stat:"appearance", value: this.appearance},{title: "Allies and Organizations", stat:"alliesOrganizations", value: this.alliesOrganizations}, {title: "Back Story", stat:"backStory", value: this.backStory}, {title: "Ideals", stat:"ideals", value: this.ideals}, {title: "Bonds", stat:"bonds",value:this.bonds},{title: "Flaws", stat:"flaws",value:this.flaws},{title: "Personality Traits", stat:"personalityTraits",value:this.pbonersonalityTraits},{title: "Notes", stat:"notes", value: this.notes} ],
 
                 spellDetails : [{title: "Spell Casting Class", stat:"spellcastingClass", value: this.spellcastingClass}, {title: "Spell Casting Ability", stat:"spellcastingAbility",value:this.spellcastingAbility}, {title: "Spell Save DC", stat:"spellSaveDC", value:this.spellSaveDC}, {title: "Spell Save Bonus", stat:"spellSaveBonus", value: this.spellSaveBonus}]
             };
@@ -144,8 +145,16 @@
         this.skills.splice(equipment.id - 1, 1);
         //sort id/array relationship.
         for(let i = 0; i < this.equipment.length; i++){
-            let thisEquip = this.equipment[i];
-            thisEquip.id = i + 1;
+            let thisSkill = this.equipment[i];
+            thisSkill.id = i + 1;
+            }
+        }
+        deleteCompanion(companion){
+        this.companions.splice(companion.id - 1, 1);
+        //sort id/array relationship.
+        for(let i = 0; i < this.companions.length; i++){
+            let thisC = this.companions[i];
+            thisC.id = i + 1;
             }
         }
 

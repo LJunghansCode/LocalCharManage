@@ -22,11 +22,6 @@ app.controller('campaignController', ['$window', '$location', '$scope', '$route'
         campaignFactory.addPlayer(playerToAdd, campaignToJoin, (returnedData) => {
         });
     };
-    // playerFactory.getSessionPlayers( (data) => {
-    //     playersArray = data.data.players;
-    //     for(let i = 0; i < playersArray.length; i++) {
-    //        scope.sessPlayers.push(playersArray[i]);
-    //     }
-    // });
+
 
 }]);
