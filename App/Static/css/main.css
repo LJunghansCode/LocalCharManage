@@ -121,3 +121,6 @@ textarea {
 .stat-container{
     margin: 2.5%;
 }
+.spellDescription {
+    white-space: pre-wrap;
+}

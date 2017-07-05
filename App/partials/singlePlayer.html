@@ -75,7 +75,7 @@
                 </div>
                 <div class="card-content">
                     <input ng-if="spell.spellEditing" placeholder="Spell name" ng-model="spell.name" class="input">
-                    <textarea ng-if="spell.spellEditing" placeholder="Add a description!" ng-model="spell.description" rows="10" style="height:7em;"class="input" ></textarea><p ng-if="!spell.spellEditing" ng-bind="spell.description"></p>
+                    <textarea ng-if="spell.spellEditing" placeholder="Add a description!" ng-model="spell.description" rows="10" style="height:7em;"class="input" ></textarea><p class="spellDescription"ng-if="!spell.spellEditing" ng-bind="spell.description"></p>
                 </div>
                 <div class="card-footer">
                      <button ng-if="!spell.spellEditing" class="button is-small is-info" ng-click="toggleSpellEdit(spell)">Edit</button>
