@@ -116,7 +116,7 @@ textarea {
     padding: 1%;
 }
 .playerStatItem {
-    display: inline-block;
+    white-space: pre-wrap;
 }
 .stat-container{
     margin: 2.5%;

@@ -66,7 +66,7 @@
 
                 basicInformation : [{title: "Real Name", stat:"realName", value: this.realName}, {title: "Player Name", stat:"name", value:this.name}, {title: "Race", stat:"race", value:this.race}, {title: "Class", stat:"classType", value: this.classType}, {title: "Alignment", stat:"alignment", value: this.alignment}, {title: "Age", stat:"age", value: this.age}],
 
-                charDetails : [{title: "Skills", stat:"skills", value: this.skills}, {title: "Personality Traits", stat:"personalityTraits",value:this.personalityTraits}, {title: "Attacks and Spellcasting Details", stat:"attacksSpellcasting", value:this.attacksSpellcasting}, {title: "Features and Traits", stat:"featuresTraits", value: this.featuresTraits}, {title: "Proficiencies and Languages", stat:"proficienciesLanguages", value: this.proficienciesLanguages}, {title: "Appearance", stat:"appearance", value: this.appearance},{title: "Allies and Organizations", stat:"alliesOrganizations", value: this.alliesOrganizations}, {title: "Treasure and Inventory", stat:"treasureInventory", value: this.treasureInventory},{title: "Personal Ideals", stat:"ideals", value: this.ideals}, {title: "Back Story", stat:"backStory", value: this.backStory} ],
+                charDetails : [ {title: "Personality Traits", stat:"personalityTraits",value:this.personalityTraits}, {title: "Attacks and Spellcasting Details", stat:"attacksSpellcasting", value:this.attacksSpellcasting}, {title: "Features and Traits", stat:"featuresTraits", value: this.featuresTraits}, {title: "Proficiencies and Languages", stat:"proficienciesLanguages", value: this.proficienciesLanguages}, {title: "Appearance", stat:"appearance", value: this.appearance},{title: "Allies and Organizations", stat:"alliesOrganizations", value: this.alliesOrganizations}, {title: "Treasure and Inventory", stat:"treasureInventory", value: this.treasureInventory},{title: "Personal Ideals", stat:"ideals", value: this.ideals}, {title: "Back Story", stat:"backStory", value: this.backStory} ],
 
                 spellDetails : [{title: "Spell Casting Class", stat:"spellcastingClass", value: this.spellcastingClass}, {title: "Spell Casting Ability", stat:"spellcastingAbility",value:this.spellcastingAbility}, {title: "Spell Save DC", stat:"spellSaveDC", value:this.spellSaveDC}, {title: "Spell Save Bonus", stat:"spellSaveBonus", value: this.spellSaveBonus}]
             };
@@ -153,17 +153,6 @@
             return(this.DiceManager.rollDie(RollsArray));
         }
         gainLevel() {
-            // var SpellManager = new SpellManager(this.spellList);
-            let constitution = this.health;
-            let strength = this.strength;
-            let wisdom = this.wisdom;
-            let charisma = this.charisma;
-            let level = this.level;
-            let initiative = this.initiative;
-            let speed = this.speed;
-            let dexterity = this.dexterity;
-            let currentHitPoints = this.currentHitPoints;
-            let tempHitPoints = this.tempHitPoints;
             switch(this.normalizeTextLowerCase(this.classType)){
                 case("paladin"):
                     
