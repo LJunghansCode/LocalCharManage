@@ -58,6 +58,7 @@
             return lowerCase;
         }
         organizeStatsArray () {
+            //IN ORDER OF Appearance
             const masterStatArraysObj = 
             {
                 primaryStats : [{title:"Strength", stat: "strength",statMod:this.strengthMod, value: this.strength}, {title:"Dexterity", stat: "dexterity", statMod:this.dexterityMod, value: this.dexterity}, {title:"Constitution", stat:"constitution", statMod:this.constitutionMod, value: this.constitution}, {title:"Intelligence", stat:"intelligence", statMod:this.intelligenceMod, value: this.intelligence}, {title:"Wisdom", stat: "wisdom", statMod:this.wisdomMod, value: this.wisdom}, {title:"Charisma", stat:"charisma", statMod:this.charismaMod, value: this.charisma} ],
@@ -66,7 +67,7 @@
 
                 basicInformation : [{title: "Real Name", stat:"realName", value: this.realName}, {title: "Player Name", stat:"name", value:this.name}, {title: "Race", stat:"race", value:this.race}, {title: "Class", stat:"classType", value: this.classType}, {title: "Alignment", stat:"alignment", value: this.alignment}, {title: "Age", stat:"age", value: this.age}],
 
-                charDetails : [ {title: "Personality Traits", stat:"personalityTraits",value:this.personalityTraits}, {title: "Attacks and Spellcasting Details", stat:"attacksSpellcasting", value:this.attacksSpellcasting}, {title: "Features and Traits", stat:"featuresTraits", value: this.featuresTraits}, {title: "Proficiencies and Languages", stat:"proficienciesLanguages", value: this.proficienciesLanguages}, {title: "Appearance", stat:"appearance", value: this.appearance},{title: "Allies and Organizations", stat:"alliesOrganizations", value: this.alliesOrganizations}, {title: "Treasure and Inventory", stat:"treasureInventory", value: this.treasureInventory},{title: "Personal Ideals", stat:"ideals", value: this.ideals}, {title: "Back Story", stat:"backStory", value: this.backStory} ],
+                charDetails : [ {title: "Ideals", stat:"ideals", value: this.ideals}, {title: "Bonds", stat:"bonds",value:this.bonds},{title: "Flaws", stat:"flaws",value:this.flaws},{title: "Personality Traits", stat:"personalityTraits",value:this.pbonersonalityTraits}, {title: "Attacks and Spellcasting Details", stat:"attacksSpellcasting", value:this.attacksSpellcasting}, {title: "Features and Traits", stat:"featuresTraits", value: this.featuresTraits}, {title: "Proficiencies and Languages", stat:"proficienciesLanguages", value: this.proficienciesLanguages}, {title: "Appearance", stat:"appearance", value: this.appearance},{title: "Allies and Organizations", stat:"alliesOrganizations", value: this.alliesOrganizations}, {title: "Treasure and Inventory", stat:"treasureInventory", value: this.treasureInventory}, {title: "Back Story", stat:"backStory", value: this.backStory} ],
 
                 spellDetails : [{title: "Spell Casting Class", stat:"spellcastingClass", value: this.spellcastingClass}, {title: "Spell Casting Ability", stat:"spellcastingAbility",value:this.spellcastingAbility}, {title: "Spell Save DC", stat:"spellSaveDC", value:this.spellSaveDC}, {title: "Spell Save Bonus", stat:"spellSaveBonus", value: this.spellSaveBonus}]
             };
