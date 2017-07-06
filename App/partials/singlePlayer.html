@@ -1,4 +1,3 @@
-<div class="page-container">
 <section class="hero is-bold is-dark ">
   <div class="singlePlayerHero hero-body">
     <div class="container">
@@ -25,7 +24,7 @@
         <article class="tile is-child content notification is-dark">
             <h1 class="title">Basic Information</h1>
             <div ng-repeat="stat in basicInformation" class="stat-container">
-                <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title" ></p></button>
+                <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title" ></p></button>
                 <p class="playerStatItem" ng-if="!stat.editing && !player.editing"ng-bind="player[stat.stat]"></p>
                 <input class="input playerStatItem" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
             </div>
@@ -36,7 +35,7 @@
         <article class="tile is-child notification is-dark">
         <p class="title">Spell Details</p>
         <div ng-repeat="stat in spellDetails" class="stat-container">
-             <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title"></p></button>
+             <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title"></p></button>
                 <p class="playerStatItem" ng-if="!stat.editing && !player.editing"ng-bind="player[stat.stat]"></p>
                 <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
         </div>
@@ -47,7 +46,7 @@
         <div class="content">
         <p class="title">Primary Stats</p>
         <div ng-repeat="stat in primaryStats" class="stat-container">
-             <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title"></p></button>
+             <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title"></p></button>
                 <p class="playerStatItem" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p><p ng-if="!stat.editing && !player.editing" class="pStatMod"ng-bind="statModCalc(stat.stat)"></p>
                 <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
         </div>
@@ -57,7 +56,7 @@
         <div class="content">
          <p class="title">Vitals</p>
         <div ng-repeat="stat in vitals" class="stat-container">
-             <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title" ></p></button>
+             <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title" ></p></button>
                 <p class="playerStatItem" ng-if="!stat.editing && !player.editing"ng-bind="player[stat.stat]"></p>
                 <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
         </div>
@@ -69,7 +68,7 @@
       <article class="tile is-child notification is-dark">
         <div class="content">
         <p class="cardTitle title is-3"> {{player.name}}'s Spell List </p>
-        <button class="cardAddButton button is-small  is-primary fa fa-plus" ng-if="player.youOwnThis" ng-click="addSpell()"></button>
+        <button ng-disabled="!player.youOwnThis" class="cardAddButton button is-small  is-primary fa fa-plus" ng-if="player.youOwnThis" ng-click="addSpell()"></button>
         <div data-ng-repeat="spell in player.spellList | orderBy: '-'">
             <div class="spellCard card">
                 <div class="card-header">
@@ -91,7 +90,7 @@
       <article class="tile is-child notification is-dark">
         <div class="content">
         <p class="cardTitle title is-3"> {{player.name}}'s Equipment List </p>
-         <button class="cardAddButton button is-small is-primary fa fa-plus" ng-if="player.youOwnThis" ng-click="addEquipment()"></button>
+         <button ng-disabled="!player.youOwnThis" class="cardAddButton button is-small is-primary fa fa-plus" ng-if="player.youOwnThis" ng-click="addEquipment()"></button>
         <div data-ng-repeat="equipment in player.equipment | orderBy: '-'">
             <div class="spellCard card">
                 <div class="card-header">
@@ -111,19 +110,19 @@
     </div>
     <div class="content">
         <p class="cardTitle title is-3"> Companions </p>
-         <button class="cardAddButton button is-small is-primary fa fa-plus" ng-if="player.youOwnThis" ng-click="addCompanion()"></button>
+         <button ng-disabled="!player.youOwnThis" class="cardAddButton button is-small is-primary fa fa-plus" ng-if="player.youOwnThis" ng-click="addCompanion()"></button>
         <div data-ng-repeat="companion in player.companions | orderBy: '-'">
             <div class="card">
                 <div class="card-header">
                     <p ng-bind="companion.name" class="card-header-title"></p>
                     <button class="button is-danger is-small  fa fa-trash-o is-info card-header-icon" ng-click="deleteCompanion(companion)"></button>
                 </div>
-                <div class="card-content">
+                <div class="compCard card-content">
                     <p class="title is-5">Over View</p>
                     <input ng-if="companion.companionEditing" placeholder="Name" ng-model="companion.name" class="input">
-                    <p ng-if="!companion.companionEditing"> Traits: </p><textarea ng-if="companion.companionEditing" placeholder="Traits" ng-model="companion.traits" rows="10" style="height:7em;"class="input" ></textarea><p class="cardDescription"ng-if="!companion.companionEditing" ng-bind="companion.traits"></p>
+                    <p ng-if="!companion.companionEditing"> Traits: </p><textarea ng-if="companion.companionEditing" placeholder="Traits" ng-model="companion.traits" rows="10" style="height:7em;"class="input" ></textarea><p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.traits"></p>
                     <p ng-if="!companion.companionEditing"> Actions: </p><textarea ng-if="companion.companionEditing" placeholder="Actions" ng-model="companion.actions" rows="10" style="height:7em;"class="input" ></textarea><p class="cardDescription"ng-if="!companion.companionEditing" ng-bind="companion.actions"></p>
-
+                    <p class="title is-5">Attributes</p>
                     <p ng-if="!companion.companionEditing">Size: </p> <input ng-if="companion.companionEditing" placeholder="Size" ng-model="companion.size" class="input"><p class="cardDescription"ng-if="!companion.companionEditing" ng-bind="companion.size"></p>
                     <p ng-if="!companion.companionEditing">Type: </p> <input ng-if="companion.companionEditing" placeholder="Type" ng-model="companion.type" class="input"><p class="cardDescription"ng-if="!companion.companionEditing" ng-bind="companion.type"></p>
                      <p ng-if="!companion.companionEditing">Alignment: </p><input ng-if="companion.companionEditing" placeholder="Alignment" ng-model="companion.alignment" class="input"><p class="cardDescription"ng-if="!companion.companionEditing" ng-bind="companion.alignment"></p>
@@ -138,8 +137,7 @@
                      <p ng-if="!companion.companionEditing">Charisma: </p><input ng-if="companion.companionEditing" placeholder="Charisma" ng-model="companion.charisma" class="input"><p class="cardDescription"ng-if="!companion.companionEditing" ng-bind="companion.charisma"></p>
                     <p ng-if="!companion.companionEditing">Challenge Rating: </p> <input ng-if="companion.companionEditing" placeholder="Challenge Rating" ng-model="companion.challengeRating" class="input"><p class="cardDescription"ng-if="!companion.companionEditing" ng-bind="companion.challengeRating"></p>
                     <p ng-if="!companion.companionEditing">Senses: </p> <input ng-if="companion.companionEditing" placeholder="Senses" ng-model="companion.sensesclass" class="input"></input><p class="cardDescription"ng-if="!companion.companionEditing" ng-bind="companion.senses"></p>
-                    <p ng-if="!companion.companionEditing"> Passive Perception: </p><input ng-if="companion.companionEditing" placeholder="Passive Perception" ng-model="companion.passivePerception"class="input" ></input><p class="cardDescription"ng-if="!companion.companionEditing" ng-bind="companion.passivePerception"></p>                    
-                    <p class="title is-5">Attributes</p>
+                    <p ng-if="!companion.companionEditing"> Passive Perception: </p><input ng-if="companion.companionEditing" placeholder="Passive Perception" ng-model="companion.passivePerception"class="input" ></input><p class="cardDescription"ng-if="!companion.companionEditing" ng-bind="companion.passivePerception"></p>              
                     <p ng-if="!companion.companionEditing">Description: </p> <textarea ng-if="companion.companionEditing" placeholder="Add a description!" ng-model="companion.description" rows="10" style="height:7em;"class="input" ></textarea><p class="cardDescription"ng-if="!companion.companionEditing" ng-bind="companion.description"></p>
                 </div>
                 <div class="card-footer">
@@ -157,7 +155,7 @@
          <div class="content">
         <p class="title">Details</p>
         <div ng-repeat="stat in charDetails" class="stat-container">
-             <button ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title" ></p></button>
+             <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title" ></p></button>
                 <p class="playerStatItemDetails" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
                 <textarea class="textarea" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]"></textarea>
         </div>
@@ -201,5 +199,4 @@
                     <button ng-click="deletePlayer(player.id)"class="button is-large is-danger">Delete Forever</button>
             </div>
              </form>
-</div>
 </div>
