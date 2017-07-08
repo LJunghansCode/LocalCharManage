@@ -136,15 +136,19 @@ textarea {
 .playerStatItem {
     white-space: pre-wrap;
     display: inline-block;
+    word-break: break-all;
 }
 .playerStatItemDetails{
+    word-break: break-all;
     white-space: pre-wrap;
+    overflow-wrap: break-word;
 }
 .stat-container{
     margin-top: 6%;
 }
 .cardDescription {
     white-space: pre-wrap;
+    word-wrap: break-all;
 }
 .createResponse {
     margin-top: 1%;
