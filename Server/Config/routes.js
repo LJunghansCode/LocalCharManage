@@ -18,6 +18,9 @@ module.exports = (app) => {
     app.get('/logout', (req, res) => {
         userController.logoutUser(req, res);
     });
+    app.post('image_for_player', (req, res) => {
+        userController.imageForUser(req, res);
+    }); 
     //Routes for Player Objects
     app.post('/new_player', (req, res) => {
         playerController.newPlayer(req, res);

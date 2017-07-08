@@ -82,6 +82,7 @@ app.controller('sessionController', ['$location', '$scope', '$route','$routePara
             }
         }
     };
+   
     //Dice Roller
     scope.toggleDieRoller = () => {
         let modal = document.getElementById("diceRollerModal");

@@ -1,4 +1,4 @@
-app.controller('playerController', [ '$location', '$scope', '$route','$routeParams', 'playerFactory','campaignFactory','userFactory', function(loc, scope, route, routeParams, playerFactory, campaignFactory, userFactory) { 
+app.controller('playerController', [ '$location','$timeout', '$scope', '$route','$routeParams', 'playerFactory','campaignFactory','userFactory','Upload', function(loc, timeout, scope, route, routeParams, playerFactory, campaignFactory, userFactory, Upload) { 
     let currUser = userFactory.getCurUser((data) => {
         if(data.data.message === false) {
             loc.path('/login');
@@ -76,7 +76,46 @@ app.controller('playerController', [ '$location', '$scope', '$route','$routePara
                 loc.url('/players');
             }
         });
-    }
+    };
+     //IMAGESS
+    scope.$watch('files', function () {
+        scope.upload(scope.files);
+    });
+    scope.$watch('file', function () {
+        if (scope.file != null) {
+            scope.files = [scope.file]; 
+        }
+    });
+    scope.upload = function (files) {
+        if (files && files.length) {
+            console.log(files)
+            for (var i = 0; i < files.length; i++) {
+              var file = files[i];
+              if (!file.$error) {
+                Upload.upload({
+                    url: '/image_for_user',
+                    data: {
+                      accountEmail: scope.player.accountEmail,
+                      file: file  
+                    }
+                }).then(function (resp) {
+                    timeout(function() {
+                        scope.log = 'file: ' +
+                        resp.config.data.file.name +
+                        ', Response: ' + JSON.stringify(resp.data) +
+                        '\n' + scope.log;
+                    });
+                }, null, function (evt) {
+                    var progressPercentage = parseInt(100.0 *
+                    		evt.loaded / evt.total);
+                    scope.log = 'progress: ' + progressPercentage + 
+                    	'% ' + evt.config.data.file.name + '\n' + 
+                      scope.log;
+                });
+              }
+            }
+        }
+    };
     //----------------------
 
     //PLAYER CLASS ACCESS

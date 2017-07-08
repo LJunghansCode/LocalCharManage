@@ -10,6 +10,9 @@ module.exports = (() => {
         console.error(err);
     };
     return {
+        imageForUser : (req, res) => {
+            console.log(req.body);
+        },
         newUser : (req, res) => {
                 User.findOne({email: req.body.email}, (err, userFound) => {
                 if(!req.body.email || !req.body.password) {
