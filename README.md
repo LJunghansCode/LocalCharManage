@@ -6,3 +6,5 @@ I'm currently working on getting a responsive easy to use character sheet workin
 Long term goals involve animated dice rolling and combat phase manager.
 
 Also Bulma is awesome http://bulma.io/documentation using this for css framework is real nice, might change but for now its great
+
+Live and broken @ playersheet.co
