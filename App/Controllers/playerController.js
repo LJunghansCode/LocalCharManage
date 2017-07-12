@@ -42,6 +42,7 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                 scope.primaryStats = masterStat.primaryStats;
                 scope.spellDetails = masterStat.spellDetails;
                 scope.vitals = masterStat.vitals;
+                scope.skillList = new DynamicList(scope.player.skills);
                 scope.companions = new DynamicList(scope.player.companions);
                 scope.equipmentList = new DynamicList(scope.player.equipment);
                 scope.spells = new DynamicList(scope.player.spellList);
@@ -126,6 +127,22 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
         } else {
             modal.classList.add('is-active');
         }
+    };
+    scope.editStat = (stat) => {
+        if (stat.editing !== true) {
+            stat.editing = true;
+        } else {
+            scope.updateAndSave(scope.player);
+            stat.editing = false;
+        }
+    };
+    scope.toggleEdit = (p) => {
+        if (p.editing !== true) {
+            p.editing = true;
+        } else {
+            p.editing = false;
+        }
+
     };
 
 }]);

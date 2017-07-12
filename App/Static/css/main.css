@@ -1,5 +1,5 @@
 *{
-    font-size: 11pt;
+    font-size: 9pt;
 }
 .loginSection{
     margin-top: 100px;
@@ -7,7 +7,6 @@
 textarea {
    resize: none;
    word-wrap: break-word;
-
   }
 .cardDataInline {
       display: inline-block;
