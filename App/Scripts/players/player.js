@@ -292,12 +292,7 @@
                 id: id
             });
         }
-        addSkill() {
-            var id = this.skills.length + 1;
-            this.skills.push({
-                id: id
-            });
-        }
+       
         deleteSpell(spell) {
             this.spellList.splice(spell.id - 1, 1);
             //sort id/array relationship.

@@ -42,6 +42,9 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                 scope.primaryStats = masterStat.primaryStats;
                 scope.spellDetails = masterStat.spellDetails;
                 scope.vitals = masterStat.vitals;
+                scope.companions = new DynamicList(scope.player.companions);
+                scope.equipmentList = new DynamicList(scope.player.equipment);
+                scope.spells = new DynamicList(scope.player.spellList);
 
                 userFactory.getCurUser((data) => {
                     if (data.data.message === scope.player.accountEmail) {
@@ -103,40 +106,6 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
     //----------------------
 
     //PLAYER CLASS ACCESS
-    scope.addEquipment = () => {
-        scope.player.addEquipment();
-        scope.toggleEquipmentEdit(scope.player.equipment[scope.player.equipment.length - 1]);
-    };
-    scope.addSpell = () => {
-        scope.player.addSpell();
-        scope.toggleSpellEdit(scope.player.spellList[scope.player.spellList.length - 1]);
-    };
-    scope.addSkill = () => {
-        scope.player.addSkill();
-        scope.toggleSkillEdit(scope.player.skills[scope.player.skills.length - 1]);
-    };
-    scope.addCompanion = () => {
-        scope.player.addCompanion();
-        scope.toggleCompanionEdit(scope.player.companions[scope.player.companions.length - 1]);
-    };
-    scope.deleteEquipment = (equipment) => {
-        scope.player.deleteEquipment(equipment);
-        playerFactory.updateAndSave(scope.player, (data) => {
-            return;
-        });
-    };
-    scope.deleteSpell = (spell) => {
-        scope.player.deleteSpell(spell);
-        playerFactory.updateAndSave(scope.player, (data) => {
-            return;
-        });
-    };
-    scope.deleteCompanion = (c) => {
-        scope.player.deleteCompanion(c);
-        playerFactory.updateAndSave(scope.player, (data) => {
-            return;
-        });
-    };
     scope.statModCalc = (stat) => {
         let statMod = scope.player.singleModCalc(stat);
         return statMod;
@@ -158,55 +127,5 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
             modal.classList.add('is-active');
         }
     };
-    scope.editStat = (stat) => {
-        if (stat.editing !== true) {
-            stat.editing = true;
-        } else {
-            scope.updateAndSave(scope.player);
-            stat.editing = false;
-        }
-    };
-    scope.toggleEdit = (p) => {
-        if (p.editing !== true) {
-            p.editing = true;
-        } else {
-            p.editing = false;
-        }
 
-    };
-    scope.toggleSpellEdit = (sp) => {
-        if (sp.spellEditing !== true) {
-            sp.spellEditing = true;
-        } else {
-            sp.spellEditing = false;
-        }
-
-    };
-    scope.toggleEquipmentEdit = (e) => {
-        if (e.equipmentEditing !== true) {
-            e.equipmentEditing = true;
-        } else {
-            e.equipmentEditing = false;
-        }
-    };
-    scope.toggleSkillEdit = (s) => {
-        if (s.skillEditing !== true) {
-            s.skillEditing = true;
-        } else {
-            s.skillEditing = false;
-        }
-    };
-    scope.toggleCompanionEdit = (c) => {
-        if (c.companionEditing !== true) {
-            c.companionEditing = true;
-        } else {
-            c.companionEditing = false;
-        }
-    };
-    //TextArea Behaviour
-    scope.autoExpand = function(e) {
-        var element = typeof e === 'object' ? e.target : document.getElementById(e);
-    	var scrollHeight = element.scrollHeight - 20; // replace 60 by the sum of padding-top and padding-bottom
-        element.style.height =  scrollHeight + "px";    
-    };
 }]);
