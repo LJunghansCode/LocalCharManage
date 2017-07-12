@@ -3,12 +3,13 @@
     margin-top: 100px;
 }
 textarea {
-    border: 0 none white;
-    overflow: hidden;
-    padding: 0;
-    outline: none;
-    background-color: #D0D0D0;
-}
+   resize: none;
+   word-wrap: break-word;
+
+  }
+.cardDataInline {
+      display: inline;
+  }
 .playerInSessionContainer{
     border: 2px solid black;
     margin: 1%;
@@ -167,3 +168,7 @@ textarea {
 .dragover {
     border: 5px dashed blue;
 }
+.spellSlot p{
+    display: inline;
+}
+
