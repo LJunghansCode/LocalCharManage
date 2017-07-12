@@ -274,57 +274,6 @@
             }
 
         }
-        addEquipment() {
-            var id = this.equipment.length + 1;
-            this.equipment.push({
-                id: id
-            });
-        }
-        addCompanion() {
-            var id = this.companions.length + 1;
-            this.companions.push({
-                id: id
-            });
-        }
-        addSpell() {
-            var id = this.spellList.length + 1;
-            this.spellList.push({
-                id: id
-            });
-        }
-       
-        deleteSpell(spell) {
-            this.spellList.splice(spell.id - 1, 1);
-            //sort id/array relationship.
-            for (let i = 0; i < this.spellList.length; i++) {
-                let thisSpell = this.spellList[i];
-                thisSpell.id = i + 1;
-            }
-        }
-        deleteEquipment(equipment) {
-            this.equipment.splice(equipment.id - 1, 1);
-            //sort id/array relationship.
-            for (let i = 0; i < this.equipment.length; i++) {
-                let thisEquip = this.equipment[i];
-                thisEquip.id = i + 1;
-            }
-        }
-        deleteSKill(skill) {
-            this.skills.splice(equipment.id - 1, 1);
-            //sort id/array relationship.
-            for (let i = 0; i < this.equipment.length; i++) {
-                let thisSkill = this.equipment[i];
-                thisSkill.id = i + 1;
-            }
-        }
-        deleteCompanion(companion) {
-            this.companions.splice(companion.id - 1, 1);
-            //sort id/array relationship.
-            for (let i = 0; i < this.companions.length; i++) {
-                let thisC = this.companions[i];
-                thisC.id = i + 1;
-            }
-        }
 
         ActionRoll(RollsArray) {
             //send in format of ["d12", '"d20", "d20"]
