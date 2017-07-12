@@ -5,16 +5,15 @@
             </h1>
             <h1 class="subtitle">{{player.name}} the level {{player.level}} {{player.classType}}..
             </h1>
+
+            <div class="playerButtons">
+                <button ng-if="!player.editing && player.youOwnThis" class="button is-info" ng-click="toggleEdit(player)">Edit</button>
+                <button ng-if="player.editing && player.youOwnThis" ng-click="toggleEdit(player); updateAndSave(player)" class="button is-primary"
+                    type="submit">Save</button>
+                <button class="button " ng-if="player.youOwnThis" ng-click="toggleJoinCampaign()">Join a campaign!</button>
+                <button ng-if="!player.editing && player.youOwnThis" ng-click="toggleDeletePlayer()" class="button is-danger" type="submit">Delete Player</button>
+            </div>
         </div>
-    </div>
-</section>
-<section class="section">
-    <div class="container playerButtons">
-        <button ng-if="!player.editing && player.youOwnThis" class="button is-info" ng-click="toggleEdit(player)">Edit</button>
-        <button ng-if="player.editing && player.youOwnThis" ng-click="toggleEdit(player); updateAndSave(player)" class="button is-primary"
-            type="submit">Save</button>
-        <button class="button is-dark" ng-if="player.youOwnThis" ng-click="toggleJoinCampaign()">Join a campaign!</button>
-        <button ng-if="!player.editing && player.youOwnThis" ng-click="toggleDeletePlayer()" class="button is-danger" type="submit">Delete Player</button>
     </div>
 </section>
 <section class="section">
@@ -107,18 +106,24 @@
                                         <p class="cardDataInline" ng-if="!equipment.equipmentEditing" ng-bind="equipment.weight"></p> <input ng-if="equipment.equipmentEditing" placeholder="Weight" ng-model="equipment.weight"
                                             class="input">
                                     </section>
-                                    <p class="cardDataInline" ng-if="!equipment.equipmentEditing">AC: </p>
-                                    <p class="cardDataInline"ng-if="!equipment.equipmentEditing" ng-bind="equipment.armorClass"></p> <input ng-if="equipment.equipmentEditing" placeholder="Armor Class" ng-model="equipment.armorClass"
-                                        class="input">
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!equipment.equipmentEditing">AC: </p>
+                                        <p class="cardDataInline" ng-if="!equipment.equipmentEditing" ng-bind="equipment.armorClass"></p> <input ng-if="equipment.equipmentEditing" placeholder="Armor Class" ng-model="equipment.armorClass"
+                                            class="input">
+                                    </section>
                                     <p class="cardDataInline" ng-if="!equipment.equipmentEditing">Damage: </p>
-                                    <p class="cardDataInline"ng-if="!equipment.equipmentEditing" ng-bind="equipment.damage"></p> <input ng-if="equipment.equipmentEditing" placeholder="Damage" ng-model="equipment.damage"
+                                    <p class="cardDataInline" ng-if="!equipment.equipmentEditing" ng-bind="equipment.damage"></p> <input ng-if="equipment.equipmentEditing" placeholder="Damage" ng-model="equipment.damage"
                                         class="input">
-                                    <p class="cardDataInline" ng-if="!equipment.equipmentEditing">Stealth: </p>
-                                    <p class="cardDataInline"ng-if="!equipment.equipmentEditing" ng-bind="equipment.stealth"></p> <input ng-if="equipment.equipmentEditing" placeholder="Stealth" ng-model="equipment.stealth"
-                                        class="input">
-                                    <p class="cardDataInline" ng-if="!equipment.equipmentEditing">Type: </p>
-                                    <p class="cardDataInline"ng-if="!equipment.equipmentEditing" ng-bind="equipment.type"></p> <input ng-if="equipment.equipmentEditing" placeholder="Damage/Armor Type" ng-model="equipment.type"
-                                        class="input">
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!equipment.equipmentEditing">Stealth: </p>
+                                        <p class="cardDataInline" ng-if="!equipment.equipmentEditing" ng-bind="equipment.stealth"></p> <input ng-if="equipment.equipmentEditing" placeholder="Stealth" ng-model="equipment.stealth"
+                                            class="input">
+                                    </section>
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!equipment.equipmentEditing">Type: </p>
+                                        <p class="cardDataInline" ng-if="!equipment.equipmentEditing" ng-bind="equipment.type"></p> <input ng-if="equipment.equipmentEditing" placeholder="Damage/Armor Type" ng-model="equipment.type"
+                                            class="input">
+                                    </section>
                                 </div>
                                 <div class="card-footer">
                                     <button ng-if="!equipment.equipmentEditing" class="button is-small is-info" ng-disabled="!player.youOwnThis" ng-click="toggleEquipmentEdit(equipment)">Edit</button>
@@ -140,62 +145,98 @@
                                 </div>
                                 <div class="compCard card-content">
                                     <p class="title is-5">Over View</p>
-                                    <input ng-if="companion.companionEditing" placeholder="Name" ng-model="companion.name" class="input">
-                                    <p ng-if="!companion.companionEditing"> Traits: </p><textarea auto-resize ng-if="companion.companionEditing" placeholder="Traits"
-                                        ng-model="companion.traits" rows="10" style="height:7em;" class="input"></textarea>
-                                    <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.traits"></p>
-                                    <p ng-if="!companion.companionEditing"> Actions: </p><textarea auto-resize ng-if="companion.companionEditing" placeholder="Actions"
-                                        ng-model="companion.actions" rows="10" style="height:7em;" class="input"></textarea>
-                                    <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.actions"></p>
+                                    <section class="cardDetailsSegment">
+                                        <input ng-if="companion.companionEditing" placeholder="Name" ng-model="companion.name" class="input">
+                                        <p class="cardDataInline" ng-if="!companion.companionEditing"> Traits: </p><textarea auto-resize ng-if="companion.companionEditing" placeholder="Traits"
+                                            ng-model="companion.traits" rows="10" style="height:7em;" class="input"></textarea>
+                                        <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.traits"></p>
+                                    </section>
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!companion.companionEditing"> Actions: </p><textarea auto-resize ng-if="companion.companionEditing" placeholder="Actions"
+                                            ng-model="companion.actions" rows="10" style="height:7em;" class="input"></textarea>
+                                        <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.actions"></p>
+                                    </section>
                                     <p class="title is-5">Attributes</p>
-                                    <p ng-if="!companion.companionEditing">Size: </p> <input ng-if="companion.companionEditing" placeholder="Size" ng-model="companion.size"
-                                        class="input">
-                                    <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.size"></p>
-                                    <p ng-if="!companion.companionEditing">Type: </p> <input ng-if="companion.companionEditing" placeholder="Type" ng-model="companion.type"
-                                        class="input">
-                                    <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.type"></p>
-                                    <p ng-if="!companion.companionEditing">Alignment: </p><input ng-if="companion.companionEditing" placeholder="Alignment" ng-model="companion.alignment"
-                                        class="input">
-                                    <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.alignment"></p>
-                                    <p ng-if="!companion.companionEditing">AC: </p><input ng-if="companion.companionEditing" placeholder="Armor Class" ng-model="companion.armorClass"
-                                        class="input">
-                                    <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.armorClass"></p>
-                                    <p ng-if="!companion.companionEditing">HP: </p> <input ng-if="companion.companionEditing" placeholder="HP" ng-model="companion.hitPoints"
-                                        class="input">
-                                    <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.hitPoints"></p>
-                                    <p ng-if="!companion.companionEditing"> Speed: </p><input ng-if="companion.companionEditing" placeholder="Speed" ng-model="companion.speed"
-                                        class="input">
-                                    <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.speed"></p>
-                                    <p ng-if="!companion.companionEditing"> Strength: </p><input ng-if="companion.companionEditing" placeholder="Strength" ng-model="companion.strength"
-                                        class="input">
-                                    <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.strength"></p>
-                                    <p ng-if="!companion.companionEditing"> Dexterity: </p><input ng-if="companion.companionEditing" placeholder="Dexterity" ng-model="companion.dexterity"
-                                        class="input">
-                                    <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.dexterity"></p>
-                                    <p ng-if="!companion.companionEditing"> Constitution: </p><input ng-if="companion.companionEditing" placeholder="Constitution"
-                                        ng-model="companion.constitution" class="input">
-                                    <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.constitution"></p>
-                                    <p ng-if="!companion.companionEditing">Intelligence: </p><input ng-if="companion.companionEditing" placeholder="Intelligence"
-                                        ng-model="companion.intelligence" class="input">
-                                    <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.intelligence"></p>
-                                    <p ng-if="!companion.companionEditing">Wisdom: </p><input ng-if="companion.companionEditing" placeholder="Wisdom" ng-model="companion.wisdom"
-                                        class="input">
-                                    <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.wisdom"></p>
-                                    <p ng-if="!companion.companionEditing">Charisma: </p><input ng-if="companion.companionEditing" placeholder="Charisma" ng-model="companion.charisma"
-                                        class="input">
-                                    <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.charisma"></p>
-                                    <p ng-if="!companion.companionEditing">Challenge Rating: </p> <input ng-if="companion.companionEditing" placeholder="Challenge Rating"
-                                        ng-model="companion.challengeRating" class="input">
-                                    <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.challengeRating"></p>
-                                    <p ng-if="!companion.companionEditing">Senses: </p> <input ng-if="companion.companionEditing" placeholder="Senses" ng-model="companion.sensesclass"
-                                        class="input"></input>
-                                    <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.senses"></p>
-                                    <p ng-if="!companion.companionEditing"> Passive Perception: </p><input ng-if="companion.companionEditing" placeholder="Passive Perception"
-                                        ng-model="companion.passivePerception" class="input"></input>
-                                    <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.passivePerception"></p>
-                                    <p ng-if="!companion.companionEditing">Description: </p> <textarea auto-resize ng-if="companion.companionEditing" placeholder="Add a description!"
-                                        ng-model="companion.description" rows="10" style="height:7em;" class="input"></textarea>
-                                    <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.description"></p>
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!companion.companionEditing">Size: </p> <input ng-if="companion.companionEditing" placeholder="Size" ng-model="companion.size"
+                                            class="input">
+                                        <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.size"></p>
+                                    </section>
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!companion.companionEditing">Type: </p> <input ng-if="companion.companionEditing" placeholder="Type" ng-model="companion.type"
+                                            class="input">
+                                        <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.type"></p>
+                                    </section>
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!companion.companionEditing">Alignment: </p><input ng-if="companion.companionEditing" placeholder="Alignment"
+                                            ng-model="companion.alignment" class="input">
+                                        <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.alignment"></p>
+                                    </section>
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!companion.companionEditing">AC: </p><input ng-if="companion.companionEditing" placeholder="Armor Class" ng-model="companion.armorClass"
+                                            class="input">
+                                        <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.armorClass"></p>
+                                    </section>
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!companion.companionEditing">HP: </p> <input ng-if="companion.companionEditing" placeholder="HP" ng-model="companion.hitPoints"
+                                            class="input">
+                                        <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.hitPoints"></p>
+                                    </section>
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!companion.companionEditing"> Speed: </p><input ng-if="companion.companionEditing" placeholder="Speed" ng-model="companion.speed"
+                                            class="input">
+                                        <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.speed"></p>
+                                    </section>
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!companion.companionEditing"> Strength: </p><input ng-if="companion.companionEditing" placeholder="Strength" ng-model="companion.strength"
+                                            class="input">
+                                        <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.strength"></p>
+                                    </section>
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!companion.companionEditing"> Dexterity: </p><input ng-if="companion.companionEditing" placeholder="Dexterity"
+                                            ng-model="companion.dexterity" class="input">
+                                        <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.dexterity"></p>
+                                    </section>
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!companion.companionEditing"> Constitution: </p><input ng-if="companion.companionEditing" placeholder="Constitution"
+                                            ng-model="companion.constitution" class="input">
+                                        <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.constitution"></p>
+                                    </section>
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!companion.companionEditing">Intelligence: </p><input ng-if="companion.companionEditing" placeholder="Intelligence"
+                                            ng-model="companion.intelligence" class="input">
+                                        <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.intelligence"></p>
+                                    </section>
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!companion.companionEditing">Wisdom: </p><input ng-if="companion.companionEditing" placeholder="Wisdom" ng-model="companion.wisdom"
+                                            class="input">
+                                        <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.wisdom"></p>
+                                    </section>
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!companion.companionEditing">Charisma: </p><input ng-if="companion.companionEditing" placeholder="Charisma" ng-model="companion.charisma"
+                                            class="input">
+                                        <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.charisma"></p>
+                                    </section>
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!companion.companionEditing">Challenge Rating: </p> <input ng-if="companion.companionEditing" placeholder="Challenge Rating"
+                                            ng-model="companion.challengeRating" class="input">
+                                        <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.challengeRating"></p>
+                                    </section>
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!companion.companionEditing">Senses: </p> <input ng-if="companion.companionEditing" placeholder="Senses" ng-model="companion.sensesclass"
+                                            class="input">
+                                        <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.senses"></p>
+                                    </section>
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!companion.companionEditing"> Passive Perception: </p><input ng-if="companion.companionEditing" placeholder="Passive Perception"
+                                            ng-model="companion.passivePerception" class="input">
+                                        <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.passivePerception"></p>
+                                    </section>
+                                    <section class="cardDetailsSegment">
+                                        <p class="cardDataInline" ng-if="!companion.companionEditing">Description: </p> <textarea auto-resize ng-if="companion.companionEditing" placeholder="Add a description!"
+                                            ng-model="companion.description" rows="10" style="height:7em;" class="input"></textarea>
+                                        <p class="cardDescription" ng-if="!companion.companionEditing" ng-bind="companion.description"></p>
+                                    </section>
                                 </div>
                                 <div class="card-footer">
                                     <button ng-if="!companion.companionEditing" class="button is-small is-info" ng-disabled="!player.youOwnThis" ng-click="toggleCompanionEdit(companion)">Edit</button>
@@ -220,12 +261,14 @@
                 </div>
                 <div class="content">
                     <p class="title">Spell Slots</p>
-                    <table class=table>
+                    <table class="table is-striped is-bordered">
                         <thead>
                             <tr ng-repeat="slot in spellSlots">
                                 <th ng-bind="slot.spellLevel"></th>
                                 <td ng-repeat="spell in slot.spellsToCast">
-                                    <input type="checkbox" class="checkbox">
+                                    <span ng-if="usedSpell" class="icon"><i class="fa fa-hourglass-2"></i></span>
+                                    <span ng-if="!usedSpell" class="icon"><i class="fa fa-star"></i></span>
+                                    <input ng-model="usedSpell" type="checkbox" class="checkbox">
                                 </td>
                             </tr>
                         </thead>
