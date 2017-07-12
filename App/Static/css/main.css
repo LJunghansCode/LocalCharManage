@@ -1,5 +1,5 @@
 *{
-    font-size: 9pt;
+    font-size: 11pt;
 }
 .loginSection{
     margin-top: 100px;
@@ -134,9 +134,6 @@ textarea {
 .spellCard {
     margin: 1%;
     padding: 1%;
-}
-.playerButtons{
-    float: right;
 }
 .playerStatItem {
     white-space: pre-wrap;

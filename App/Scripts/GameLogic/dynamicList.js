@@ -3,8 +3,7 @@ class DynamicList {
         this.list = list;
     }
     addItem() {
-        console.log('her')
-        console.log(this.list[this.list.length])
+        console.log(this.list)
             var id = this.list.length + 1;
             this.list.push({
                 id: id
