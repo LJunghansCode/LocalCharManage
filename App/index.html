@@ -21,9 +21,9 @@
     </a>
   </div>
   <div class="nav-right">
+    <a ng-if="curentUser" class="nav-item" href="/#!/login">Login</a>
     <a class="nav-item" href="/#!/players">Player Manager</a>
-    <a class="nav-item" href="/#!/login">Login</a>
-    <a class="nav-item" href="/#!/campaignManager">Manage/Run a campaign</a>
+    <a class="nav-item" href="/#!/campaignManager">Campaign Manager</a>    
   </div>
 </nav>
     <main class="section">
@@ -41,6 +41,7 @@
     <script src="Scripts/players/spellManager.js"></script>
     <script src="Scripts/players/spellSlots.js"></script>
     <script src="Scripts/GameLogic/dynamicList.js"></script>
+    <script src="Scripts/GameLogic/validateInput.js"></script>
      <!--Load player class last-->
     <script src="Scripts/players/player.js"></script>
     <!--Load Angular Controllers and Factories-->

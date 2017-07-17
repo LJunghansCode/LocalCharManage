@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
         fs = require('fs'),
-        imgPath = './../../client/static/img';
         path = require('path'),
         models_path = path.join(__dirname,"../Models"),
         reg = new RegExp( ".js$", "i" ),

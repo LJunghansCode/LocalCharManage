@@ -241,7 +241,7 @@
             }, {
                 stat: "charisma",
                 value: this.charisma
-            }]
+            }];
             for (let i = 0; i < primaryStats.length; i++) {
                 let name = primaryStats[i].stat + "Mod";
                 let modValue = primaryStats[i].value - 10;

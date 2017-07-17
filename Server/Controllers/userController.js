@@ -5,6 +5,7 @@ var bcrypt = require('bcrypt');
 var session = require('express-session');
 
 
+//export our controller methods
 module.exports = (() => {
    const handleError = (err) => {
         console.error(err);

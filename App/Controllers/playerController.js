@@ -34,7 +34,7 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                 scope.player.calculateModifiers();
                 //Get Spell Slots
                 let slots = scope.player.spellSlots;
-                scope.spellSlots = slots.returnSpellSlotArray(slots.createSpellSlots(scope.player.level));
+                scope.spellSlots = slots.returnSpellSlotArray(slots.createSpellSlots(scope.player.level, scope.player.classType));
                 //Stat Organization
                 var masterStat = scope.player.organizeStatsArray();
                 scope.basicInformation = masterStat.basicInformation;
@@ -46,6 +46,8 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                 scope.companions = new DynamicList(scope.player.companions);
                 scope.equipmentList = new DynamicList(scope.player.equipment);
                 scope.spells = new DynamicList(scope.player.spellList);
+                
+
 
                 userFactory.getCurUser((data) => {
                     if (data.data.message === scope.player.accountEmail) {
@@ -94,6 +96,11 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
         playerFactory.updateAndSave(player, (data) => {
             if (data.data.player) {
                 scope.player.calculateModifiers();
+            } else if (data.data.error) {
+                let error = data.data.error;
+                if (error.name === "CastError") {
+                 scope.playerSheetErrorMessage = "Sorry, you have an invalid entry";
+                }
             }
         });
     };
@@ -129,10 +136,19 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
         }
     };
     scope.editStat = (stat) => {
+        //Check to see if spellSlots will change...
         if (stat.editing !== true) {
             stat.editing = true;
         } else {
-            scope.updateAndSave(scope.player);
+            var Validator = new ValidateInput();
+            let statError = Validator.checkValidStat(stat.value);
+            if (!statError){
+                 scope.updateAndSave(scope.player);
+            }
+            if(stat.title === 'Level' || stat.title === 'Class') {
+                let slots = scope.player.spellSlots;
+                scope.spellSlots = slots.returnSpellSlotArray(slots.createSpellSlots(scope.player.level, scope.player.classType));
+        }
             stat.editing = false;
         }
     };

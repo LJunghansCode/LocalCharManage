@@ -23,7 +23,10 @@ module.exports = (() => {
         };
         PlayerController.getPlayer = (req, res) => {
             Player.findOne({_id: req.body.id}, (err, foundPlayer) => {
-                if (err) return handleError(err);
+                if (err) {
+                    res.json({error: err});
+                    return handleError(err);
+                }
                 if (foundPlayer) {
                     res.json({playerFound: foundPlayer});
                 } else {
@@ -44,7 +47,10 @@ module.exports = (() => {
         };
         PlayerController.updateAndSave = (req, res) => {
                 Player.findOneAndUpdate({_id: req.body.id}, req.body, (err, foundPlayer) => {
-                if (err) return handleError(err);
+                if (err) {
+                    res.json({error: err});
+                    return handleError(err);
+                }
                 if (foundPlayer) {
                    foundPlayer.save();
                    res.json({player: foundPlayer});

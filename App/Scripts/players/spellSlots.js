@@ -31,8 +31,8 @@ class SpellSlots {
         }
         return spellSlotArray;
     }
-    createSpellSlots(level) {
-        switch (this.normalizeTextLowerCase(this.classType)) {
+    createSpellSlots(level, classType) {
+        switch (this.normalizeTextLowerCase(classType)) {
             case ("paladin"):
                 var paladinGuide = {
                     '1': {

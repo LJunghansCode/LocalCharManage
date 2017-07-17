@@ -1,176 +1,233 @@
-*{
-    font-size: 11pt;
+*
+{
+    font-size: 10pt;
 }
-.loginSection{
+.loginSection
+{
     margin-top: 100px;
 }
-textarea {
-   resize: none;
-   word-wrap: break-word;
-  }
-.cardDataInline {
-      display: inline-block;
-  }
-.playerInSessionContainer{
-    border: 2px solid black;
-    margin: 1%;
+textarea
+{
+    resize: none;
+    word-wrap: break-word;
 }
-.is-blue{
-    border: 3px solid blue;
+.cardDataInline
+{
+    display: inline-block;
+}
+.playerInSessionContainer
+{
+    margin: 1%;
+
+    border: 2px solid black;
+}
+.is-blue
+{
     color: blue;
+    border: 3px solid blue;
     box-shadow: 7px 7px 7px blue;
 }
-.is-purple{
-    border: 3px solid purple;
+.is-purple
+{
     color: purple;
+    border: 3px solid purple;
     box-shadow: 7px 7px 7px purple;
 }
-.is-green{
-    border: 3px solid forestgreen;
+.is-green
+{
     color: forestgreen;
+    border: 3px solid forestgreen;
     box-shadow: 7px 7px 7px forestgreen;
 }
-.is-teal{
-    border: 3px solid teal;
+.is-teal
+{
     color: teal;
+    border: 3px solid teal;
     box-shadow: 7px 7px 7px teal;
 }
-.is-red{
-    border: 3px solid red;
+.is-red
+{
     color: red;
+    border: 3px solid red;
     box-shadow: 7px 7px 7px red;
 }
-.is-pink{
-    border: 3px solid hotpink;
+.is-pink
+{
     color: hotpink;
+    border: 3px solid hotpink;
     box-shadow: 7px 7px 7px hotpink;
 }
-.is-orange{
-    border: 3px solid orange;
+.is-orange
+{
     color: orange;
+    border: 3px solid orange;
     box-shadow: 7px 7px 7px orange;
 }
-.is-gray{
-    border: 3px solid gray;
+.is-gray
+{
     color: gray;
+    border: 3px solid gray;
     box-shadow: 7px 7px 7px gray;
 }
-.color-choice-red{
+.color-choice-red
+{
     width: 30px;
     height: 30px;
+
     background-color: red;
 }
-.color-choice-purple{
+.color-choice-purple
+{
     width: 30px;
     height: 30px;
+
     background-color: purple;
 }
-.color-choice-green{
+.color-choice-green
+{
     width: 30px;
     height: 30px;
+
     background-color: forestgreen;
 }
-.color-choice-teal{
+.color-choice-teal
+{
     width: 30px;
     height: 30px;
+
     background-color: teal;
 }
-.color-choice-pink{
+.color-choice-pink
+{
     width: 30px;
     height: 30px;
+
     background-color: hotpink;
 }
-.color-choice-blue{
+.color-choice-blue
+{
     width: 30px;
     height: 30px;
+
     background-color: blue;
 }
-.color-choice-orange{
+.color-choice-orange
+{
     width: 30px;
     height: 30px;
+
     background-color: orange;
 }
-.color-choice-gray{
+.color-choice-gray
+{
     width: 30px;
     height: 30px;
+
     background-color: gray;
 }
-.your-combat{
+.your-combat
+{
     border: 5px solid hotpink;
 }
-.charMenuContainer {
+.charMenuContainer
+{
+    padding: 1%;
+
     background-image: url('../img/wilds.jpg');
     background-size: 100%;
-    padding: 1%;
 }
-.charMenuContainer p {
+.charMenuContainer p
+{
     color: white;
 }
-.charMenuContainer ul li a{
+.charMenuContainer ul li a
+{
     color: white;
 }
-.campaign-page {
+.campaign-page
+{
+    padding: 200px;
+
+    color: white;
     background-image: url('../img/dd3.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
     background-position-y: 25%;
-    padding: 200px;
-    color: white;
+    background-size: cover;
 }
-.mainNav {
-    margin-top: 18px; 
+.mainNav
+{
+    margin-top: 18px;
 }
-.newCharTitle {
+.newCharTitle
+{
     margin-top: 1%;
     padding: 1%;
 }
-.cardAddButton {
+.cardAddButton
+{
     display: inline-block;
+
     margin-left: 1%;
 }
-.cardTitle {
+.cardTitle
+{
     display: inline-block;
 }
-.spellCard {
+.spellCard
+{
     margin: 1%;
     padding: 1%;
 }
-.playerStatItem {
-    white-space: pre-wrap;
+.playerStatItem
+{
     display: inline-block;
+
+    white-space: pre-wrap;
     word-break: break-all;
 }
-.playerStatItemDetails{
-    word-break: break-all;
+.playerStatItemDetails
+{
     white-space: pre-wrap;
+    word-break: break-all;
+
     overflow-wrap: break-word;
 }
-.stat-container{
+.stat-container
+{
     margin-top: 6%;
 }
-.cardDescription {
+.cardDescription
+{
+    display: inline-block;
+
     white-space: pre-wrap;
     word-wrap: break-all;
-    display: inline-block;
 }
-.createResponse {
+.createResponse
+{
     margin-top: 1%;
 }
-.deletePlayer{
+.deletePlayer
+{
     display: inline-block;
+
     margin-left: 80%;
 }
-.drop-box {
-    background: #F8F8F8;
-    border: 5px dashed #DDD;
-    text-align: center;
-    padding-top: 25px;
+.drop-box
+{
     margin: 10px;
+    padding-top: 25px;
+
+    text-align: center;
+
+    border: 5px dashed #ddd;
+    background: #f8f8f8;
 }
-.dragover {
+.dragover
+{
     border: 5px dashed blue;
 }
-.spellSlot p{
+.spellSlot p
+{
     display: inline;
 }
-
