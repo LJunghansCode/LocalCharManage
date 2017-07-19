@@ -37,8 +37,11 @@
         </div>
     </div>
     </section>
-    <section ng-if='userEmail'>
-        <p class="subtitle">You are logged in as</p>
-        <h3 class="title" ng-if="userEmail" ng-bind="userEmail"></h3> 
-        <button class="button" ng-click="logOutUser()">Log Out?</button>
+    <section class="message" ng-if='userEmail'>
+        <div class="message-header">
+            <p class="loginTitle">You are logged in as {{userEmail}}</p>
+        </div>
+        <div class="message-body">
+            <button class="button is-large is-info logOutButton" ng-click="logOutUser()">Log Out?</button>
+        </div>
     </section>

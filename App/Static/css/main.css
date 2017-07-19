@@ -261,3 +261,9 @@ textarea
     padding-left: 25%;
     font-size: 24pt;
 }
+.logOutButton 
+{
+    text-decoration-style: none;
+    font-style: none;
+    padding: 10%;
+}
