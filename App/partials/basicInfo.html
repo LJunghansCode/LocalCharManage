@@ -1,0 +1,26 @@
+<article class="column">
+        <p class="title">Basic Information</p>
+        <div ng-repeat="stat in basicInformation" class="message is-dark">
+            <div class="message-header">
+                <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title" ></p></button>
+            </div>
+            <div class="message-body">
+                <p class="playerStatItem" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
+                <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
+            </div>
+        </div>
+</article>
+
+<article class="column">
+        <p class="title">Vitals</p>
+        <div ng-repeat="stat in vitals" class="message is-dark">
+            <div class="message-header">
+                <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title" ></p></button>
+            </div>
+            <div class="message-body">
+                <p class="playerStatItem" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
+                <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
+            </div>
+         
+        </div>
+</article>

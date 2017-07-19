@@ -30,11 +30,4 @@ class ValidateInput {
         }
         return messageObject;
     }
-    checkValidStat(stat){
-        if (typeof(stat) !== 'number') {
-            return "Stats must be number";
-        } else {
-            return;
-        }
-    }
 }

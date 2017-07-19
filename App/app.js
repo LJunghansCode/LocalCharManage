@@ -1,4 +1,7 @@
-var app = angular.module('app', ['ngRoute','ngFileUpload']);
+var app = angular.module('app', ['ngRoute', 'ngFileUpload']);
+
+
+
 
 app.config(($routeProvider, $locationProvider) => {
     $routeProvider
@@ -34,4 +37,6 @@ app.config(($routeProvider, $locationProvider) => {
             redirectTo: '/players',
             controller:'homeController'
         });
+
+  
 });

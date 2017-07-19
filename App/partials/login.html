@@ -1,26 +1,26 @@
-<div class="login-page columns is-mulitline">
-    <section ng-if='!userEmail'>
-        <div class="column ">
-            <div class="card container">
-                <header class="card-header">
-                    <h2 class="card-header-title">Login</h2>    
+<section class="column"ng-if='!userEmail'>
+    <div class="columns">
+        <div class="column">
+            <div class="message is-dark">
+                <header class="message-header">
+                   <p class="loginTitle"> Login </p> 
                 </header>
                 <form>
-                <div class="card-content">
+                <div class="message-content">
                     <h4 ng-bind="loginStatusMessage"></h4>
                     <label class="label" for="return-email-input">E-mail</label><input class="input" type="email" name="returnEmail" ng-model="returnUser.email">
                     <label class="label" for="return-password-input">Password</label><input class="input" type="password" name="returnPassword" ng-model="returnUser.password">
                 </div>
-                <footer class="card-footer">
+                <footer class="message-footer">
                     <button class="button" type="submit" ng-click="returnUser()"> Login </button>
                 </footer>
                 </form>
             </div>   
         </div>
         <div class="column"> 
-            <div class="card container">
-                <header class="card-header">
-                    <h2 class="card-header-title">Register</h2>    
+            <div class="message is-dark">
+                <header class="message-header">
+                   <p class="loginTitle"> Register</p>
                 </header>  
                 <form>
                 <div class="card-content">
@@ -35,8 +35,8 @@
                 </form>
             </div>
         </div>
-    </section>
     </div>
+    </section>
     <section ng-if='userEmail'>
         <p class="subtitle">You are logged in as</p>
         <h3 class="title" ng-if="userEmail" ng-bind="userEmail"></h3> 

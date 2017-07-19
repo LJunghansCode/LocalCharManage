@@ -38,22 +38,51 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                 //Stat Organization
                 var masterStat = scope.player.organizeStatsArray();
                 scope.basicInformation = masterStat.basicInformation;
+                scope.playerNotes = masterStat.charDetails[11];
                 scope.charDetails = masterStat.charDetails;
                 scope.primaryStats = masterStat.primaryStats;
                 scope.spellDetails = masterStat.spellDetails;
+
                 scope.vitals = masterStat.vitals;
                 scope.skillList = new DynamicList(scope.player.skills);
                 scope.companions = new DynamicList(scope.player.companions);
                 scope.equipmentList = new DynamicList(scope.player.equipment);
                 scope.spells = new DynamicList(scope.player.spellList);
-                
-
-
                 userFactory.getCurUser((data) => {
                     if (data.data.message === scope.player.accountEmail) {
                         scope.player.youOwnThis = true;
                     }
                 });
+                scope.templates = [{
+                        name: 'Basic Information',
+                        url: './../partials/basicInfo.html'
+                    },
+                    {
+                        name: 'Stats and Skills',
+                        url: './../partials/statsVitals.html'
+                    },
+                    {
+                        name: 'Spell Manager',
+                        url: './../partials/spellInfo.html'
+                    },
+                    {
+                        name: 'Equipment',
+                        url: './../partials/equip.html'
+                    },
+                    {
+                        name: 'Details and Inventory',
+                        url: './../partials/details.html'
+                    },
+                    {
+                        name: 'Companions',
+                        url: './../partials/companions.html'
+                    },
+                    {
+                        name: 'Notes',
+                        url: './../partials/notes.html'
+                    },                                    
+                ];
+                scope.templateUrl = scope.templates[0].url;
             } else {
                 console.error("Something went wrong. Sorry!");
             }
@@ -98,8 +127,9 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                 scope.player.calculateModifiers();
             } else if (data.data.error) {
                 let error = data.data.error;
+                console.error(error)
                 if (error.name === "CastError") {
-                 scope.playerSheetErrorMessage = "Sorry, you have an invalid entry";
+
                 }
             }
         });
@@ -117,8 +147,11 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
     scope.statModCalc = (stat) => {
         let statMod = scope.player.singleModCalc(stat);
         return statMod;
-    }
+    };
     //UI TOGGLES
+    scope.templateSwap = (url) => {
+        scope.templateUrl = url;
+    };
     scope.toggleJoinCampaign = () => {
         let modal = document.getElementById("campaignModal");
         if (modal.classList.contains('is-active')) {
@@ -140,15 +173,11 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
         if (stat.editing !== true) {
             stat.editing = true;
         } else {
-            var Validator = new ValidateInput();
-            let statError = Validator.checkValidStat(stat.value);
-            if (!statError){
-                 scope.updateAndSave(scope.player);
-            }
-            if(stat.title === 'Level' || stat.title === 'Class') {
+            scope.updateAndSave(scope.player);
+            if (stat.title === 'Level' || stat.title === 'Class') {
                 let slots = scope.player.spellSlots;
                 scope.spellSlots = slots.returnSpellSlotArray(slots.createSpellSlots(scope.player.level, scope.player.classType));
-        }
+            }
             stat.editing = false;
         }
     };

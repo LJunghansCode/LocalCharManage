@@ -1,0 +1,10 @@
+<div class="column message is-dark">
+            <div class="message-header">
+                <button ng-disabled="!player.youOwnThis" ng-click="editStat(playerNotes);" class="button is-info is-small"><p ng-bind="playerNotes.title" ></p></button>
+            </div>
+            <div class="message-body">
+                <p class="playerplayerNotesItemDetails" ng-if="!playerNotes.editing && !player.editing" ng-bind="player[playerNotes.stat]"></p>
+                <textarea auto-resize class="textarea" ng-if="playerNotes.editing || player.editing" ng-model="player[playerNotes.stat]"></textarea>
+            </div>
+        </div>
+</div>

@@ -24,6 +24,7 @@ function autoResize($timeout) {
                 element.css('height', element[0].scrollHeight + 'px');
 
             });
+            
         }
     };
 

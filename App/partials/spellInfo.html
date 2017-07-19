@@ -1,0 +1,56 @@
+<article class="column is-6">
+    <div class="content">
+        <p class="cardTitle title is-3"> {{player.name}}'s Spell List </p>
+        <button ng-disabled="!player.youOwnThis" class="cardAddButton button is-small is-primary fa fa-plus" ng-if="player.youOwnThis"
+            ng-click="spells.addItem()"></button>
+        <div data-ng-repeat="spell in spells.list | orderBy: '-'">
+            <div class="spellCard is-dark card">
+                <div class="card-header">
+                    <p ng-bind="spell.name" class="card-header-title"></p>
+                    <button class="button is-danger is-small fa fa-trash-o is-info card-header-icon" ng-disabled="!player.youOwnThis" ng-click="spells.deleteItem(spell); updateAndSave(player)"></button>
+                </div>
+                <div class="card-content">
+                    <input ng-if="spell.Editing" placeholder="Spell name" ng-model="spell.name" class="input">
+                    <textarea auto-resize ng-if="spell.Editing" placeholder="Add a description!" ng-model="spell.description" class="textarea"></textarea>
+                    <p class="cardDescription" ng-if="!spell.Editing" ng-bind="spell.description"></p>
+                </div>
+                <div class="card-footer">
+                    <button ng-if="!spell.Editing" class="button is-small is-info" ng-disabled="!player.youOwnThis" ng-click="spells.toggleEdit(spell)">Edit</button>
+                    <button ng-if="spell.Editing" ng-click="spells.toggleEdit(spell); updateAndSave(player)" class="button is-small is-primary"
+                        type="submit">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+<article class="column">
+    <div class="content">
+        <p class="title">Spell Details</p>
+        <div ng-repeat="stat in spellDetails" class="message is-dark">
+            <div class="message-header">
+                <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title"></p></button>
+            </div>
+            <div class="message-body">
+                <p class="playerStatItem" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
+                <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
+            </div>
+        </div>
+    </div>
+</article>
+<article class="column">
+    <div class="content">
+        <p class="title">Spell Slots</p>
+        <table class="table is-striped ">
+            <thead>
+                <tr ng-repeat="slot in spellSlots">
+                    <th ng-bind="slot.spellLevel"></th>
+                    <td ng-repeat="spell in slot.spellsToCast">
+                        <span ng-if="usedSpell" class="icon"><i class="fa fa-hourglass-2"></i></span>
+                        <span ng-if="!usedSpell" class="icon"><i class="fa fa-star"></i></span>
+                        <input ng-model="usedSpell" type="checkbox" class="checkbox">
+                    </td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</article>

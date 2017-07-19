@@ -4,322 +4,49 @@
         type="submit">Save</button>
     <button class="button " ng-if="player.youOwnThis" ng-click="toggleJoinCampaign()">Join a campaign!</button>
 </div>
+
+
+<div class="tabs">
+    <ul>
+        <li ng-repeat="t in templates"><a ng-bind="t.name" ng-click="templateSwap(t.url)"></a></li>
+    </ul>
+</div>
 <section class="section">
-    <h2 class="title"ng-bind="playerSheetErrorMessage"></h2>
-    <div class="tile">
-        <div class="tile is-vertical is-8">
-            <div class="tile">
-                <div class="tile is-parent is-vertical">
-                    <article class="tile is-child content notification is-dark">
-                        <h1 class="title">Basic Information</h1>
-                        <div ng-repeat="stat in basicInformation" class="stat-container">
-                            <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title" ></p></button>
-                            <p class="playerStatItem" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
-                            <input class="input playerStatItem" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
-                        </div>
-                    </article>
-                </div>
-                <div class="tile is-9 is-parent">
-                    <article class="tile is-child notification is-dark">
-                        <p class="title">Primary Stats</p>
-                        <div ng-repeat="stat in primaryStats" class="stat-container">
-                            <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title"></p></button>
-                            <p class="playerStatItem" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
-                            <p ng-if="!stat.editing && !player.editing" class="pStatMod" ng-bind="statModCalc(stat.stat)"></p>
-                            <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
-                        </div>
-                    </article>
-                    <article class="tile is-child notification is-dark">
-                        <p class="title">Skills</p>
-                        <button ng-disabled="!player.youOwnThis" class="cardAddButton button is-small  is-primary fa fa-plus" ng-if="player.youOwnThis"
-                            ng-click="skillList.addItem()"></button>
+    <article class="columns" ng-include="templateUrl"></article>
+</section>
+<button ng-if="!player.editing && player.youOwnThis" ng-click="toggleDeletePlayer()" class="button is-danger" type="submit">Delete Player</button>
 
-                        <div class="menu">
-                            <ul class="menu-list">
-                                <li  ng-repeat="skill in skillList.list">
-                                    <p class="title is-6 "ng-bind="skill.name" ng-disabled="true"></p>
-                                    <input ng-if="skill.Editing" placeholder="Skill name" ng-model="skill.name" class="input">
-                                    <input auto-resize ng-if="skill.Editing" placeholder="Proficiency" ng-model="skill.stat" class="input">
-                                    <p class="cardDescription" ng-if="!skill.Editing" ng-bind="skill.stat"></p>
-                                    <button class="button is-danger is-small fa fa-trash-o is-info card-header-icon" ng-disabled="!player.youOwnThis" ng-click="skillList.deleteItem(skill); updateAndSave(player)"></button>
-                                    <button ng-if="!skill.Editing" class="button is-small is-info" ng-disabled="!player.youOwnThis" ng-click="skillList.toggleEdit(skill)">Edit</button>
-                                    <button ng-if="skill.Editing" ng-click="skillList.toggleEdit(skill); updateAndSave(player)" class="button is-small is-primary"
-                                        type="submit">Save</button>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </article>
-                    <article class="tile is-child notification is-dark">
-                        <p class="title">Vitals</p>
-                        <div ng-repeat="stat in vitals" class="stat-container">
-                            <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title" ></p></button>
-                            <p class="playerStatItem" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
-                            <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
-                        </div>
-                    </article>
-                </div>
-            </div>
-            <div class="tile is-parent">
-                <article class="tile is-child notification is-dark ">
-                    <div class="content">
-                        <p class="cardTitle title is-3"> {{player.name}}'s Spell List </p>
-                        <button ng-disabled="!player.youOwnThis" class="cardAddButton button is-small  is-primary fa fa-plus" ng-if="player.youOwnThis"
-                            ng-click="spells.addItem()"></button>
-                        <div data-ng-repeat="spell in spells.list | orderBy: '-'">
-                            <div class="spellCard card">
-                                <div class="card-header">
-                                    <p ng-bind="spell.name" class="card-header-title"></p>
-                                    <button class="button is-danger is-small fa fa-trash-o is-info card-header-icon" ng-disabled="!player.youOwnThis" ng-click="spells.deleteItem(spell); updateAndSave(player)"></button>
-                                </div>
-                                <div class="card-content">
-                                    <input ng-if="spell.Editing" placeholder="Spell name" ng-model="spell.name" class="input">
-                                    <textarea auto-resize ng-if="spell.Editing" placeholder="Add a description!" ng-model="spell.description" class="textarea"></textarea>
-                                    <p class="cardDescription" ng-if="!spell.Editing" ng-bind="spell.description"></p>
-                                </div>
-                                <div class="card-footer">
-                                    <button ng-if="!spell.Editing" class="button is-small is-info" ng-disabled="!player.youOwnThis" ng-click="spells.toggleEdit(spell)">Edit</button>
-                                    <button ng-if="spell.Editing" ng-click="spells.toggleEdit(spell); updateAndSave(player)" class="button is-small is-primary"
-                                        type="submit">Save</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <article class="tile is-child notification is-dark">
-                    <div class="content">
-                        <p class="cardTitle title is-3"> {{player.name}}'s Equipment List </p>
-                        <button ng-disabled="!player.youOwnThis" class="cardAddButton button is-small is-primary fa fa-plus" ng-if="player.youOwnThis"
-                            ng-click="equipmentList.addItem()"></button>
-                        <div data-ng-repeat="equipment in equipmentList.list | orderBy: '-'">
-                            <div class="spellCard card">
-                                <div class="card-header">
-                                    <p ng-bind="equipment.name" class="card-header-title"></p>
-                                    <button class="button is-danger is-small  fa fa-trash-o is-info card-header-icon" ng-disabled="!player.youOwnThis" ng-click="equipmentList.deleteItem(equipment);updateAndSave(player)"></button>
-                                </div>
-                                <div class="card-content">
-                                    <input ng-if="equipment.Editing" placeholder="Equipment name" ng-model="equipment.name" class="input">
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!equipment.Editing">Weight: </p>
-                                        <p class="cardDataInline" ng-if="!equipment.Editing" ng-bind="equipment.weight"></p> <input ng-if="equipment.Editing" placeholder="Weight" ng-model="equipment.weight"
-                                            class="input">
-                                    </section>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!equipment.Editing">AC: </p>
-                                        <p class="cardDataInline" ng-if="!equipment.Editing" ng-bind="equipment.armorClass"></p> <input ng-if="equipment.Editing" placeholder="Armor Class" ng-model="equipment.armorClass"
-                                            class="input">
-                                    </section>
-                                    <p class="cardDataInline" ng-if="!equipment.Editing">Damage: </p>
-                                    <p class="cardDataInline" ng-if="!equipment.Editing" ng-bind="equipment.damage"></p> <input ng-if="equipment.Editing" placeholder="Damage" ng-model="equipment.damage"
-                                        class="input">
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!equipment.Editing">Stealth: </p>
-                                        <p class="cardDataInline" ng-if="!equipment.Editing" ng-bind="equipment.stealth"></p> <input ng-if="equipment.Editing" placeholder="Stealth" ng-model="equipment.stealth"
-                                            class="input">
-                                    </section>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!equipment.Editing">Type: </p>
-                                        <p class="cardDataInline" ng-if="!equipment.Editing" ng-bind="equipment.type"></p> <input ng-if="equipment.Editing" placeholder="Damage/Armor Type" ng-model="equipment.type"
-                                            class="input">
-                                    </section>
-                                </div>
-                                <div class="card-footer">
-                                    <button ng-if="!equipment.Editing" class="button is-small is-info" ng-disabled="!player.youOwnThis" ng-click="equipmentList.toggleEdit(equipment)">Edit</button>
-                                    <button ng-if="equipment.Editing" ng-click="equipmentList.toggleEdit(equipment); updateAndSave(player)" class="button is-small is-primary"
-                                        type="submit">Save</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content">
-                        <p class="cardTitle title is-3"> Companions </p>
-                        <button ng-disabled="!player.youOwnThis" class="cardAddButton button is-small is-primary fa fa-plus" ng-if="player.youOwnThis"
-                            ng-click="companions.addItem()"></button>
-                        <div data-ng-repeat="companion in companions.list | orderBy: '-'">
-                            <div class="card">
-                                <div class="card-header">
-                                    <p ng-bind="companion.name" class="card-header-title"></p>
-                                    <button class="button is-danger is-small fa fa-trash-o is-info card-header-icon" ng-disabled="!player.youOwnThis" ng-click="companions.deleteItem(companion); updateAndSave(player)"></button>
-                                </div>
-                                <div class="compCard card-content">
-                                    <p class="title is-5">Over View</p>
-                                    <section class="cardDetailsSegment">
-                                        <input ng-if="companion.Editing" placeholder="Name" ng-model="companion.name" class="input">
-                                        <p class="cardDataInline" ng-if="!companion.Editing"> Traits: </p><textarea auto-resize ng-if="companion.Editing" placeholder="Traits"
-                                            ng-model="companion.traits" class="input"></textarea>
-                                        <p class="cardDescription" ng-if="!companion.Editing" ng-bind="companion.traits"></p>
-                                    </section>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!companion.Editing"> Actions: </p><textarea auto-resize ng-if="companion.Editing" placeholder="Actions"
-                                            ng-model="companion.actions" class="input"></textarea>
-                                        <p class="cardDescription" ng-if="!companion.Editing" ng-bind="companion.actions"></p>
-                                    </section>
-                                    <p class="title is-5">Attributes</p>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!companion.Editing">Size: </p> <input ng-if="companion.Editing" placeholder="Size" ng-model="companion.size"
-                                            class="input">
-                                        <p class="cardDescription" ng-if="!companion.Editing" ng-bind="companion.size"></p>
-                                    </section>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!companion.Editing">Type: </p> <input ng-if="companion.Editing" placeholder="Type" ng-model="companion.type"
-                                            class="input">
-                                        <p class="cardDescription" ng-if="!companion.Editing" ng-bind="companion.type"></p>
-                                    </section>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!companion.Editing">Alignment: </p><input ng-if="companion.Editing" placeholder="Alignment" ng-model="companion.alignment"
-                                            class="input">
-                                        <p class="cardDescription" ng-if="!companion.Editing" ng-bind="companion.alignment"></p>
-                                    </section>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!companion.Editing">AC: </p><input ng-if="companion.Editing" placeholder="Armor Class" ng-model="companion.armorClass"
-                                            class="input">
-                                        <p class="cardDescription" ng-if="!companion.Editing" ng-bind="companion.armorClass"></p>
-                                    </section>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!companion.Editing">HP: </p> <input ng-if="companion.Editing" placeholder="HP" ng-model="companion.hitPoints"
-                                            class="input">
-                                        <p class="cardDescription" ng-if="!companion.Editing" ng-bind="companion.hitPoints"></p>
-                                    </section>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!companion.Editing"> Speed: </p><input ng-if="companion.Editing" placeholder="Speed" ng-model="companion.speed"
-                                            class="input">
-                                        <p class="cardDescription" ng-if="!companion.Editing" ng-bind="companion.speed"></p>
-                                    </section>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!companion.Editing"> Strength: </p><input ng-if="companion.Editing" placeholder="Strength" ng-model="companion.strength"
-                                            class="input">
-                                        <p class="cardDescription" ng-if="!companion.Editing" ng-bind="companion.strength"></p>
-                                    </section>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!companion.Editing"> Dexterity: </p><input ng-if="companion.Editing" placeholder="Dexterity" ng-model="companion.dexterity"
-                                            class="input">
-                                        <p class="cardDescription" ng-if="!companion.Editing" ng-bind="companion.dexterity"></p>
-                                    </section>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!companion.Editing"> Constitution: </p><input ng-if="companion.Editing" placeholder="Constitution" ng-model="companion.constitution"
-                                            class="input">
-                                        <p class="cardDescription" ng-if="!companion.Editing" ng-bind="companion.constitution"></p>
-                                    </section>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!companion.Editing">Intelligence: </p><input ng-if="companion.Editing" placeholder="Intelligence" ng-model="companion.intelligence"
-                                            class="input">
-                                        <p class="cardDescription" ng-if="!companion.Editing" ng-bind="companion.intelligence"></p>
-                                    </section>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!companion.Editing">Wisdom: </p><input ng-if="companion.Editing" placeholder="Wisdom" ng-model="companion.wisdom"
-                                            class="input">
-                                        <p class="cardDescription" ng-if="!companion.Editing" ng-bind="companion.wisdom"></p>
-                                    </section>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!companion.Editing">Charisma: </p><input ng-if="companion.Editing" placeholder="Charisma" ng-model="companion.charisma"
-                                            class="input">
-                                        <p class="cardDescription" ng-if="!companion.Editing" ng-bind="companion.charisma"></p>
-                                    </section>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!companion.Editing">Challenge Rating: </p> <input ng-if="companion.Editing" placeholder="Challenge Rating"
-                                            ng-model="companion.challengeRating" class="input">
-                                        <p class="cardDescription" ng-if="!companion.Editing" ng-bind="companion.challengeRating"></p>
-                                    </section>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!companion.Editing">Senses: </p> <input ng-if="companion.Editing" placeholder="Senses" ng-model="companion.sensesclass"
-                                            class="input">
-                                        <p class="cardDescription" ng-if="!companion.Editing" ng-bind="companion.senses"></p>
-                                    </section>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!companion.Editing"> Passive Perception: </p><input ng-if="companion.Editing" placeholder="Passive Perception"
-                                            ng-model="companion.passivePerception" class="input">
-                                        <p class="cardDescription" ng-if="!companion.Editing" ng-bind="companion.passivePerception"></p>
-                                    </section>
-                                    <section class="cardDetailsSegment">
-                                        <p class="cardDataInline" ng-if="!companion.Editing">Description: </p> <textarea auto-resize ng-if="companion.Editing" placeholder="Add a description!"
-                                            ng-model="companion.description" class="input"></textarea>
-                                        <p class="cardDescription" ng-if="!companion.Editing" ng-bind="companion.description"></p>
-                                    </section>
-                                </div>
-                                <div class="card-footer">
-                                    <button ng-if="!companion.Editing" class="button is-small is-info" ng-disabled="!player.youOwnThis" ng-click="companions.toggleEdit(companion)">Edit</button>
-                                    <button ng-if="companion.Editing" ng-disabled="!player.youOwnThis" ng-click="companions.toggleEdit(companion); updateAndSave(player)"
-                                        class="button is-small is-primary" type="submit">Save</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
+<!--TODO- Turn this into campaignModal directive-->
+<div id="campaignModal" class="modal">
+    <div ng-click="toggleJoinCampaign()" class="modal-background"></div>
+    <form>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Join a campaign</p>
+                <button class="delete is-medium" ng-click="toggleJoinCampaign()"></button>
+            </header>
+            <section class="modal-card-body">
+                <p class="title is-5" ng-bind="campaignJoinResponse"></p>
+                <p>Name: </p> <input type="text" class="input" ng-model="campaignCred.title">
+                <p>Password: </p> <input type="password" class="input" ng-model="campaignCred.password">
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-primary" ng-click="joinCampaign(player, campaignCred);">Join</button>
+            </footer>
         </div>
-        <div class="tile is-parent">
-            <article class="tile is-child notification is-dark">
-                <div class="content">
-                    <p class="title">Details</p>
-                    <div ng-repeat="stat in charDetails" class="stat-container">
-                        <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title" ></p></button>
-                        <p class="playerStatItemDetails" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
-                        <textarea auto-resize class="textarea" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]"></textarea>
-                    </div>
-                </div>
-                <div class="content">
-                    <p class="title">Spell Slots</p>
-                    <table class="table is-striped is-bordered">
-                        <thead>
-                            <tr ng-repeat="slot in spellSlots">
-                                <th ng-bind="slot.spellLevel"></th>
-                                <td ng-repeat="spell in slot.spellsToCast">
-                                    <span ng-if="usedSpell" class="icon"><i class="fa fa-hourglass-2"></i></span>
-                                    <span ng-if="!usedSpell" class="icon"><i class="fa fa-star"></i></span>
-                                    <input ng-model="usedSpell" type="checkbox" class="checkbox">
-                                </td>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div class="content">
-                    <p class="title">Spell Details</p>
-                    <div ng-repeat="stat in spellDetails" class="stat-container">
-                        <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title"></p></button>
-                        <p class="playerStatItem" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
-                        <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
-                    </div>
-                </div>
-            </article>
+    </form>
+</div>
+<!--TODO- Turn this into deleteModel directive-->
+<div id="deleteModal" class="modal">
+    <div ng-click="toggleDeletePlayer()" class="modal-background"></div>
+    <form>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Are you sure you want to delete {{player.name}} forever?..</p>
+                <button class="delete is-medium" ng-click="toggleDeletePlayer()"></button>
+            </header>
+            <button ng-click="toggleDeletePlayer()" class="button is-large is-primary">No Take me Back</button>
+            <button ng-click="deletePlayer(player.id)" class="button is-large is-danger">Delete Forever</button>
         </div>
-    </div>
-
-    </div>
-    </div>
-    </secton>
-        <button ng-if="!player.editing && player.youOwnThis" ng-click="toggleDeletePlayer()" class="button is-danger" type="submit">Delete Player</button>
-
-    <!--TODO- Turn this into campaignModal directive-->
-    <div id="campaignModal" class="modal">
-        <div ng-click="toggleJoinCampaign()" class="modal-background"></div>
-        <form>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Join a campaign</p>
-                    <button class="delete is-medium" ng-click="toggleJoinCampaign()"></button>
-                </header>
-                <section class="modal-card-body">
-                    <p class="title is-5" ng-bind="campaignJoinResponse"></p>
-                    <p>Name: </p> <input type="text" class="input" ng-model="campaignCred.title">
-                    <p>Password: </p> <input type="password" class="input" ng-model="campaignCred.password">
-                </section>
-                <footer class="modal-card-foot">
-                    <button class="button is-primary" ng-click="joinCampaign(player, campaignCred);">Join</button>
-                </footer>
-            </div>
-        </form>
-    </div>
-    <!--TODO- Turn this into deleteModel directive-->
-    <div id="deleteModal" class="modal">
-        <div ng-click="toggleDeletePlayer()" class="modal-background"></div>
-        <form>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Are you sure you want to delete {{player.name}} forever?..</p>
-                    <button class="delete is-medium" ng-click="toggleDeletePlayer()"></button>
-                </header>
-                <button ng-click="toggleDeletePlayer()" class="button is-large is-primary">No Take me Back</button>
-                <button ng-click="deletePlayer(player.id)" class="button is-large is-danger">Delete Forever</button>
-            </div>
-        </form>
-    </div>
+    </form>
+</div>
