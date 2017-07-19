@@ -1,11 +1,10 @@
 <article class="column">
     <p class="title">Primary Stats</p>
-    <div class="message is-black" ng-repeat="stat in primaryStats">
+    <div class="message  " ng-repeat="stat in primaryStats">
         <div class="message-header">
                 <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="is-primary button is-info ">
-                    <span class="icon"><i ng-class="ifEdit(stat);"></i></span>
+                    <span class="icon"><i ng-class="ifEdit(stat);"></i></span></button>
                     <span ng-bind="stat.title"></span>
-                </button>
         </div>
         <div class="message-body">
             <p class="playerStatItem" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
@@ -19,12 +18,9 @@
         <p class="title">Skills</p>
     <button ng-disabled="!player.youOwnThis" class="button is-primary fa fa-plus" ng-if="player.youOwnThis" ng-click="skillList.addItem()"></button>
     <section class="section">
-        <div class="message is-black" ng-repeat="skill in skillList.list">
+        <div class="message  " ng-repeat="skill in skillList.list">
             <div class="message-header">
                 <p ng-bind="skill.name"> </p>
-                    <button ng-if="!skill.editing" class="button is-small fa fa-pencil" ng-disabled="!player.youOwnThis" ng-click="skillList.toggleEdit(skill)"></button>
-                    <button ng-if="skill.editing" ng-click="skillList.toggleEdit(skill); updateAndSave(player)" class=" button fa fa-save is-small is-info"
-                            type="submit"></button>
                     <button class="button is-small is-danger fa fa-trash" ng-disabled="!player.youOwnThis" ng-click="skillList.deleteItem(skill); updateAndSave(player)"></button>
             </div>
             <div class="message-body">
@@ -32,7 +28,9 @@
                 <input ng-if="skill.editing" placeholder="Proficiency" ng-model="skill.stat" class="input">
                 <p class="cardDescription" ng-if="!skill.editing" ng-bind="skill.stat"></p>
             </div>
-            
+            <button ng-if="!skill.editing" class="button is-small fa fa-pencil" ng-disabled="!player.youOwnThis" ng-click="skillList.toggleEdit(skill)"></button>
+            <button ng-if="skill.editing" ng-click="skillList.toggleEdit(skill); updateAndSave(player)" class=" button fa fa-save is-small is-info"
+                            type="submit"></button>
         </div>
     </section>
 </article>

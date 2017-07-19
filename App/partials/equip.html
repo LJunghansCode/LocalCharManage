@@ -7,7 +7,9 @@
             <div class="spellCard card">
                 <div class="card-header">
                     <p ng-bind="equipment.name" class="subTitle card-header-title"></p>
-                    <button class="button is-danger is-small  fa fa-trash-o is-info card-header-icon" ng-disabled="!player.youOwnThis" ng-click="equipmentList.deleteItem(equipment);updateAndSave(player)"></button>
+                    <button class="button is-danger" ng-disabled="!player.youOwnThis" ng-click="equipmentList.deleteItem(equipment);updateAndSave(player)">
+                        <i class="icon"><span class="fa fa-trash-o"></span></i>
+                    </button>
                 </div>
                 <div class="card-content">
                     <input ng-if="equipment.editing" placeholder="Equipment name" ng-model="equipment.name" class="input">
