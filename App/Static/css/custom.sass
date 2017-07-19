@@ -1,23 +1,19 @@
 // 1. Import the initial variables
-@import "../sass/utilities/initial-variables"
+@import "sass/utilities/initial-variables"
 
-// 2. Set your own initial variables
-// Update blue
-$blue: #72d0eb
-// Add pink and its invert
-$pink: #ffb3b3
-$pink-invert: #fff
-// Add a serif family
-$family-serif: "Merriweather", "Georgia", serif
+$paper: #d5d5d5
+$darkPaper: #9099a2
+$blue: #6d7993
+$pink: #96858f
+$red : #ff3b3f
+$dusty-orange: #FF9966
+$t-orange: transparentize($dusty-orange, .8)
 
 // 3. Set the derived variables
-// Use the new pink as the primary color
+
 $info: $pink
-$primary-invert: $pink-invert
-// Use the existing orange as the danger color
-$danger: $orange
-// Use the new serif family
-$family-primary: $family-serif
+$primary: $blue
+$danger: $t-orange
 
 // 4. Import the rest of Bulma
-@import "../bulma"
+@import "bulma"
