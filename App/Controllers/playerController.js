@@ -174,7 +174,7 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
         }
     };
     scope.ifEdit = (stat) => {
-        if(stat.editing === true){
+        if(stat.editing === true || scope.player.editing === true){
             return  'fa fa-save';
         } else{
             return 'fa fa-pencil';
