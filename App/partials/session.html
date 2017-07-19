@@ -1,106 +1,104 @@
-
 <section class=" sessionContainer columns is-multiline is-mobile">
-    <div data-ng-repeat="player in currentPlayers | orderBy: 'name' " ng-class="getColor(player)"class="column playerInSessionContainer"> 
+    <div data-ng-repeat="player in currentPlayers | orderBy: 'name' " ng-class="getColor(player)" class="column playerInSessionContainer">
         <div class="card">
-             <div class="card-content">
-                 <section class="hero-sess-player hero is-dark">
-                     <div class="hero-body">
-                           <input ng-if="player.editing" class="input" name="realName" ng-model="player.name"><a href="/#!/player/{{player.id}}" class="title card-header-title" ng-if="!player.editing" ng-bind="player.name">
+            <div class="card-content">
+                <section class="hero-sess-player hero is-dark">
+                    <div class="hero-body">
+                        <input ng-if="player.editing" class="input" name="realName" ng-model="player.name"><a href="/#!/player/{{player.id}}"
+                            class="title card-header-title" ng-if="!player.editing" ng-bind="player.name">
                     </a>
                     </div>
                 </section>
-             </div> 
-             <div class="card-content" ng-if="player.youOwnThis">
-                                <div class="color-choice-row">
-                                <button class="color-choice-red" ng-click="pickColor('is-red', player)"></button>
-                                <button class="color-choice-blue" ng-click="pickColor('is-blue', player)"></button>
-                                <button class="color-choice-purple" ng-click="pickColor('is-purple', player)"></button>
-                                <button class="color-choice-teal" ng-click="pickColor('is-teal', player)"></button>
-                                <button class="color-choice-pink" ng-click="pickColor('is-pink', player)"></button>
-                                <button class="color-choice-orange" ng-click="pickColor('is-orange', player)"></button>
-                                <button class="color-choice-green" ng-click="pickColor('is-green', player)"></button>
-                                <button class="color-choice-gray" ng-click="pickColor('is-gray', player)"></button>
-                            </div>
-            </div>  
-            
-            <div class="card-content tile is-ancestor">
-               <div class="tile is-vertical is-parent">
-                   <div class="tile is-child notification is-dark">
-                       <p class="title">Vitals</p>
-                        <div ng-repeat="stat in player.masterStats.vitals" class="stat-container">
-                            <p ng-bind="stat.title" ng-if="!player.youOwnThis === true"></p>
-                            <button ng-if="player.youOwnThis === true" ng-click="editStat(stat, player);"class="button is-info is-small"><p ng-bind="stat.title"></p></button>
-                                <p class="playerStatItem" ng-if="!stat.editing && !player.editing"ng-bind="player[stat.stat]"></p>
-                                <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
-                        </div>
-                </div>
-                <div class="tile is-child notification is-dark">
-                       <p class="title">Spell Details</p>
-                        <div ng-repeat="stat in player.masterStats.spellDetails" class="stat-container">
-                             <p ng-bind="stat.stat" ng-if="!player.youOwnThis === true"></p>
-                            <button ng-if="player.youOwnThis === true" ng-click="editStat(stat, player);" class="button is-info is-small"><p ng-bind="stat.stat"></p></button>
-                                <p class="playerStatItem" ng-click="editStat(stat, player);" ng-if="!stat.editing && !player.editing"ng-bind="player[stat.stat]"></p>
-                                <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
-                        </div>
-                </div>
             </div>
-         </div>
-        <div class="card-footer">
-            <div class="content">
-                <button ng-if="!player.editing && player.youOwnThis === true"  class="button is-info" ng-click="toggleEdit(player)">Edit</button>
-                <button ng-if="player.editing && player.youOwnThis === true" ng-click="toggleEdit(player)"class="button is-primary" type="submit">Save</button>
-                <button ng-if="player.editing && player.youOwnThis === true" ng-click="leaveCampaign(player)"class="button is-danger" type="submit">Leave Campaign</button>
-              </div>
-        </div>      
-    </div>
- </section>
- <button class="button is-small is-dark" ng-click="toggleStartCombat()">start combat</button>
- <button class="button is-small is-dark" ng-click="toggleDieRoller()">Use Die Rolling Tool</button>
- 
+            <div class="card-content" ng-if="player.youOwnThis">
+                <div class="color-choice-row">
+                    <button class="color-choice-red" ng-click="pickColor('is-red', player)"></button>
+                    <button class="color-choice-blue" ng-click="pickColor('is-blue', player)"></button>
+                    <button class="color-choice-purple" ng-click="pickColor('is-purple', player)"></button>
+                    <button class="color-choice-teal" ng-click="pickColor('is-teal', player)"></button>
+                    <button class="color-choice-pink" ng-click="pickColor('is-pink', player)"></button>
+                    <button class="color-choice-orange" ng-click="pickColor('is-orange', player)"></button>
+                    <button class="color-choice-green" ng-click="pickColor('is-green', player)"></button>
+                    <button class="color-choice-gray" ng-click="pickColor('is-gray', player)"></button>
+                </div>
 
-<div id="combatModal"class="modal">
-            <div ng-click="toggleStartCombat()" class="modal-background"></div>
-             <form>
-            <div class="modal-card">
-                    <header class="modal-card-head">
-                        <p class="modal-card-title">Okay, but first, lets roll for Initiative!</p>
-                        <button class="delete is-medium" ng-click="toggleStartCombat()"></button>
-                    </header>
-                    <section class="modal-card-body ">
-                        <div data-ng-repeat="player in currentPlayers">
-                            <p data-ng-bind="player.name"></p>
-                            <input type="text" ng-model="player.initiative" placeholder="Roll For Initiative!">
-                            <button type="text" class="button is-info is-small" ng-click="initiativeRoll(player)">Roll For Initiative</button>
+
+
+                <article class="column">
+                    <p class="title">Primary Stats</p>
+                    <div class="message is-black" ng-repeat="stat in player.masterStats.primaryStats">
+                        <div class="message-header">
+                            <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat, player);" class="is-primary button is-info ">
+                                    <span class="icon"><i ng-class="ifEdit(stat);"></i></span>
+                                    <span ng-bind="stat.title"></span>
+                                </button>
                         </div>
-                        <br>
-                        <p class="title is-4">Enemies in Battle</p>
-                        <div data-ng-repeat="enemy in currentEnemies">
-                            <p placeholder="enemy" data-ng-bind="enemy.name"></p>
-                            <input type="text" ng-model="enemy.name" placeholder="Name">
-                            <input type="text" ng-model="enemy.initiative" placeholder="Initiative"><button type="text" class="button is-info is-small" ng-click="initiativeRoll(enemy)">Roll For Initiative</button>
-                            <input type="text" ng-model="enemy.currentHitPoints" placeholder="HP">
+                        <div class="message-body">
+                            <p class="playerStatItem" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
+                            <p ng-if="!stat.editing && !player.editing" class="pStatMod" ng-bind="statModCalc(stat.stat)"></p>
+                            <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
                         </div>
-                    </section>
-                    <footer class="modal-card-foot">
-                        <button class="button is-dark is-small" ng-click="addEnemy()">Add Enemy</button>
-                        <button class="button is-danger" ng-click="startCombat(currentPlayers)">BEGIN COMBAT!!</button>
-                    </footer>
+                    </div>
+                </article>
             </div>
-            </form>
+            <div class="card-footer">
+                <div class="content">
+                    <button ng-if="!player.editing && player.youOwnThis === true" class="button is-info" ng-click="toggleEdit(player)">Edit</button>
+                    <button ng-if="player.editing && player.youOwnThis === true" ng-click="toggleEdit(player)" class="button is-primary" type="submit">Save</button>
+                    <button ng-if="player.editing && player.youOwnThis === true" ng-click="leaveCampaign(player)" class="button is-danger" type="submit">Leave Campaign</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<button class="button is-small is-dark" ng-click="toggleStartCombat()">start combat</button>
+<button class="button is-small is-dark" ng-click="toggleDieRoller()">Use Die Rolling Tool</button>
+
+
+<div id="combatModal" class="modal">
+    <div ng-click="toggleStartCombat()" class="modal-background"></div>
+    <form>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Okay, but first, lets roll for Initiative!</p>
+                <button class="delete is-medium" ng-click="toggleStartCombat()"></button>
+            </header>
+            <section class="modal-card-body ">
+                <div data-ng-repeat="player in currentPlayers">
+                    <p data-ng-bind="player.name"></p>
+                    <input type="text" ng-model="player.initiative" placeholder="Roll For Initiative!">
+                    <button type="text" class="button is-info is-small" ng-click="initiativeRoll(player)">Roll For Initiative</button>
+                </div>
+                <br>
+                <p class="title is-4">Enemies in Battle</p>
+                <div data-ng-repeat="enemy in currentEnemies">
+                    <p placeholder="enemy" data-ng-bind="enemy.name"></p>
+                    <input type="text" ng-model="enemy.name" placeholder="Name">
+                    <input type="text" ng-model="enemy.initiative" placeholder="Initiative"><button type="text" class="button is-info is-small"
+                        ng-click="initiativeRoll(enemy)">Roll For Initiative</button>
+                    <input type="text" ng-model="enemy.currentHitPoints" placeholder="HP">
+                </div>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-dark is-small" ng-click="addEnemy()">Add Enemy</button>
+                <button class="button is-danger" ng-click="startCombat(currentPlayers)">BEGIN COMBAT!!</button>
+            </footer>
+        </div>
+    </form>
 </div>
 
 
 <div class="modal" id="diceRollerModal">
-  <div ng-click="toggleDieRoller()" class="modal-background"></div>
-      <div class="modal-card">
+    <div ng-click="toggleDieRoller()" class="modal-background"></div>
+    <div class="modal-card">
         <header class="modal-card-head">
             <p class="modal-card-title">Roll Some Die, Good Luck!</p>
             <button class="delete is-medium" ng-click="toggleDieRoller()"></button>
         </header>
         <div class="modal-card-body">
-        <p>All Die to Roll</p>
-        <div data-ng-repeat="die in dieRolls">    
-          <select class="DieSelect select"  name="Die" ng-model="die.choice">
+            <p>All Die to Roll</p>
+            <div data-ng-repeat="die in dieRolls">
+                <select class="DieSelect select" name="Die" ng-model="die.choice">
             <option value="d20">d20</option>
             <option value="d12">d12</option>
             <option value="d10">d10</option>
@@ -108,17 +106,17 @@
             <option value="d6">d6</option>
             <option value="d4">d4</option>
         </select>
+            </div>
+            <div class="section">
+                <button class="button is-small is-dark" ng-click="addDie()">Add Die</button>
+                <button class="button is-small is-dark" ng-click="resetDie()">Reset</button>
+                <button class="button is-small is-dark" type="submit" ng-click="rollDie(player, dieRolls)" value="Roll">Roll!!</button>
+            </div>
         </div>
-        <div class="section">
-        <button class="button is-small is-dark" ng-click="addDie()">Add Die</button>
-        <button class="button is-small is-dark" ng-click="resetDie()">Reset</button>
-        <button class="button is-small is-dark"type="submit" ng-click="rollDie(player, dieRolls)" value="Roll">Roll!!</button>
-        </div>
-    </div>
         <div class="modal-card-foot" data-ng-repeat=" roll in rollsResults">
             <p>You rolled a {{roll.rollValue}} with your {{roll.dice}}</p>
         </div>
-     </div>
-   
+    </div>
+
 
 </div>

@@ -1,9 +1,12 @@
 <article class="column">
     <div class="content">
         <p class="title">Details</p>
-        <div ng-repeat="stat in charDetails" class="message">
+        <div ng-repeat="stat in charDetails" class="message is-black">
             <div class="message-header">
-                <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="button is-info is-small"><p ng-bind="stat.title" ></p></button>
+                <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="is-primary button is-info ">
+                    <span class="icon"><i ng-class="ifEdit(stat);"></i></span>
+                    <span ng-bind="stat.title"></span>
+                </button>
             </div>
             <div class="message-body">
                 <p class="playerStatItemDetails" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>

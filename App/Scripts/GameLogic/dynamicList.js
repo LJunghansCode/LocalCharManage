@@ -1,11 +1,20 @@
 class DynamicList {
-    constructor(list) {
+    constructor(list, title) {
         this.list = list;
+        this.title = title;
     }
     addItem() {
             var id = this.list.length + 1;
             this.list.push({
                 id: id
+            });
+            this.toggleEdit(this.list[this.list.length - 1]);
+        }
+    addItemTimeStamped() {
+            var id = this.list.length + 1;
+            this.list.push({
+                id: id,
+                created_at: moment().format('MMMM Do YYYY, h:mm a')
             });
             this.toggleEdit(this.list[this.list.length - 1]);
         }
@@ -18,12 +27,20 @@ class DynamicList {
             }
         }
     toggleEdit(item){
-         if (item.Editing !== true) {
-            item.Editing = true;
+         if (item.editing !== true) {
+            item.editing = true;
         } else {
-            item.Editing = false;
+            item.editing = false;
             }
         }
+
+    ifEditReturnIcon(item){
+        if(item.editing === true) {
+            return 'fa fa-save';
+        } else {
+            return 'fa fa-pencil';
+        }
+    }
     returnList() {
         return this.list;
     }

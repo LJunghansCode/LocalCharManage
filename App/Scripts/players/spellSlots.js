@@ -5,6 +5,9 @@ class SpellSlots {
     }
     normalizeTextLowerCase(text) {
         let lowerCase = "";
+        if(text === undefined){
+            return;
+        }
         for (let i = 0; i < text.length; i++) {
             let letter = text[i].toLowerCase();
             lowerCase += letter;

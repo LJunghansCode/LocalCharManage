@@ -1,10 +1,14 @@
-<div class="column message is-dark">
+<section class="container column">
+<button class="button" ng-click="playerNotes.addItemTimeStamped()" >Add Note</button>
+<div ng-repeat="note in playerNotes.list" class=" message is-black">
             <div class="message-header">
-                <button ng-disabled="!player.youOwnThis" ng-click="editStat(playerNotes);" class="button is-info is-small"><p ng-bind="playerNotes.title" ></p></button>
+                <p>Created On .. {{note.created_at}}</p>
+                <button ng-disabled="!player.youOwnThis" ng-click="editStat(note);" class="button is-info" ng-class="playerNotes.ifEditReturnIcon(note);"></button>
+                <button class="button is-danger fa fa-trash" ng-click="playerNotes.deleteItem(note);updateAndSave(player);"></button>
             </div>
             <div class="message-body">
-                <p class="playerplayerNotesItemDetails" ng-if="!playerNotes.editing && !player.editing" ng-bind="player[playerNotes.stat]"></p>
-                <textarea auto-resize class="textarea" ng-if="playerNotes.editing || player.editing" ng-model="player[playerNotes.stat]"></textarea>
+                <p class="playerplayerNotesItemDetails" ng-if="!note.editing && !player.editing" ng-bind="note.note"></p>
+                <textarea auto-resize placeholder="Your Note....." class="textarea" ng-if="note.editing || player.editing" ng-model="note.note"></textarea>
             </div>
-        </div>
 </div>
+</section>

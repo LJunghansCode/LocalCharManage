@@ -34,11 +34,10 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                 scope.player.calculateModifiers();
                 //Get Spell Slots
                 let slots = scope.player.spellSlots;
-                scope.spellSlots = slots.returnSpellSlotArray(slots.createSpellSlots(scope.player.level, scope.player.classType));
+                scope.spellSlots = slots.returnSpellSlotArray(slots.createSpellSlots(scope.player.level, scope.player.spellcastingClass));
                 //Stat Organization
                 var masterStat = scope.player.organizeStatsArray();
                 scope.basicInformation = masterStat.basicInformation;
-                scope.playerNotes = masterStat.charDetails[11];
                 scope.charDetails = masterStat.charDetails;
                 scope.primaryStats = masterStat.primaryStats;
                 scope.spellDetails = masterStat.spellDetails;
@@ -48,6 +47,7 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                 scope.companions = new DynamicList(scope.player.companions);
                 scope.equipmentList = new DynamicList(scope.player.equipment);
                 scope.spells = new DynamicList(scope.player.spellList);
+                scope.playerNotes = new DynamicList(scope.player.notes, 'Notes');
                 userFactory.getCurUser((data) => {
                     if (data.data.message === scope.player.accountEmail) {
                         scope.player.youOwnThis = true;
@@ -80,7 +80,12 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                     {
                         name: 'Notes',
                         url: './../partials/notes.html'
-                    },                                    
+                    },
+                    {
+                        name: 'Delete',
+                        url: './../partials/delete.html'
+                    }
+                                    
                 ];
                 scope.templateUrl = scope.templates[0].url;
             } else {
@@ -168,15 +173,22 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
             modal.classList.add('is-active');
         }
     };
+    scope.ifEdit = (stat) => {
+        if(stat.editing === true){
+            return  'fa fa-save';
+        } else{
+            return 'fa fa-pencil';
+        }
+    };
     scope.editStat = (stat) => {
         //Check to see if spellSlots will change...
         if (stat.editing !== true) {
             stat.editing = true;
         } else {
             scope.updateAndSave(scope.player);
-            if (stat.title === 'Level' || stat.title === 'Class') {
+            if (stat.title === 'Level' || stat.title === 'Spell Casting Class') {
                 let slots = scope.player.spellSlots;
-                scope.spellSlots = slots.returnSpellSlotArray(slots.createSpellSlots(scope.player.level, scope.player.classType));
+                scope.spellSlots = slots.returnSpellSlotArray(slots.createSpellSlots(scope.player.level, scope.player.spellcastingClass));
             }
             stat.editing = false;
         }

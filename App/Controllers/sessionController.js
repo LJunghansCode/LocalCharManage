@@ -65,10 +65,16 @@ app.controller('sessionController', ['$location', '$scope', '$route','$routePara
             stat.editing = true;
         } else{
            playerFactory.updateAndSave(player, (data) => {
-               console.log(data.data.player)
                return data.data.player;
            });
             stat.editing = false;}
+    };
+    scope.ifEdit = (stat) => {
+        if(stat.editing === true){
+            return  'fa fa-save';
+        } else{
+            return 'fa fa-pencil';
+        }
     };
     //EnemyForCombatArrayManagement
     scope.addEnemy = () => {

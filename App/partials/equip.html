@@ -1,4 +1,4 @@
-<article class="column">
+<article class="column is-6">
     
         <p class="cardTitle title is-3"> {{player.name}}'s Equipment List </p>
         <button ng-disabled="!player.youOwnThis" class="cardAddButton button is-small is-primary fa fa-plus" ng-if="player.youOwnThis"
@@ -6,34 +6,34 @@
         <div data-ng-repeat="equipment in equipmentList.list | orderBy: '-'">
             <div class="spellCard card">
                 <div class="card-header">
-                    <p ng-bind="equipment.name" class="card-header-title"></p>
+                    <p ng-bind="equipment.name" class="subTitle card-header-title"></p>
                     <button class="button is-danger is-small  fa fa-trash-o is-info card-header-icon" ng-disabled="!player.youOwnThis" ng-click="equipmentList.deleteItem(equipment);updateAndSave(player)"></button>
                 </div>
                 <div class="card-content">
-                    <input ng-if="equipment.Editing" placeholder="Equipment name" ng-model="equipment.name" class="input">
+                    <input ng-if="equipment.editing" placeholder="Equipment name" ng-model="equipment.name" class="input">
                     <section class="cardDetailsSegment">
-                        <p class="cardDataInline" ng-if="!equipment.Editing">Weight: </p>
-                        <p class="cardDataInline" ng-if="!equipment.Editing" ng-bind="equipment.weight"></p> <input ng-if="equipment.Editing" placeholder="Weight" ng-model="equipment.weight" class="input">
+                        <p class="cardDataInline" ng-if="!equipment.editing">Weight: </p>
+                        <p class="cardDataInline" ng-if="!equipment.editing" ng-bind="equipment.weight"></p> <input ng-if="equipment.editing" placeholder="Weight" ng-model="equipment.weight" class="input">
                     </section>
                     <section class="cardDetailsSegment">
-                        <p class="cardDataInline" ng-if="!equipment.Editing">AC: </p>
-                        <p class="cardDataInline" ng-if="!equipment.Editing" ng-bind="equipment.armorClass"></p> <input ng-if="equipment.Editing" placeholder="Armor Class" ng-model="equipment.armorClass" class="input">
+                        <p class="cardDataInline" ng-if="!equipment.editing">AC: </p>
+                        <p class="cardDataInline" ng-if="!equipment.editing" ng-bind="equipment.armorClass"></p> <input ng-if="equipment.editing" placeholder="Armor Class" ng-model="equipment.armorClass" class="input">
                     </section>
-                    <p class="cardDataInline" ng-if="!equipment.Editing">Damage: </p>
-                    <p class="cardDataInline" ng-if="!equipment.Editing" ng-bind="equipment.damage"></p> <input ng-if="equipment.Editing" placeholder="Damage" ng-model="equipment.damage" class="input">
+                    <p class="cardDataInline" ng-if="!equipment.editing">Damage: </p>
+                    <p class="cardDataInline" ng-if="!equipment.editing" ng-bind="equipment.damage"></p> <input ng-if="equipment.editing" placeholder="Damage" ng-model="equipment.damage" class="input">
                     <section class="cardDetailsSegment">
-                        <p class="cardDataInline" ng-if="!equipment.Editing">Stealth: </p>
-                        <p class="cardDataInline" ng-if="!equipment.Editing" ng-bind="equipment.stealth"></p> <input ng-if="equipment.Editing" placeholder="Stealth" ng-model="equipment.stealth" class="input">
+                        <p class="cardDataInline" ng-if="!equipment.editing">Stealth: </p>
+                        <p class="cardDataInline" ng-if="!equipment.editing" ng-bind="equipment.stealth"></p> <input ng-if="equipment.editing" placeholder="Stealth" ng-model="equipment.stealth" class="input">
                     </section>
                     <section class="cardDetailsSegment">
-                        <p class="cardDataInline" ng-if="!equipment.Editing">Type: </p>
-                        <p class="cardDataInline" ng-if="!equipment.Editing" ng-bind="equipment.type"></p> <input ng-if="equipment.Editing" placeholder="Damage/Armor Type" ng-model="equipment.type" class="input">
+                        <p class="cardDataInline" ng-if="!equipment.editing">Type: </p>
+                        <p class="cardDataInline" ng-if="!equipment.editing" ng-bind="equipment.type"></p> <input ng-if="equipment.editing" placeholder="Damage/Armor Type" ng-model="equipment.type" class="input">
                     </section>
                 </div>
                 <div class="card-footer">
-                    <button ng-if="!equipment.Editing" class="button is-small is-info" ng-disabled="!player.youOwnThis" ng-click="equipmentList.toggleEdit(equipment)">Edit</button>
-                    <button ng-if="equipment.Editing" ng-click="equipmentList.toggleEdit(equipment); updateAndSave(player)" class="button is-small is-primary"
-                        type="submit">Save</button>
+                    <button class="button is-info" ng-disabled="!player.youOwnThis" ng-click="editStat(equipment)">
+                        <i class="icon"><span ng-class="equipmentList.ifEditReturnIcon(equipment)" ></span> </i>
+                    </button>
                 </div>
             </div>
         </div>

@@ -28,7 +28,7 @@
   </div>
 </nav>
     <main class="section">
-        <ng-view ></ng-view>
+        <ng-view></ng-view>
     </main>
     <!--Load angular and route app file.-->
     <script src="angular/angular.min.js"></script>
@@ -36,6 +36,7 @@
     <script src="ng-file-upload/dist/ng-file-upload.min.js"></script>
     <script src="app.js"></script>
     <!--Load class and behaviour scripts-->
+    <script src="moment/moment.js"></script>
     <script src="Scripts/GameLogic/diceRoller.js"></script>
     <script src="Scripts/GameLogic/levelGuide.js"></script>
     <script src="Scripts/GameLogic/campaign.js"></script>
@@ -62,11 +63,14 @@
   <div class="container">
     <div class="content has-text-centered">
       <p>
-        <strong>D n D Character Manager</strong>
+        <strong>D n D Player Manager</strong>
       </p>
       <p>
-        <a class="icon" href="https://github.com/LJunghansCode/LocalCharManage">
-          <i class="fa fa-github"></i>
+        <a class="is-black" href="https://github.com/LJunghansCode/LocalCharManage">
+          <i class="icon"><span class="fa fa-github"></span>
+              <span>
+      GitHub
+    </span></i>
         </a>
       </p>
     </div>

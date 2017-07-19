@@ -204,6 +204,11 @@
                     stat: "notes",
                     value: this.notes
                 }],
+                playerNotes: {
+                    title: "Notes",
+                    stat: "notes",
+                    value: this.notes
+                },
 
                 spellDetails: [{
                     title: "Spell Casting Class",

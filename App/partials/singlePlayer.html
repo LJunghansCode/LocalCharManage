@@ -11,10 +11,10 @@
         <li ng-repeat="t in templates"><a ng-bind="t.name" ng-click="templateSwap(t.url)"></a></li>
     </ul>
 </div>
-<section class="section">
+<section class="section page">
     <article class="columns" ng-include="templateUrl"></article>
 </section>
-<button ng-if="!player.editing && player.youOwnThis" ng-click="toggleDeletePlayer()" class="button is-danger" type="submit">Delete Player</button>
+
 
 <!--TODO- Turn this into campaignModal directive-->
 <div id="campaignModal" class="modal">

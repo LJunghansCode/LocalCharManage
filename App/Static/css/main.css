@@ -260,10 +260,29 @@ textarea
 {
     padding-left: 25%;
     font-size: 24pt;
+    font-family: "BebasNeueRegular";
+}
+.subTitle
+{
+    padding-left: 5%;
+    font-size: 19pt; 
 }
 .logOutButton 
 {
     text-decoration-style: none;
     font-style: none;
     padding: 10%;
+}
+.editButton
+{
+    background-color: green;
+}
+.is-black{
+    color: black;
+}
+.spellCard{
+  box-shadow: 1px 1px 1px 1px #58355E;
+}
+.message{
+    box-shadow: 1px 1px 1px 1px #58355E;
 }

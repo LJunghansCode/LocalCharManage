@@ -46,6 +46,6 @@ armorClass: {type: Number},
 proficiencyBonus: {type: Number},
 borderColor: {type: String},
 companions:{type: []},
-notes: {type: String}
+notes: {type: []}
 });
 mongoose.model('player', playerSchema);
