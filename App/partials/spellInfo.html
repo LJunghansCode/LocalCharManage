@@ -3,7 +3,10 @@
         <p class="cardTitle title is-3"> {{player.name}}'s Spell List </p>
         <button ng-disabled="!player.youOwnThis" class="cardAddButton button is-small is-primary fa fa-plus" ng-if="player.youOwnThis"
             ng-click="spells.addItem()"></button>
-        <div data-ng-repeat="spell in spells.list | orderBy: '-'">
+            <div class="container">
+                  <label><i class="icon"><span class="fa fa-search"></span></i> <input ng-model="spellSearch"></label>
+            </div>
+        <div data-ng-repeat="spell in spells.list | filter:spellSearch | orderBy:'-' ">
             <div class="spellCard card">
                 <div class="card-header">
                     <p ng-bind="spell.name" class="subTitle card-header-title"></p>

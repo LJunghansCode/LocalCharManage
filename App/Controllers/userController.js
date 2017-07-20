@@ -22,6 +22,7 @@ app.controller('userController', [ '$window', '$location', '$scope', '$route', '
                 userFactory.newUser(userToSend, (returnedData) => {
                     scope.currentUser = true;
                     scope.statusMessage = returnedData.data.message;
+                    scope.returnUser(userToSend.email, userToSend.password);
                     if(returnedData.data.message !== "Welcome Back!"){
                         window.location.reload();
                     } else {
@@ -31,9 +32,7 @@ app.controller('userController', [ '$window', '$location', '$scope', '$route', '
                 });
             }
     };
-    scope.returnUser = () => {
-        const userInstanceEmail = scope.returnUser.email;
-        const userInstancePassword = scope.returnUser.password;
+    scope.returnUser = (userInstanceEmail, userInstancePassword) => {
         if(!userInstanceEmail || !userInstancePassword){
             scope.loginStatusMessage = "Oops, you missed a field";
         } else {

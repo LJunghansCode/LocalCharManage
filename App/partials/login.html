@@ -12,7 +12,7 @@
                     <label class="label" for="return-password-input">Password</label><input class="input" type="password" name="returnPassword" ng-model="returnUser.password">
                 </div>
                 <footer class="message-footer">
-                    <button class="button" type="submit" ng-click="returnUser()"> Login </button>
+                    <button class="button" type="submit" ng-click="returnUser(returnUser.email, returnUser.password)"> Login </button>
                 </footer>
                 </form>
             </div>   

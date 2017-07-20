@@ -20,7 +20,7 @@ module.exports = (() => {
                     res.json({message: "Looks like you missed a field. Try again!"});
                 }
                 else if(userFound){
-                     res.json({message: "E-mail address not valid"});
+                     res.json({message: "E-mail address not valid; In Use."});
                 }
                 else{
                     userToSave = new User(req.body);
@@ -34,7 +34,7 @@ module.exports = (() => {
                                 if(err) {
                                     console.error(err);
                                 }else {
-                                    var sess = req.session;
+                                     var sess = req.session;
                                      sess.user = userToSave;
                                      sess.user.players = [];
                                      res.json({message: "Success! Good luck in your trials!"});
