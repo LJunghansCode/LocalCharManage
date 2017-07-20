@@ -1,6 +1,23 @@
+<section class="column">
+    <div class="menu">
+        <p class="menu-label">
+          Search  {{player.name}}'s  Notes
+        </p>
+         <label><i class="icon"><span class="fa fa-search"></span></i> <input ng-model="noteSearch"></label>
+        <p class="menu-label">
+            by Date Created(newest first)
+        </p>
+    <ul class="menu-list">
+        <li ng-repeat="note in playerNotes.list | orderBy: '-created_at' "> <a ng-click="searchDate(note.created_at)" ng-bind="note.created_at"></a></li>
+    </ul>
+</div>
+</section>
 <section class="container column">
-<button class="button" ng-click="playerNotes.addItemTimeStamped()" >Add Note</button>
-<div ng-repeat="note in playerNotes.list" class=" message">
+<button class="button is-primary" ng-click="playerNotes.addItemTimeStamped()">
+    <span>Add Note</span>
+    <span class="icon"><i class="fa fa-plus"></i></span>
+</button>
+<div ng-repeat="note in playerNotes.list | filter:noteSearch" class=" message">
             <div class="message-header">
                 <p>Created On .. {{note.created_at}}</p>
                 <button ng-disabled="!player.youOwnThis" ng-click="editStat(note);" class="button is-info" ng-class="playerNotes.ifEditReturnIcon(note);"></button>

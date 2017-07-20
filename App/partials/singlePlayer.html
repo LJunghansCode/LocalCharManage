@@ -1,4 +1,4 @@
-<div class="section ">
+<div>
     <div class="hero is-info">
         <section class="container hero-body">
             <div class="level">
@@ -19,7 +19,7 @@
 
 <div class="tabs">
     <ul>
-        <li ng-repeat="t in templates"><a ng-bind="t.name" ng-click="templateSwap(t.url)"></a></li>
+        <li ng-class="ifActiveTemplate(t)" ng-repeat="t in templates"><a ng-bind="t.name" ng-click="templateSwap(t)"></a></li>
     </ul>
 </div>
 <section class="slide-animate-container">

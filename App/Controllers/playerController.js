@@ -87,7 +87,8 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                     }
                                     
                 ];
-                scope.templateUrl = scope.templates[0].url;
+                scope.currentTemplate = scope.templates[0];
+                scope.templateUrl = scope.currentTemplate.url;
             } else {
                 console.error("Something went wrong. Sorry!");
             }
@@ -156,8 +157,19 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
         return statMod;
     };
     //UI TOGGLES
-    scope.templateSwap = (url) => {
-        scope.templateUrl = url;
+    scope.templateSwap = (template) => {
+        scope.currentTemplate = template;
+        scope.templateUrl = template.url;
+    };
+    scope.searchDate = (date) => {
+        scope.noteSearch = date;
+    };
+    scope.ifActiveTemplate = (template) => {
+        if(template.name === scope.currentTemplate.name){
+            return 'is-active';
+        } else {
+            return;
+        }
     };
     scope.toggleJoinCampaign = () => {
         let modal = document.getElementById("campaignModal");
