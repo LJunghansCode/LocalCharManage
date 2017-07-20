@@ -5,4 +5,4 @@
 
 ## Also Bulma is awesome http://bulma.io/documentation using this for css framework is real nice, might change but for now its great
 
-# Live and broken @ playersheet.co ... Enjoy!
+# Live and broken @ www.playersheet.co ... Enjoy!
