@@ -1,6 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ngFileUpload']);
-
-
+var app = angular.module('app', ['ngRoute', 'ngFileUpload', 'ngAnimate']);
 
 
 app.config(($routeProvider, $locationProvider) => {

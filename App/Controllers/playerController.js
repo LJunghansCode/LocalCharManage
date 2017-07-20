@@ -122,6 +122,8 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
         } else {
             campaignFactory.addPlayer(player, campaignCred, (data) => {
                 scope.campaignJoinResponse = data.data.message;
+                campaignCred.title = "";
+                campaignCred.password = "";
             });
         }
     };

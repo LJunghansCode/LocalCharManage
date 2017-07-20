@@ -1,6 +1,6 @@
 <div class="section ">
     <div class="hero is-info">
-        <section class=" container hero-body">
+        <section class="container hero-body">
             <div class="level">
                 <div class="level-left">
                     <h1 class="playerName">{{player.name}} the level {{player.level}} {{player.classType}}</h1>
@@ -22,8 +22,8 @@
         <li ng-repeat="t in templates"><a ng-bind="t.name" ng-click="templateSwap(t.url)"></a></li>
     </ul>
 </div>
-<section class="section page">
-    <article class="columns" ng-include="templateUrl"></article>
+<section class="slide-animate-container">
+    <article class="slide-animate columns" ng-include="templateUrl"></article>
 </section>
 
 
