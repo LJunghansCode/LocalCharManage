@@ -1,61 +1,38 @@
-<div class="columns is-multiline is-mobile">
-    <div class="column is-12">
-        <div class="menu charMenuContainer">
-        <p class="menu-label title is-1">Character Overview</p>
-         <p class="menu-label">Click to enter Character Sheet Mode to Enter Details and Join a Campaign!</p>
-         <ul class="menu-list">
-            <li class="playerMenuItem" ng-repeat="player in totalPlayers" ><a class="link"href="/#!/player/{{player._id}}" ng-click="getPlayer(player._id)" ng-bind="player.name + ':    ' + 'Level' + ' ' + player.level + ' ' + player.classType"></a>
-            </li>
-        </ul>
+<div class="columns level">
+    <div class="column level-left">
+        <div class="hero">
+            <div class="hero-body">
+                <div class="menu charMenuContainer">
+                    <p class="menu-label title is-1">Character Overview</p>
+                    <p class="menu-label">Click to enter Character Sheet Mode to Enter Details and Join a Campaign!</p>
+                    <ul class="menu-list">
+                        <li class="playerMenuItem" ng-repeat="player in totalPlayers"><a class="link" href="/#!/player/{{player._id}}" ng-click="getPlayer(player._id)" ng-bind="player.name + ':    ' + 'Level' + ' ' + player.level + ' ' + player.classType"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-    <section class="newCharTitle hero  ">
-         <div class="hero-body">
-            <div class="content">
-                    <h1 class="title is-1">
-                        New Character
-                    </h1>
-                    <h2 class="subtitle">
-                        Enter basic information, then head into Character Sheet Mode for more customization!
-                    </h2>
-            </div>
+    <div class="column level-right">
+            <section class="hero is-light">
+                <div class="hero-body">
+                    <div class="content">
+                        <h1 class="title is-1">
+                            New Character
+                        </h1>
+                        <h2 class="subtitle">
+                            Enter basic information, then head into Character Sheet Mode for more customization!
+                        </h2>
+                    </div>
+                </div>
+            </section>
+        <div class="content">
+            <p class=" createResponse title is-5" ng-bind="createResponse"></p>
         </div>
-    </section>
-     <div class="content">
-         <p class=" createResponse title is-5" ng-bind="createResponse"></p>
-     </div>
-        <div class="columns is-multiline is-mobile">
-            <div class="column is-one-quarter">
-                <p>Real Name:</p> <input class="input" name="realName" ng-model="newPlayer.realName">
-                <p>Player Name:</p> <input class="input"  name="name" ng-model="newPlayer.name">
-                <p>Race: </p> <input class="input"  name="race"ng-model="newPlayer.race" >
-                <p>Class:</p>  <input class="input"  ng-model="newPlayer.classType" >
-                <p>Alignment:</p> <input class="input"  ng-model="newPlayer.alignment" >
-                <p>Sex:</p><input class="input"  ng-model="newPlayer.sex" >
-                <p>Size:</p> <input class="input" ng-model="newPlayer.size" >
-                <p>Age:</p> <input class="input"  ng-model="newPlayer.age" >
-            </div>
-            <div class="column is-one-quarter">
-                <p>Level:</p> <input class="input"  ng-model="newPlayer.level" >
-                <p>Speed: </p><input class="input"  ng-model="newPlayer.speed" >
-                <p>Strength: </p><input class="input" ng-model="newPlayer.strength" >
-                <p>Dexterity: </p><input class="input" ng-model="newPlayer.dexterity" >
-                <p>Constitution: </p><input class="input"  ng-model="newPlayer.constitution" >
-                <p>Intelligence: </p><input class="input"  ng-model="newPlayer.intelligence" >
-                <p>Wisdom: </p><input class="input"  ng-model="newPlayer.wisdom" >
-                <p>Charisma: </p><input class="input"  ng-model="newPlayer.charisma" >
-            </div>
-            <div class="column is-one-quarter">
-                <p>Appearance</p><textarea class="input"  ng-model="newPlayer.appearance"></textarea>
-                <p>Height: </p> <input class="input"  ng-model="newPlayer.height" >
-                <p>Weight: </p> <input class="input"  ng-model="newPlayer.weight" >
-            </div>
-            <div class="column is-one-quarter">
-                <p>BackStory </p><textarea class="input"  ng-model="newPlayer.backStory"></textarea>
-        </div>
-        </div>
-        <button class="button is-warning" ng-click="createNewPlayer(newPlayer);">Save New Character Sheet!</button>
+        <p>Real Name:</p> <input class="input" name="realName" ng-model="newPlayer.realName">
+        <p>Player Name:</p> <input class="input" name="name" ng-model="newPlayer.name">
+        <p>Race: </p> <input class="input" name="race" ng-model="newPlayer.race">
+        <p>Class:</p> <input class="input" ng-model="newPlayer.classType">
+        <button class="button is-warning is-large newCButton" ng-click="createNewPlayer(newPlayer);">Save New Character Sheet!</button>
     </div>
- 
-
-
 </div>

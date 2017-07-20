@@ -132,10 +132,14 @@ textarea
 .charMenuContainer
 {
     padding: 1%;
-
     background-image: url('../img/wilds.jpg');
-    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat; 
+    height: 600px;
 }
+.newCharHero{
+    background-image: url('./../img/heroes.jpg')
+}   
 .charMenuContainer p
 {
     color: white;
