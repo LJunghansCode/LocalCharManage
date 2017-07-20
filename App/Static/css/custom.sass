@@ -1,19 +1,31 @@
 // 1. Import the initial variables
 @import "../../../node_modules/bulma/sass/utilities/initial-variables"
 
+$dark: black
 $paper: #d5d5d5
-$darkPaper: #9099a2
-$blue: #6d7993
-$pink: #96858f
-$red : #ff3b3f
-$dusty-orange: #FF9966
-$t-orange: transparentize($dusty-orange, .8)
+$darkPaper: #d5d5e1
+$blue: #0375b4
+$irises: #007849
+$sunflowers: #ffce00
+$t-red : transparentize($red, .3)
+$sunflowers-invert: #000
+
+
 
 // 3. Set the derived variables
 
-$info: $pink
-$primary: $blue
-$danger: $t-orange
+$info: $sunflowers
+$primary: $irises
+$info-invert: $sunflowers-invert
+$warning: $blue
+$danger: $t-red
+
+.playerName
+ font-size: 40pt
+ font-family: $family-monospace
+.mainTitle
+ font-family: $family-monospace
+ color: $blue
 
 // 4. Import the rest of Bulma
 @import "./../../../node_modules/bulma/bulma"

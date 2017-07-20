@@ -4,8 +4,9 @@
         <div ng-repeat="stat in charDetails" class="message">
             <div class="message-header">
                 <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="is-primary button is-info ">
-                    <span class="icon"><i ng-class="ifEdit(stat);"></i></span> </button>
+                    <span class="icon"><i ng-class="ifEdit(stat);"></i></span> 
                     <p ng-bind="stat.title"></p>
+                    </button>
             </div>
             <div class="message-body">
                 <p class="playerStatItemDetails" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
