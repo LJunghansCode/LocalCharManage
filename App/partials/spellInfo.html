@@ -4,7 +4,7 @@
         <button ng-disabled="!player.youOwnThis" class="cardAddButton button is-small is-primary fa fa-plus" ng-if="player.youOwnThis"
             ng-click="spells.addItem()"></button>
         <div data-ng-repeat="spell in spells.list | orderBy: '-'">
-            <div class="spellCard is-dark card">
+            <div class="spellCard card">
                 <div class="card-header">
                     <p ng-bind="spell.name" class="subTitle card-header-title"></p>
                     <button class="button is-danger" ng-disabled="!player.youOwnThis" ng-click="spells.deleteItem(spell); updateAndSave(player)"><i class="icon"><span class="fa fa-trash-o"></span></i></button>
@@ -26,12 +26,12 @@
 <article class="column">
     <div class="content">
         <p class="title">Spell Details</p>
-        <div ng-repeat="stat in spellDetails" class="message is-dark">
+        <div ng-repeat="stat in spellDetails" class="message">
             <div class="message-header">
-                 <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="is-primary button is-info ">
+                 <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="is-primary button ">
                     <span class="icon"><i ng-class="ifEdit(stat);"></i></span>
                     <span ng-bind="stat.title"></span>
-                </button>
+                
                 
             </div>
             <div class="message-body">
@@ -49,8 +49,8 @@
                 <tr ng-repeat="slot in spellSlots">
                     <th ng-bind="slot.spellLevel"></th>
                     <td ng-repeat="spell in slot.spellsToCast">
-                        <span ng-if="spell.usedSpell" class="icon"><i class="fa fa-hourglass-2"></i></span>
-                        <span ng-if="!spell.usedSpell" class="icon"><i class="fa fa-star"></i></span>
+                        <span ng-if="spell.usedSpell" class="icon "><i class="fa fa-hourglass-2"></i></span>
+                        <span ng-if="!spell.usedSpell" class="icon "><i class="fa fa-star"></i></span>
                         <input ng-model="spell.usedSpell" type="checkbox" class="checkbox">
                     </td>
                 </tr>

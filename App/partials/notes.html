@@ -1,6 +1,6 @@
 <section class="container column">
 <button class="button" ng-click="playerNotes.addItemTimeStamped()" >Add Note</button>
-<div ng-repeat="note in playerNotes.list" class=" message is-black">
+<div ng-repeat="note in playerNotes.list" class=" message">
             <div class="message-header">
                 <p>Created On .. {{note.created_at}}</p>
                 <button ng-disabled="!player.youOwnThis" ng-click="editStat(note);" class="button is-info" ng-class="playerNotes.ifEditReturnIcon(note);"></button>

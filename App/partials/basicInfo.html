@@ -1,8 +1,8 @@
 <article class="column">
     <p class="title">Basic Information</p>
-    <div ng-repeat="stat in basicInformation" class="message  ">
+    <div ng-repeat="stat in basicInformation" class="message">
         <div class="message-header">
-            <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="is-primary button is-info ">
+            <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="is-primary button  ">
                     <span class="icon"><i ng-class="ifEdit(stat);"></i></span> 
                     <span ng-bind="stat.title"></span>
                       </button>
@@ -18,7 +18,7 @@
     <p class="title">Vitals</p>
     <div ng-repeat="stat in vitals" class="message">
         <div class="message-header">
-            <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="is-primary button is-info ">
+            <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="is-primary button  ">
                     <span class="icon"><i ng-class="ifEdit(stat);"></i></span> 
                     <span ng-bind="stat.title"></span>
                      </button>

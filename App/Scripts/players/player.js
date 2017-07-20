@@ -1,5 +1,5 @@
     class Player {
-        constructor(id, accountEmail, campaign, realName, name, race, classType, alignment, sex, size, age, height, weight, level, initiative, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, currentHitPoints, tempHitPoints, spellList, skills, personalityTraits, ideals, bonds, flaws, attacksSpellcasting, featuresTraits, equipment, proficienciesLanguages, appearance, alliesOrganizations, backStory, treasureInventory, spellcastingClass, spellcastingAbility, spellSaveDC, spellSaveBonus, armorClass, proficiencyBonus, borderColor, companions, notes) {
+        constructor(id, accountEmail, campaign, realName, name, race, classType, alignment, sex, size, age, height, weight, level, initiative, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, currentHitPoints, tempHitPoints, spellList, skills, personalityTraits, ideals, bonds, flaws, attacksSpellcasting, featuresTraits, equipment, proficiencies, languages, appearance, alliesOrganizations, backStory, treasureInventory, spellcastingClass, spellcastingAbility, spellSaveDC, spellSaveBonus, armorClass, proficiencyBonus, borderColor, companions, notes) {
             this.id = id;
             this.accountEmail = accountEmail;
             this.campaign = campaign;
@@ -35,7 +35,8 @@
             this.attacksSpellcasting = attacksSpellcasting;
             this.featuresTraits = featuresTraits;
             this.equipment = equipment;
-            this.proficienciesLanguages = proficienciesLanguages;
+            this.proficiencies = proficiencies;
+            this.languages = languages;
             this.appearance = appearance;
             this.alliesOrganizations = alliesOrganizations;
             this.backStory = backStory;
@@ -100,6 +101,10 @@
                     stat: "level",
                     value: this.level
                 }, {
+                    title: "Initiative",
+                    stat: "initiative",
+                    value: this.initiative
+                }, {
                     title: "Speed",
                     stat: "speed",
                     value: this.speed
@@ -124,17 +129,17 @@
                     stat: "weight",
                     value: this.weight
                 }, {
-                    title: "Initiative",
-                    stat: "initiative",
-                    value: this.initiative
+                    title: "Speed",
+                    stat: "speed",
+                    value: this.speed
                 }],
 
                 basicInformation: [{
-                    title: "Real Name",
+                    title: "Player Name",
                     stat: "realName",
                     value: this.realName
                 }, {
-                    title: "Player Name",
+                    title: "Character Name",
                     stat: "name",
                     value: this.name
                 }, {
@@ -160,17 +165,17 @@
                     stat: "treasureInventory",
                     value: this.treasureInventory
                 }, {
-                    title: "Attacks and Spellcasting Details",
-                    stat: "attacksSpellcasting",
-                    value: this.attacksSpellcasting
-                }, {
                     title: "Features and Traits",
                     stat: "featuresTraits",
                     value: this.featuresTraits
                 }, {
-                    title: "Proficiencies and Languages",
-                    stat: "proficienciesLanguages",
-                    value: this.proficienciesLanguages
+                    title: "Proficiencies",
+                    stat: "proficiencies",
+                    value: this.languages
+                }, {
+                    title: "Languages",
+                    stat: "languages",
+                    value: this.proficiencies
                 }, {
                     title: "Appearance",
                     stat: "appearance",
@@ -199,10 +204,6 @@
                     title: "Personality Traits",
                     stat: "personalityTraits",
                     value: this.pbonersonalityTraits
-                }, {
-                    title: "Notes",
-                    stat: "notes",
-                    value: this.notes
                 }],
                 playerNotes: {
                     title: "Notes",

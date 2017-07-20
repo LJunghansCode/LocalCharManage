@@ -3,7 +3,7 @@
         <p class="title">Details</p>
         <div ng-repeat="stat in charDetails" class="message">
             <div class="message-header">
-                <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="is-primary button is-info ">
+                <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="is-primary button">
                     <span class="icon"><i ng-class="ifEdit(stat);"></i></span> 
                     <p ng-bind="stat.title"></p>
                     </button>

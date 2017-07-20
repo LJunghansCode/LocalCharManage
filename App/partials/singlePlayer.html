@@ -1,5 +1,5 @@
 <div class="section ">
-    <div class="hero is-primary">
+    <div class="hero is-info">
         <section class=" container hero-body">
             <div class="level">
                 <div class="level-left">
@@ -7,9 +7,9 @@
                 </div>
                 <div class="level-right">
                     <button ng-if="!player.editing && player.youOwnThis" class="button is-warning" ng-click="toggleEdit(player)">Toggle Edit</button>
-                    <button ng-if="player.editing && player.youOwnThis" ng-click="toggleEdit(player); updateAndSave(player)" class="button is-info"
+                    <button ng-if="player.editing && player.youOwnThis" ng-click="toggleEdit(player); updateAndSave(player)" class="button is-warning"
                         type="submit">Save</button>
-                    <button class="button " ng-if="player.youOwnThis" ng-click="toggleJoinCampaign()">Join a campaign!</button>
+                    <button class="button is-warning joinCButton" ng-if="player.youOwnThis" ng-click="toggleJoinCampaign()">Join a campaign!</button>
                 </div>
             </div>
         </section>

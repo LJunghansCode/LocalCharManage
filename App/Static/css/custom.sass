@@ -2,13 +2,14 @@
 @import "../../../node_modules/bulma/sass/utilities/initial-variables"
 
 $dark: black
-$paper: #d5d5d5
+$paper: #f4f4f4
 $darkPaper: #d5d5e1
-$blue: #0375b4
-$irises: #007849
-$sunflowers: #ffce00
+$blue: #6D7993
+$irises: #dcd0c0
+$sunflowers: #c0b283
 $t-red : transparentize($red, .3)
 $sunflowers-invert: #000
+$irises-invert: #000
 
 
 
@@ -17,6 +18,7 @@ $sunflowers-invert: #000
 $info: $sunflowers
 $primary: $irises
 $info-invert: $sunflowers-invert
+$primary-invert: $irises-invert
 $warning: $blue
 $danger: $t-red
 
@@ -26,6 +28,14 @@ $danger: $t-red
 .mainTitle
  font-family: $family-monospace
  color: $blue
+.message-header
+ background-color: black
+.message-body
+ background-color: $paper
+.joinCButton
+ margin-left: 2%
 
+.card-header
+ background-color: $paper
 // 4. Import the rest of Bulma
 @import "./../../../node_modules/bulma/bulma"

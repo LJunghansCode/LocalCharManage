@@ -31,6 +31,14 @@
                         <p class="cardDataInline" ng-if="!equipment.editing">Type: </p>
                         <p class="cardDataInline" ng-if="!equipment.editing" ng-bind="equipment.type"></p> <input ng-if="equipment.editing" placeholder="Damage/Armor Type" ng-model="equipment.type" class="input">
                     </section>
+                     <section class="cardDetailsSegment">
+                        <p class="cardDataInline" ng-if="!equipment.editing">Range: </p>
+                        <p class="cardDataInline" ng-if="!equipment.editing" ng-bind="equipment.range"></p> <input ng-if="equipment.editing" placeholder="Damage/Armor Type" ng-model="equipment.range" class="input">
+                    </section>
+                     <section class="cardDetailsSegment">
+                        <p class="cardDataInline" ng-if="!equipment.editing">Item Type: </p>
+                        <p class="cardDataInline" ng-if="!equipment.editing" ng-bind="equipment.itemType"></p> <input ng-if="equipment.editing" placeholder="Damage/Armor Type" ng-model="equipment.itemType" class="input">
+                    </section>
                 </div>
                 <div class="card-footer">
                     <button class="button is-info" ng-disabled="!player.youOwnThis" ng-click="editStat(equipment)">
