@@ -26,7 +26,7 @@
             <div class="hero-body">
                 <div class="menu charMenuContainer">
                     <p class="menu-label title is-1">Character Overview</p>
-                    <p class="menu-label">Click to enter Character Sheet Mode to Enter Details and Join a Campaign!</p>
+                    <p class="menu-label">Click to enter Character Sheet Mode</p>
                     <ul class="menu-list">
                         <li class="playerMenuItem" ng-repeat="player in totalPlayers"><a class="link" href="/#!/player/{{player._id}}" ng-click="getPlayer(player._id)" ng-bind="player.name + ':    ' + 'Level' + ' ' + player.level + ' ' + player.classType"></a>
                         </li>

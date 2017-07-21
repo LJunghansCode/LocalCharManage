@@ -32,7 +32,7 @@ app.config(($routeProvider, $locationProvider) => {
             controller: 'sessionController'
         })
         .otherwise( {
-            redirectTo: '/players',
+            redirectTo: '/home',
             controller:'homeController'
         });
 

@@ -12,7 +12,7 @@ app.controller('homeController', [ '$location', '$scope', '$route','userFactory'
                 navBar.classList.remove('is-open');
                 mainContent.style.marginLeft = "0";
             } else{
-                mainContent.style.marginLeft = "265px";
+                mainContent.style.marginLeft = "10.5%";
                 navBar.classList.add('is-open');
             }
 
@@ -25,6 +25,11 @@ app.controller('homeController', [ '$location', '$scope', '$route','userFactory'
             mainContent.style.marginLeft = "0";
         }
     };
+scope.logOut = () => {
+    userFactory.logOutUser((data) => {
+        console.log(data);
+    });
+};
     
 
     

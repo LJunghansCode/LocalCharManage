@@ -1,9 +1,5 @@
 app.controller('playerController', ['$location', '$timeout', '$scope', '$route', '$routeParams', 'playerFactory', 'campaignFactory', 'userFactory', 'Upload', function (loc, timeout, scope, route, routeParams, playerFactory, campaignFactory, userFactory, Upload) {
-    let currUser = userFactory.getCurUser((data) => {
-        if (data.data.message === false) {
-            loc.path('/login');
-        }
-    });
+
     //GET PLAYER
     if (routeParams.id) {
         playerFactory.getPlayer(routeParams.id, (data) => {
