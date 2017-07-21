@@ -9,27 +9,33 @@
     <link rel="icon" href="Static/img/swords.png">
 </head>
 <body ng-controller="homeController">
-<nav class="nav has-shadow has-text-black">
-  <div class="nav-left">
-    <a href="/#!/players" class="nav-item"><i class="icon"><span class="fa fa-home"></span></i><p class="mainTitle">Player Manager</p> </a>
-  </div>
-  <div class="nav-center">
-    <a class="nav-item" target="_blank" href="https://github.com/LJunghansCode/LocalCharManage" >
-    <span class="icon">
-      <i class="fa fa-github"></i>
-    </span>
-    </a>
-  </div>
-  <div class="nav-right">
-    <a ng-if="curentUser" class="nav-item" href="/#!/login">Login</a>
-    <a class="nav-item" href="/#!/players">Player Manager</a>
-    <a class="nav-item" href="/#!/campaignManager">Campaign Manager</a>    
-    <a class="nav-item" href="/#!/login">Log Out</a>    
-  </div>
-</nav>
-    <main class="container">
+<div class="columns">
+  <main class="column is-1">
+    <span class="main-menu-button fa" ng-click="toggleNavBar()" class="icon"><i class="fa fa-bars fa-5x"></i></span>
+      <nav id="mainNav" class="main-side-nav">
+        <div >
+          <a class="menu-label" href="/#!/players"><p class="">Player Manager</p> </a>
+          <object type="image/svg+xml" width="265px" height="240px" data="./Static/img/swordsVG.svg"></object>
+        </div>
+        <ul class="menu-list nav-menu">
+          <li><a ng-if="curentUser"href="/#!/login">Login</a></li>
+          <li><a href="/#!/players">Player Manager</a></li>
+          <li><a href="/#!/campaignManager">Campaign Manager</a></li>
+          <li><a href="/#!/login">Log Out</a></li>
+        </ul>
+        <div class="github-link">
+          <a target="_blank" href="https://github.com/LJunghansCode/LocalCharManage" >
+          <span class="icon">
+            <i class="fa fa-github"></i>
+          </span>
+          </a>
+        </div>
+      </nav>
+  </main>
+    <main ng-click="closeNavBar()" class="column" id="body-container">
         <ng-view></ng-view>
     </main>
+</div>
     <!--Load angular and route app file.-->
     <script src="angular/angular.min.js"></script>
     <script src="angular-route/angular-route.min.js"></script>

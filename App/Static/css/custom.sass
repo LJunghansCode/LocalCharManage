@@ -17,12 +17,15 @@ $light: #769283
 
 
 $info: $sunflowers
-$primary: $irises
+$primary: $black
 $info-invert: $sunflowers-invert
-$primary-invert: $irises-invert
+$primary-invert: $white
 $warning: $blue
 $danger: $t-red
+$body-size: 20px
 
+.playerButtons button 
+ box-shadow: 1px 1px 1px $primary
 .playerName
  font-size: 40pt
  font-family: $family-monospace
@@ -41,5 +44,7 @@ $danger: $t-red
  background-color: $paper
 
 
-// 4. Import the rest of Bulma
+// 4. Import the rest of Bulma and my css
+@import "./navbar.sass"
+@import "./colorChoice.sass"
 @import "./../../../node_modules/bulma/bulma"

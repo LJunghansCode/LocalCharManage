@@ -1,11 +1,10 @@
 <article class="column is-6">
-    <div class="content">
-        <p class="cardTitle title is-3"> {{player.name}}'s Spell List </p>
+        <p class="cardTitle title is-2"> {{player.name}}'s Spell List </p>
         <button ng-disabled="!player.youOwnThis" class="cardAddButton button is-small is-primary fa fa-plus" ng-if="player.youOwnThis"
             ng-click="spells.addItem()"></button>
-            <div class="container">
-                  <label><i class="icon"><span class="fa fa-search"></span></i> <input ng-model="spellSearch"></label>
-            </div>
+        <div class="container">
+            <label><i class="icon"><span class="fa fa-search"></span></i> <input ng-model="spellSearch"></label>
+        </div>
         <div data-ng-repeat="spell in spells.list | filter:spellSearch | orderBy:'-' ">
             <div class="spellCard card">
                 <div class="card-header">
@@ -24,28 +23,21 @@
                 </div>
             </div>
         </div>
-    </div>
 </article>
 <article class="column">
-    <div class="content">
         <p class="title">Spell Details</p>
         <div ng-repeat="stat in spellDetails" class="message">
             <div class="message-header">
-                 <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="is-primary button ">
+                <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="is-primary button ">
                     <span class="icon"><i ng-class="ifEdit(stat);"></i></span>
-                    <span ng-bind="stat.title"></span>
-                
-                
+                    <span ng-bind="stat.title"></span>     
             </div>
             <div class="message-body">
                 <p class="playerStatItem" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
                 <input class="input" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]">
             </div>
         </div>
-    </div>
-</article>
-<article class="column">
-    <div class="content">
+        <br>    
         <p class="title">Spell Slots</p>
         <table class="table is-striped ">
             <thead>
@@ -59,5 +51,4 @@
                 </tr>
             </thead>
         </table>
-    </div>
 </article>

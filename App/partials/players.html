@@ -1,5 +1,27 @@
 <div class="columns level">
-    <div class="column level-left">
+    <div class="column is-7 level-left">
+        <section class="hero is-light">
+            <div class="hero-body">
+                <div class="content">
+                    <h1 class="title is-1">
+                        New Character
+                    </h1>
+                    <h2 class="subtitle">
+                        Enter basic information, then head into Character Sheet Mode for more customization!
+                    </h2>
+                </div>
+            </div>
+        </section>
+        <div class="content">
+            <p class=" createResponse title is-5" ng-bind="createResponse"></p>
+        </div>
+        <p>Real Name:</p> <input class="input" name="realName" ng-model="newPlayer.realName">
+        <p>Player Name:</p> <input class="input" name="name" ng-model="newPlayer.name">
+        <p>Race: </p> <input class="input" name="race" ng-model="newPlayer.race">
+        <p>Class:</p> <input class="input" ng-model="newPlayer.classType">
+        <button class="button is-warning is-large newCButton" ng-click="createNewPlayer(newPlayer);">Save New Character Sheet!</button>
+    </div>
+    <div class="column level-right">
         <div class="hero">
             <div class="hero-body">
                 <div class="menu charMenuContainer">
@@ -12,27 +34,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="column level-right">
-            <section class="hero is-light">
-                <div class="hero-body">
-                    <div class="content">
-                        <h1 class="title is-1">
-                            New Character
-                        </h1>
-                        <h2 class="subtitle">
-                            Enter basic information, then head into Character Sheet Mode for more customization!
-                        </h2>
-                    </div>
-                </div>
-            </section>
-        <div class="content">
-            <p class=" createResponse title is-5" ng-bind="createResponse"></p>
-        </div>
-        <p>Real Name:</p> <input class="input" name="realName" ng-model="newPlayer.realName">
-        <p>Player Name:</p> <input class="input" name="name" ng-model="newPlayer.name">
-        <p>Race: </p> <input class="input" name="race" ng-model="newPlayer.race">
-        <p>Class:</p> <input class="input" ng-model="newPlayer.classType">
-        <button class="button is-warning is-large newCButton" ng-click="createNewPlayer(newPlayer);">Save New Character Sheet!</button>
     </div>
 </div>

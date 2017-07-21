@@ -74,7 +74,7 @@ module.exports = (() => {
                         }
                     }
                     foundCampaign.save();
-                    res.json({players: playerList})
+                    res.json({players: playerList});
                 }
             });
 

@@ -1,30 +1,33 @@
 <div>
-    <div class="hero is-info">
-        <section class="container hero-body">
+    <div class="hero is-light">
+        <section class="hero-body">
             <div class="level">
                 <div class="level-left">
-                    <h1 class="playerName">{{player.name}} the level {{player.level}} {{player.classType}}</h1>
+                        <h1 class="playerName title">{{player.name}} the level {{player.level}} {{player.classType}}</h1>
                 </div>
-                <div class="level-right">
-                    <button ng-if="!player.editing && player.youOwnThis" class="button is-warning" ng-click="toggleEdit(player)">Toggle Edit</button>
-                    <button ng-if="player.editing && player.youOwnThis" ng-click="toggleEdit(player); updateAndSave(player)" class="button is-warning"
-                        type="submit">Save</button>
-                    <button class="button is-warning joinCButton" ng-if="player.youOwnThis" ng-click="toggleJoinCampaign()">Join a campaign!</button>
+                <div class="level-right playerButtons">
+                    <button ng-if="player.editing && player.youOwnThis" ng-click="toggleEdit(player); updateAndSave(player)" class="button is-small"
+                    type="submit">Save</button>
+                    <button ng-if="!player.editing && player.youOwnThis" class="button is-small" ng-click="toggleEdit(player)">Toggle Edit</button>
+                    <button class="button is-small joinCButton" ng-if="player.youOwnThis" ng-click="toggleJoinCampaign()">Join a campaign!</button>
                 </div>
             </div>
+
         </section>
     </div>
 </div>
 
 
-<div class="tabs">
+<div class="tabs is-centered">
     <ul>
         <li ng-class="ifActiveTemplate(t)" ng-repeat="t in templates"><a ng-bind="t.name" ng-click="templateSwap(t)"></a></li>
-    </ul>
+        
+
 </div>
 <section class="slide-animate-container">
-    <article class="slide-animate columns" ng-include="templateUrl"></article>
+    <main class="slide-animate columns" ng-include="templateUrl"></main>
 </section>
+
 
 
 <!--TODO- Turn this into campaignModal directive-->

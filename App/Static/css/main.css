@@ -18,113 +18,9 @@ textarea
 .playerInSessionContainer
 {
     margin: 1%;
-
     border: 2px solid black;
 }
-.is-blue
-{
-    color: blue;
-    border: 3px solid blue;
-    box-shadow: 7px 7px 7px blue;
-}
-.is-purple
-{
-    color: purple;
-    border: 3px solid purple;
-    box-shadow: 7px 7px 7px purple;
-}
-.is-green
-{
-    color: forestgreen;
-    border: 3px solid forestgreen;
-    box-shadow: 7px 7px 7px forestgreen;
-}
-.is-teal
-{
-    color: teal;
-    border: 3px solid teal;
-    box-shadow: 7px 7px 7px teal;
-}
-.is-red
-{
-    color: red;
-    border: 3px solid red;
-    box-shadow: 7px 7px 7px red;
-}
-.is-pink
-{
-    color: hotpink;
-    border: 3px solid hotpink;
-    box-shadow: 7px 7px 7px hotpink;
-}
-.is-orange
-{
-    color: orange;
-    border: 3px solid orange;
-    box-shadow: 7px 7px 7px orange;
-}
-.is-gray
-{
-    color: gray;
-    border: 3px solid gray;
-    box-shadow: 7px 7px 7px gray;
-}
-.color-choice-red
-{
-    width: 30px;
-    height: 30px;
 
-    background-color: red;
-}
-.color-choice-purple
-{
-    width: 30px;
-    height: 30px;
-
-    background-color: purple;
-}
-.color-choice-green
-{
-    width: 30px;
-    height: 30px;
-
-    background-color: forestgreen;
-}
-.color-choice-teal
-{
-    width: 30px;
-    height: 30px;
-
-    background-color: teal;
-}
-.color-choice-pink
-{
-    width: 30px;
-    height: 30px;
-
-    background-color: hotpink;
-}
-.color-choice-blue
-{
-    width: 30px;
-    height: 30px;
-
-    background-color: blue;
-}
-.color-choice-orange
-{
-    width: 30px;
-    height: 30px;
-
-    background-color: orange;
-}
-.color-choice-gray
-{
-    width: 30px;
-    height: 30px;
-
-    background-color: gray;
-}
 .your-combat
 {
     border: 5px solid hotpink;
@@ -244,11 +140,7 @@ textarea
     -o-transition: opacity 3s ease-in-out;
      opacity: 1;
 }
-.basic-stat
-{
-    
-    
-}
+
 .information-container 
 {
     display: inline-block;
@@ -262,9 +154,8 @@ textarea
 }
 .mainTitle 
 {
-    padding-left: 25%;
-    font-size: 24pt;
-    font-family: "BebasNeueRegular";
+    font-size: 20pt;
+    
 }
 .subTitle
 {
