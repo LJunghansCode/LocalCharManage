@@ -19,10 +19,10 @@ app.config(($routeProvider, $locationProvider) => {
             templateUrl: './partials/login.html',
             controller: 'userController'
         })
-        .when('/campaignManager', {
-            templateUrl: './partials/campaign.html',
-            controller: 'campaignController'
-        })
+        // .when('/campaignManager', {
+        //     templateUrl: './partials/campaign.html',
+        //     controller: 'campaignController'
+        // })
         .when('/player/:id', {
             templateUrl: './partials/singlePlayer.html',
             controller: 'playerController'

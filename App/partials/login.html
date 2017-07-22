@@ -1,4 +1,4 @@
-<section class="column"ng-if='!userEmail'>
+<section class="column" ng-if='!currentUser'>
     <div class="columns">
         <div class="column">
             <div class="message  ">
@@ -37,7 +37,7 @@
         </div>
     </div>
     </section>
-    <section class="message" ng-if='userEmail'>
+    <section class="message" ng-if='currentUser'>
         <div class="message-header">
             <p class="loginTitle">You are logged in as {{userEmail}}</p>
         </div>

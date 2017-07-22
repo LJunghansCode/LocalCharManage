@@ -80,13 +80,19 @@ module.exports = (() => {
             if(sess.user) {
                 sess.destroy();
                 res.json({loggedOut: true});
+            }else {
+                res.json({loggedOut: false});
             }
         },
         getMyPlayers : (req, res) => {
             var currentUser = req.session.user;
-            Player.find({accountEmail: currentUser.email}, (err, playerArr) => {
-                 res.json({players: playerArr});
-            });
+            if(!currentUser) {
+                res.json({notLoggedIn: true});
+            } else{
+                Player.find({accountEmail: currentUser.email}, (err, playerArr) => {
+                    res.json({players: playerArr});
+                });
+            }
         }
 
     };

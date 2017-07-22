@@ -64,7 +64,7 @@ textarea {
 
 .cardAddButton {
     display: inline-block;
-    padding: 2%;
+    margin-left: 2%;
 }
 
 .cardTitle {
@@ -196,6 +196,6 @@ textarea {
 .charMenuContainer p {
     color: black;
 }
-.title.is-2 {
+.title.is-3 {
     padding: 10px;
 }

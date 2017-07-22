@@ -14,8 +14,12 @@ module.exports = (() => {
        PlayerController.newPlayer = (req, res) => {
             var sess = req.session;
             var playerToMake = new Player(req.body);
-            playerToMake.accountEmail = sess.user.email;
-            sess.user.players.push(playerToMake);
+            if(sess.user){
+                playerToMake.accountEmail = sess.user.email;
+                sess.user.players.push(playerToMake);
+            }else{
+                playerToMake.accountEmail = "TempPlayer";
+            }            
             playerToMake.save((err) => {
                 if (err) return handleError(err);
             });
@@ -30,7 +34,7 @@ module.exports = (() => {
                 if (foundPlayer) {
                     res.json({playerFound: foundPlayer});
                 } else {
-                    console.error('no find');
+                    console.error('No player to find');
                 }
             }); 
         };

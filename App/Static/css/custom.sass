@@ -24,14 +24,16 @@ $warning: $blue
 $danger: $t-red
 $body-size: 17px
 
+#body-container 
+ transition: padding-left .5s
+ padding: 0px
+ margin-top: 2% 
+
 .playerButtons button 
  box-shadow: 1px 1px 1px $primary
 .playerName
  font-size: 40pt
- font-family: $family-monospace
-.mainTitle
- font-family: $family-monospace
- color: $blue
+ font-family: $family-monospace 
 .message-header
  background-color: black
 .message-body
@@ -42,7 +44,8 @@ $body-size: 17px
  margin-top: 4% 
 .card-header
  background-color: $paper
-
+.nav-title
+ color: $black
 
 // 4. Import the rest of Bulma and my css
 @import "./navbar.sass"

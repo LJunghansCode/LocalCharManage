@@ -1,3 +1,4 @@
+
 app.factory('playerFactory', ['$http', '$location', function(http, loc){
 	var factory = {};
 	factory.newPlayer = (player, callback) => {
@@ -23,8 +24,12 @@ app.factory('playerFactory', ['$http', '$location', function(http, loc){
 	};
     factory.getSessionPlayers = (callback) => {
         http.get('/getMyPlayers').then((returned_data) => {
-            if(returned_data){
+			
+            if(returned_data.data.players){
 				callback(returned_data);
+			} else{
+				callback({loggedIn: false});
+				return;
 			}
         });
     };

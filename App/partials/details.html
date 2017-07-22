@@ -1,16 +1,18 @@
 <article class="column">
     <div class="content">
         <p class="title">Details</p>
-        <div ng-repeat="stat in charDetails" class="message">
-            <div class="message-header">
-                <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="is-primary button">
-                    <span class="icon"><i ng-class="ifEdit(stat);"></i></span> 
-                    <p ng-bind="stat.title"></p>
-                    </button>
-            </div>
-            <div class="message-body">
-                <p class="playerStatItemDetails" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
-                <textarea auto-resize class="textarea" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]"></textarea>
+        <div class="section">
+            <div ng-repeat="stat in charDetails" class="message">
+                <div class="message-header">
+                    <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="is-primary button">
+                        <span class="icon"><i ng-class="ifEdit(stat);"></i></span> 
+                        <p ng-bind="stat.title"></p>
+                        </button>
+                </div>
+                <div class="message-body">
+                    <p class="playerStatItemDetails" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
+                    <textarea auto-resize class="textarea" ng-if="stat.editing || player.editing" ng-model="player[stat.stat]"></textarea>
+                </div>
             </div>
         </div>
     </div>

@@ -1,6 +1,9 @@
 app.controller('playerController', ['$location', '$timeout', '$scope', '$route', '$routeParams', 'playerFactory', 'campaignFactory', 'userFactory', 'Upload', function (loc, timeout, scope, route, routeParams, playerFactory, campaignFactory, userFactory, Upload) {
-
     //GET PLAYER
+        userFactory.getCurUser( (data) => {
+            scope.user = data.data.message;
+        });
+    
     if (routeParams.id) {
         playerFactory.getPlayer(routeParams.id, (data) => {
             if (data.data.playerFound) {
@@ -91,12 +94,17 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
         });
     } else {
         //All Players You Own
-        playerFactory.getSessionPlayers((data) => {
-            playersArray = data.data.players;
-            for (var i = 0; i < playersArray.length; i++) {
-                scope.totalPlayers.push(playersArray[i]);
-            }
-        });
+            playerFactory.getSessionPlayers((data) => {
+                if(scope.user){
+                playersArray = data.data.players;
+                for (var i = 0; i < playersArray.length; i++) {
+                    scope.totalPlayers.push(playersArray[i]);
+                    }    
+                } else {
+                    scope.notLoggedIn = true;
+                }
+            });
+        
         //FOR NEW PLAYERS -----
         scope.createResponse = "";
         scope.totalPlayers = [];
