@@ -1,4 +1,4 @@
-<section class="column" ng-if='!currentUser'>
+<section ng-if='!user'>
     <div class="columns">
         <div class="column">
             <div class="message  ">
@@ -35,11 +35,11 @@
                 </form>
             </div>
         </div>
-    </div>
+     </div>
     </section>
-    <section class="message" ng-if='currentUser'>
+    <section class="message" ng-if='user'>
         <div class="message-header">
-            <p class="loginTitle">You are logged in as {{userEmail}}</p>
+            <p class="loginTitle">You are logged in as {{user}}</p>
         </div>
         <div class="message-body">
             <button class="button is-large is-info logOutButton" ng-click="logOutUser()">Log Out?</button>

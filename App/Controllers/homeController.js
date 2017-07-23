@@ -3,7 +3,7 @@ app.controller('homeController', ['$location', '$scope', '$route', 'userFactory'
         if (data.data.message === false) {
             loc.path('/login');
         } else {
-            scope.user= data.data.message;
+            scope.user = data.data.message;
         }
     });
     scope.toggleNavBar = () => {
