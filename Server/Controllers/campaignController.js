@@ -12,7 +12,7 @@ module.exports = (() => {
        CampaignController.newCampaign = (req, res) => {
        var campaignToMake = new Campaign({campaignTitle: req.body.title, campaignPassword: req.body.password});
            campaignToMake.save((err) => {
-                if (err) return handleError(err);
+                if (err) return handleError(err, res);
            });
            res.json({campaignMade: campaignToMake});
 
@@ -23,7 +23,7 @@ module.exports = (() => {
             let campaignPassword = req.body.campaignPassword;
             let playerInstance = req.body.player;
             Player.findOne({_id:playerInstance.id}, (err, playerFound) => {              
-                if (err) return handleError(err);
+                if (err) return handleError(err, res);
                 if(playerFound){
                     //TO-DO : WRITE VALIDATION FOR PLAYER ALREADY ON CAMPAIGN
                     Campaign.findOne({campaignTitle: campaignTitle, campaignPassword: campaignPassword}, (err, foundCampaign) => {
@@ -53,7 +53,7 @@ module.exports = (() => {
             campaignTitle = req.body.title;
             campaignPassword = req.body.password;
             Campaign.findOne({campaignTitle: campaignTitle, campaignPassword: campaignPassword}, (err, foundCampaign) => {
-                if (err) return handleError(err);
+                if (err) return handleError(err, res);
                 if (foundCampaign) {
                     res.json({campaignId: foundCampaign._id,
                               campaignObject: foundCampaign

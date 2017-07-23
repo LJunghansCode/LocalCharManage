@@ -25,10 +25,10 @@ $danger: $t-red
 $body-size: 17px
 
 #body-container 
- transition: padding-left .5s
- padding: 0px
- margin-top: 2% 
-
+ padding-left: 20px
+ transition: padding-left .6s
+.page-container
+ margin-top: 1%
 .playerButtons button 
  box-shadow: 1px 1px 1px $primary
 .playerName
@@ -46,8 +46,15 @@ $body-size: 17px
  background-color: $paper
 .nav-title
  color: $black
-
+.main-menu-button .fa
+ width: 91%
+ padding-top: 20% 
+ margin-left: auto
+ margin-right: auto
+ height: auto
+ position: relative
 // 4. Import the rest of Bulma and my css
 @import "./navbar.sass"
 @import "./colorChoice.sass"
+@import "./mobile.sass"
 @import "./../../../node_modules/bulma/bulma"

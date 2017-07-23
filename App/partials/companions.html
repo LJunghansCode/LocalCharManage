@@ -10,7 +10,7 @@
                         <button class="button is-danger is-small fa fa-trash-o is-info card-header-icon" ng-disabled="!player.youOwnThis" ng-click="companions.deleteItem(companion); updateAndSave(player)"></button>
                     </div>
                     <div class="compCard card-content">
-                        <p class="title is-5">Over View</p>
+                            <p class="title is-5">Over View</p>
                         <section class="cardDetailsSegment">
                             <input ng-if="companion.editing" placeholder="Name" ng-model="companion.name" class="input">
                             <p class="cardDataInline" ng-if="!companion.editing"> Traits: </p><textarea auto-resize ng-if="companion.editing" placeholder="Traits" ng-model="companion.traits"
@@ -22,7 +22,7 @@
                                 class="input"></textarea>
                             <p class="cardDescription" ng-if="!companion.editing" ng-bind="companion.actions"></p>
                         </section>
-                        <p class="title is-5">Attributes</p>
+                            <p class="title is-5">Attributes</p>
                         <section class="cardDetailsSegment">
                             <p class="cardDataInline" ng-if="!companion.editing">Size: </p> <input ng-if="companion.editing" placeholder="Size" ng-model="companion.size" class="input">
                             <p class="cardDescription" ng-if="!companion.editing" ng-bind="companion.size"></p>

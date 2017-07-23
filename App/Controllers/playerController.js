@@ -89,6 +89,7 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                 scope.currentTemplate = scope.templates[0];
                 scope.templateUrl = scope.currentTemplate.url;
             } else {
+                loc.url('/players');
                 console.error("Something went wrong. Sorry!");
             }
         });

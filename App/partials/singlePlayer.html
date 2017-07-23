@@ -1,4 +1,4 @@
-<div class="section">
+
     <div class="hero is-light">
         <section class="hero-body">
             <div class="level">
@@ -15,14 +15,13 @@
 
         </section>
     </div>
-</div>
+
 
 
 <div class="tabs is-centered">
     <ul>
         <li ng-class="ifActiveTemplate(t)" ng-repeat="t in templates"><a ng-bind="t.name" ng-click="templateSwap(t)"></a></li>
-        
-
+    </ul>
 </div>
 <section class="slide-animate-container">
     <main class="slide-animate columns" ng-include="templateUrl"></main>

@@ -12,9 +12,9 @@ app.controller('homeController', ['$location', '$scope', '$route', 'userFactory'
         var mainContent = document.getElementById('body-container');
         if (navBar.classList.contains('is-open')) {
             navBar.classList.remove('is-open');
-            mainContent.style.paddingLeft = "0";
+            mainContent.style.paddingLeft = "20px";
         } else {
-            mainContent.style.paddingLeft = "11%";
+            mainContent.style.paddingLeft = "265px";
             navBar.classList.add('is-open');
         }
     };
@@ -23,7 +23,7 @@ app.controller('homeController', ['$location', '$scope', '$route', 'userFactory'
         var mainContent = document.getElementById('body-container');
         if (navBar.classList.contains('is-open')) {
             navBar.classList.remove('is-open');
-            mainContent.style.paddingLeft = "0";
+            mainContent.style.paddingLeft = "20px";
         }
     };
     scope.logOut = () => {

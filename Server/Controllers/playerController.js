@@ -8,7 +8,7 @@ var session = require('express-session');
 
 module.exports = (() => {
     const handleError = (err, res) => {
-        res.json({error: err});
+        console.log(err);
     };
     var PlayerController = {};
        PlayerController.newPlayer = (req, res) => {
@@ -29,18 +29,18 @@ module.exports = (() => {
             Player.findOne({_id: req.body.id}, (err, foundPlayer) => {
                 if (err) {
                     res.json({error: err});
-                    return handleError(err);
+                    return handleError(err, res);
                 }
                 if (foundPlayer) {
                     res.json({playerFound: foundPlayer});
                 } else {
-                    console.error('No player to find');
+                    res.json({playerFound: false});
                 }
             }); 
         };
         PlayerController.deletePlayer = (req, res) => {
             Player.findOneAndRemove({_id: req.body.id}, (err, foundPlayer) => {
-                if (err) return handleError(err);
+                if (err) return handleError(err, res);
                 if (foundPlayer) {
                     res.json({message: true});
                 } else {

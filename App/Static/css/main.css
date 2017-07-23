@@ -26,16 +26,20 @@ textarea {
 
 .charMenuContainer {
     padding: 1%;
-    background-image: url('../img/wilds.jpg');
+    background-image: url('../img/heroes.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     height: 600px;
 }
 
 .newCharHero {
-    background-image: url('./../img/heroes.jpg')
+    background-image: url('./../img/wilds.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
-
+.newCharHero p {
+    color: white;
+}
 .charMenuContainer p {
     color: white;
 }
@@ -156,7 +160,7 @@ textarea {
     background: white;
     height: 100%;
     min-height: 1000px;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 .slide-animate {
@@ -194,8 +198,14 @@ textarea {
 }
 
 .charMenuContainer p {
-    color: black;
+    color: white
 }
 .title.is-3 {
     padding: 10px;
+}
+@media (max-width: 699px) and (min-width: 450px) {
+    .main-menu-button{
+        width: 45px;
+        height: 45px;
+    }
 }

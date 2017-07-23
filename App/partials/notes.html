@@ -23,7 +23,7 @@
                 <button ng-disabled="!player.youOwnThis" ng-click="editStat(note);" class="button is-info" ng-class="playerNotes.ifEditReturnIcon(note);"></button>
             </div>
             <div class="message-body">
-                <p class="playerplayerNotesItemDetails" ng-if="!note.editing && !player.editing" ng-bind="note.note"></p>
+                <p class="playerplayerNotesItemDetails cardDescription" ng-if="!note.editing && !player.editing" ng-bind="note.note"></p>
                 <textarea auto-resize placeholder="Your Note....." class="textarea" ng-if="note.editing || player.editing" ng-model="note.note"></textarea>
                 <button class="button is-danger fa fa-trash" ng-click="playerNotes.deleteItem(note);updateAndSave(player);"></button>
             </div>
