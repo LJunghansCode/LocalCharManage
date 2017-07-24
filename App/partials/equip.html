@@ -1,5 +1,4 @@
 <article class="column is-6">
-    
         <p class="cardTitle title is-3"> {{player.name}}'s Equipment List </p>
         <button ng-disabled="!player.youOwnThis" class="cardAddButton button is-small is-primary fa fa-plus" ng-if="player.youOwnThis"
             ng-click="equipmentList.addItem()"></button>
@@ -7,6 +6,9 @@
             <div class="spellCard card">
                 <div class="card-header">
                     <p ng-bind="equipment.name" class="subTitle card-header-title"></p>
+                   <button class="button is-info" ng-disabled="!player.youOwnThis" ng-click="editStat(equipment)">
+                        <i class="icon"><span ng-class="equipmentList.ifEditReturnIcon(equipment)" ></span> </i>
+                    </button>
                     <button class="button is-danger" ng-disabled="!player.youOwnThis" ng-click="equipmentList.deleteItem(equipment);updateAndSave(player)">
                         <i class="icon"><span class="fa fa-trash-o"></span></i>
                     </button>
@@ -41,9 +43,7 @@
                     </section>
                 </div>
                 <div class="card-footer">
-                    <button class="button is-info" ng-disabled="!player.youOwnThis" ng-click="editStat(equipment)">
-                        <i class="icon"><span ng-class="equipmentList.ifEditReturnIcon(equipment)" ></span> </i>
-                    </button>
+
                 </div>
             </div>
         </div>

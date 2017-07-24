@@ -21,6 +21,9 @@
         <div class="message" ng-repeat="skill in skillList.list">
             <div class="message-header">
                 <p ng-bind="skill.name"> </p>
+            <button ng-if="!skill.editing" class="button is-small fa fa-pencil" ng-disabled="!player.youOwnThis" ng-click="skillList.toggleEdit(skill)"></button>
+            <button ng-if="skill.editing" ng-click="skillList.toggleEdit(skill); updateAndSave(player)" class=" button fa fa-save is-small is-info"
+                type="submit"></button>
                 <button class="button is-small is-danger fa fa-trash" ng-disabled="!player.youOwnThis" ng-click="skillList.deleteItem(skill); updateAndSave(player)"></button>
             </div>
             <div class="message-body">
@@ -28,9 +31,6 @@
                 <input ng-if="skill.editing" placeholder="Proficiency" ng-model="skill.stat" class="input">
                 <p class="cardDescription" ng-if="!skill.editing" ng-bind="skill.stat"></p>
             </div>
-            <button ng-if="!skill.editing" class="button is-small fa fa-pencil" ng-disabled="!player.youOwnThis" ng-click="skillList.toggleEdit(skill)"></button>
-            <button ng-if="skill.editing" ng-click="skillList.toggleEdit(skill); updateAndSave(player)" class=" button fa fa-save is-small is-info"
-                type="submit"></button>
         </div>
     </section>
 </article>
