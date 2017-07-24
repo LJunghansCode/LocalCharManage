@@ -258,7 +258,11 @@
         singleModCalc(stat) {
             var modifier = stat + "Mod";
             this[modifier] = Math.floor((this[stat] - 10) / 2);
-            return ("Modifer: " + this[modifier]);
+            //Check for modifier being valid
+            if ( isNaN(this[modifier]) || this[stat] === "" || this[stat] === null ){
+                return 'Enter a stat value';
+            }
+                return ("Modifer: " + this[modifier]);
         }
         gainHealth(healthToGain) {
             this.currentHitPoints += healthToGain;

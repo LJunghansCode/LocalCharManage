@@ -2,7 +2,7 @@
     <p class="title">Basic Information</p>
     <div ng-repeat="stat in basicInformation" class="message">
         <div class="message-header">
-            <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="is-primary button  ">
+            <button ="!player.youOwnThis" ng-click="editStat(stat);" class="is-primary button  ">
                     <span class="icon"><i ng-class="ifEdit(stat);"></i></span> 
                     <span ng-bind="stat.title"></span>
                       </button>
