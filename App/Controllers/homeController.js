@@ -6,6 +6,7 @@ app.controller('homeController', ['$location', '$scope', '$route', 'userFactory'
             scope.user = data.data.user;
         }
     });
+
     scope.toggleNavBar = () => {
         //navbar is 265px wide
         var navBar = document.getElementById('mainNav');

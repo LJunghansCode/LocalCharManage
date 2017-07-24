@@ -1,6 +1,5 @@
 var app = angular.module('app', ['ngRoute', 'ngFileUpload', 'ngAnimate']);
 
-
 app.config(($routeProvider, $locationProvider) => {
     $routeProvider
         .when('/home', {
