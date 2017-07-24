@@ -1,7 +1,7 @@
 app.controller('playerController', ['$location', '$timeout', '$scope', '$route', '$routeParams', 'playerFactory', 'campaignFactory', 'userFactory', 'Upload', function (loc, timeout, scope, route, routeParams, playerFactory, campaignFactory, userFactory, Upload) {
     //GET PLAYER
         userFactory.getCurUser( (data) => {
-            scope.user = data.data.message;
+            scope.user = data.data.user;
         });
     
     if (routeParams.id) {
@@ -48,7 +48,7 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                 scope.spells = new DynamicList(scope.player.spellList);
                 scope.playerNotes = new DynamicList(scope.player.notes, 'Notes');
                 userFactory.getCurUser((data) => {
-                    if (data.data.message === scope.player.accountEmail) {
+                    if (data.data.user === scope.player.accountEmail) {
                         scope.player.youOwnThis = true;
                     }
                 });

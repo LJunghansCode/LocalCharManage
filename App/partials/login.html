@@ -10,6 +10,7 @@
                     <h4 ng-bind="loginStatusMessage"></h4>
                     <label class="label" for="return-email-input">E-mail</label><input class="input" type="email" name="returnEmail" ng-model="returnUser.email">
                     <label class="label" for="return-password-input">Password</label><input class="input" type="password" name="returnPassword" ng-model="returnUser.password">
+                    
                 </div>
                 <footer class="message-footer">
                     <button class="button" type="submit" ng-click="returnUser(returnUser.email, returnUser.password)"> Login </button>
@@ -25,6 +26,7 @@
                 <form>
                 <div class="card-content">
                     <h4 ng-bind="statusMessage"></h4>
+                    <label class="label" for="return-password-input">User Name</label><input class="input" type="text" name="returnPassword" ng-model="newUser.user_name">
                     <label class="label" for="login-email-input">E-mail</label><input class="input" type="email" name="loginEmail" ng-model="newUser.email">
                     <label class="label" for="login-password-input">Password</label><input class="input" type="password" name="loginPassword" ng-model="newUser.password">
                     <label class="label" for="login-confirmPassword-input">Confirm Password</label><input class="input" type="password" name="loginPassword" ng-model="newUser.confirmPassword">

@@ -1,7 +1,7 @@
 app.controller('combatController', ['$location', '$scope', '$route','$routeParams','orderByFilter','campaignFactory','playerFactory','userFactory',function(loc, scope, route, routeParams, orderBy, campaignFactory, playerFactory, userFactory){
 
 let currUser = userFactory.getCurUser((data) => {
-    if(data.data.message === false) {
+    if(data.data.user === false) {
             loc.path('/login');
     }
 });

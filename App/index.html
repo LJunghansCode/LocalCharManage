@@ -24,14 +24,15 @@
     </div>
   </main>
   <nav id="mainNav" class="main-side-nav">
+    <div>
     <object width="265px" type="image/svg+xml" data="./Static/img/PlayerSheetCo.svg"></object>
     <object type="image/svg+xml" width="265px" height="240px" data="./Static/img/swordsVG.svg"></object>
     <ul class="menu-list nav-menu">
-      <li><a ng-if="curentUser" href="/#!/login">Login</a></li>
+      <li><a href="/#!/home">Home</a></li>
       <li><a href="/#!/players">Player Manager</a></li>
+      <li><a ng-click="logOut()" ng-bind="loggedCheck()" href="/#!/login"></a></li>
       <!--Commenting this out until the campaign manager is complete-->
       <!--<li><a href="/#!/campaignManager">Campaign Manager</a></li>-->
-      <li><a ng-click="logOut()" ng-bind="loggedCheck()" href="/#!/login"></a></li>
     </ul>
     <div class="github-link">
       <a target="_blank" href="https://github.com/LJunghansCode/LocalCharManage">
@@ -72,11 +73,12 @@
 <script src="Factories/sessionFactory.js"></script>
 <script src="directives/textArea.js"></script>
 <!--I dont think I like the footer-->
-<!--<footer class="footer">
+<footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
       <p>
-        <strong>D n D Player Manager</strong>
+        <strong>Player Manager Co.</strong>
+        <strong>Check it out</strong>
       </p>
       <p>
         <a class="is-black" href="https://github.com/LJunghansCode/LocalCharManage">
@@ -88,6 +90,6 @@
       </p>
     </div>
   </div>
-</footer>-->
+</footer>
 
 </html>

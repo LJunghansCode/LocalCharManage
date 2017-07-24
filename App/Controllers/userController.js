@@ -7,18 +7,19 @@ app.controller('userController', [ '$window', '$location', '$scope', '$route', '
         const Validator = new ValidateInput();
         //Validator will return an object with passed at truthy/falsy. And an 'errorMessage'
         let userInstanceEmail = scope.newUser.email;
+        let newUserName = scope.newUser.user_name;
         let userInstancePassword = scope.newUser.password;
         let userConfirm = scope.newUser.confirmPassword;
         if (userConfirm !== userInstancePassword) {
             scope.statusMessage = "Sorry, passwords don't match. Try again!";
             return;
-        } else if (!userInstanceEmail || ! userInstancePassword) {
+        } else if (!newUserName || !userInstanceEmail || ! userInstancePassword) {
             scope.statusMessage = " Oops, you missed a field";
             return;
         }  else if ( !Validator.checkValidEmail(userInstanceEmail).passed || !Validator.checkValidPassword(userInstancePassword).passed ) {
             scope.statusMessage = Validator.checkValidPassword(userInstancePassword).errorMessage + Validator.checkValidEmail(userInstanceEmail).errorMessage;
         } else {
-                userToSend = {email: userInstanceEmail, password: userInstancePassword};
+                userToSend = {email: userInstanceEmail, user_name: newUserName, password: userInstancePassword};
                 userFactory.newUser(userToSend, (returnedData) => {
                     scope.currentUser = true;
                     scope.statusMessage = returnedData.data.message;
@@ -26,7 +27,8 @@ app.controller('userController', [ '$window', '$location', '$scope', '$route', '
                     if(returnedData.data.message !== "Welcome Back!"){
                         window.location.reload();
                     } else {
-                        window.location.reload();
+                        console.log('you logged in')
+                        loc.path('/players');
                     }
                     
                 });
@@ -43,8 +45,8 @@ app.controller('userController', [ '$window', '$location', '$scope', '$route', '
             if(returnedData.data.message !== "Welcome Back!"){
                      return;
                     } else {
-                        window.location.reload();
                         loc.url('/players');                         
+                        window.location.reload();
                     }
         });
       }

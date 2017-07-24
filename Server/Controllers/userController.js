@@ -70,9 +70,9 @@ module.exports = (() => {
         getUser : (req, res) => {
             var sess = req.session;
             if(!sess.user) {
-                res.json({message: false});
+                res.json({user: false});
             } else {
-                res.json({message: sess.user.email});
+                res.json({user: sess.user});
             }
         },
         logoutUser : (req, res) => {

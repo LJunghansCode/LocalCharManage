@@ -1,9 +1,9 @@
 app.controller('homeController', ['$location', '$scope', '$route', 'userFactory', function (loc, scope, route, userFactory) {
     userFactory.getCurUser((data) => {
-        if (data.data.message === false) {
-            loc.path('/login');
+        if (data.data.user === false) {
+            loc.path('/home');
         } else {
-            scope.user = data.data.message;
+            scope.user = data.data.user;
         }
     });
     scope.toggleNavBar = () => {
