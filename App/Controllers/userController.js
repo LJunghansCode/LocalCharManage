@@ -45,7 +45,7 @@ app.controller('userController', [ '$window', '$location', '$scope', '$route', '
             if(returnedData.data.message !== "Welcome Back!"){
                      return;
                     } else {
-                        loc.url('/players');                         
+                        loc.path('/players');                         
                         window.location.reload();
                     }
         });

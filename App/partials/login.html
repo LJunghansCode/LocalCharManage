@@ -41,7 +41,7 @@
     </section>
     <section class="message" ng-if='user'>
         <div class="message-header">
-            <p class="loginTitle">You are logged in as {{user}}</p>
+            <p class="loginTitle">You are logged in as {{user.user_name}}</p>
         </div>
         <div class="message-body">
             <button class="button is-large is-info logOutButton" ng-click="logOutUser()">Log Out?</button>

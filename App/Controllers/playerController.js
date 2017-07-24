@@ -1,8 +1,10 @@
 app.controller('playerController', ['$location', '$timeout', '$scope', '$route', '$routeParams', 'playerFactory', 'campaignFactory', 'userFactory', 'Upload', function (loc, timeout, scope, route, routeParams, playerFactory, campaignFactory, userFactory, Upload) {
     //GET PLAYER
-        userFactory.getCurUser( (data) => {
+    userFactory.getCurUser( (data) => {
+        if(data.data.user){
             scope.user = data.data.user;
-        });
+        }
+    });
     
     if (routeParams.id) {
         playerFactory.getPlayer(routeParams.id, (data) => {
@@ -47,11 +49,9 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                 scope.equipmentList = new DynamicList(scope.player.equipment);
                 scope.spells = new DynamicList(scope.player.spellList);
                 scope.playerNotes = new DynamicList(scope.player.notes, 'Notes');
-                userFactory.getCurUser((data) => {
-                    if (data.data.user === scope.player.accountEmail) {
+                    if (scope.user.email === scope.player.accountEmail) {
                         scope.player.youOwnThis = true;
                     }
-                });
                 scope.templates = [{
                         name: 'Basic Information',
                         url: './../partials/basicInfo.html'
