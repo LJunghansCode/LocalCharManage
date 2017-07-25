@@ -9,8 +9,11 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
     if (routeParams.id) {
         playerFactory.getPlayer(routeParams.id, (data) => {
             if (data.data.playerFound) {
+                ////////////////////////
+               //Player Class Creation//
+               ////////////////////////
                 var P = data.data.playerFound;
-                let playerOnDisplay = new Player(P._id, P.accountEmail, P.campaign, P.realName, P.name, P.race, P.classType, P.alignment, P.sex, P.size, P.age, P.height, P.weight, P.level, P.initiative, P.speed, P.strength, P.dexterity, P.constitution, P.intelligence, P.wisdom, P.charisma, P.currentHitPoints, P.tempHitPoints, P.spellList, P.skills, P.personalityTraits, P.ideals, P.bonds, P.flaws, P.attacksSpellcasting, P.featuresTraits, P.equipment, P.proficiencies, P.languages, P.appearance, P.alliesOrganizations, P.backStory, P.treasureInventory, P.spellcastingClass, P.spellcastingAbility, P.spellSaveDC, P.spellSaveBonus, P.armorClass, P.proficiencyBonus, P.borderColor, P.companions, P.notes);
+                let playerOnDisplay = new Player(P._id, P.accountEmail, P.campaign, P.realName, P.name, P.race, P.classType, P.alignment, P.sex, P.size, P.age, P.height, P.weight, P.level, P.initiative, P.speed, P.strength, P.dexterity, P.constitution, P.intelligence, P.wisdom, P.charisma, P.currentHitPoints, P.tempHitPoints, P.spellList, P.skills, P.personalityTraits, P.ideals, P.bonds, P.flaws, P.attacksSpellcasting, P.featuresTraits, P.equipment, P.proficiencies, P.languages, P.appearance, P.alliesOrganizations, P.backStory, P.treasureInventory, P.spellcastingClass, P.spellcastingAbility, P.spellSaveDC, P.spellSaveBonus, P.armorClass, P.proficiencyBonus, P.borderColor, P.companions, P.notes, P.experience);
                 scope.player = playerOnDisplay;
                 let primaryStats = [{
                     stat: "strength",
@@ -36,7 +39,9 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                 //Get Spell Slots
                 let slots = scope.player.spellSlots;
                 scope.spellSlots = slots.returnSpellSlotArray(slots.createSpellSlots(scope.player.level, scope.player.spellcastingClass));
-                //Stat Organization
+                ////////////////////
+               //Stat Organization//
+               ////////////////////
                 var masterStat = scope.player.organizeStatsArray();
                 scope.basicInformation = masterStat.basicInformation;
                 scope.charDetails = masterStat.charDetails;
@@ -79,6 +84,10 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                     {
                         name: 'Notes',
                         url: './../partials/notes.html'
+                    },
+                    {
+                        name: 'Experience',
+                        url: './../partials/experience.html'
                     },
                     {
                         name: 'Delete',
@@ -162,6 +171,7 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
         return statMod;
     };
     //UI TOGGLES
+
     scope.templateSwap = (template) => {
         scope.currentTemplate = template;
         scope.templateUrl = template.url;

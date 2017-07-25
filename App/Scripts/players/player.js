@@ -1,5 +1,5 @@
     class Player {
-        constructor(id, accountEmail, campaign, realName, name, race, classType, alignment, sex, size, age, height, weight, level, initiative, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, currentHitPoints, tempHitPoints, spellList, skills, personalityTraits, ideals, bonds, flaws, attacksSpellcasting, featuresTraits, equipment, proficiencies, languages, appearance, alliesOrganizations, backStory, treasureInventory, spellcastingClass, spellcastingAbility, spellSaveDC, spellSaveBonus, armorClass, proficiencyBonus, borderColor, companions, notes) {
+        constructor(id, accountEmail, campaign, realName, name, race, classType, alignment, sex, size, age, height, weight, level, initiative, speed, strength, dexterity, constitution, intelligence, wisdom, charisma, currentHitPoints, tempHitPoints, spellList, skills, personalityTraits, ideals, bonds, flaws, attacksSpellcasting, featuresTraits, equipment, proficiencies, languages, appearance, alliesOrganizations, backStory, treasureInventory, spellcastingClass, spellcastingAbility, spellSaveDC, spellSaveBonus, armorClass, proficiencyBonus, borderColor, companions, notes, experience) {
             this.id = id;
             this.accountEmail = accountEmail;
             this.campaign = campaign;
@@ -26,7 +26,7 @@
             this.tempHitPoints = tempHitPoints;
             this.spellList = spellList;
             this.DiceManager = new DiceRoller();
-            this.experience = 0;
+            this.experience = experience;
             this.skills = skills;
             this.personalityTraits = personalityTraits;
             this.ideals = ideals;
@@ -275,14 +275,22 @@
             const levelGuide = new LevelGuide();
             let newValue = this.experience + parseInt(toGain);
             let experienceNeeded = levelGuide.experienceNeeded(currentLevel);
-            if (newValue >= experienceNeeded) {
-                this.gainLevel();
-                this.experience = newValue - experienceNeeded;
-                this.level += 1;
-            } else {
-                this.experience = newValue;
-            }
-
+            //TESITNG CONSOLE LOG LINE
+            // console.log('I am Level' + this.level + 'I need' + experienceNeeded + 'experience to get to level ' + (this.level + 1) + 'I just gained' + toGain + 'and now have' + newValue);
+            //TESTING LINE ABOVE
+                if (newValue >= experienceNeeded) {
+                    this.gainLevel();
+                    this.experience = newValue - experienceNeeded;
+                } else {
+                    this.experience = newValue;
+                }
+            return({
+                currentExperience: newValue,
+                experienceNeeded: experienceNeeded
+            });
+        }
+        resetExperience() {
+            this.experience = 0;
         }
 
         ActionRoll(RollsArray) {
@@ -290,40 +298,7 @@
             return (this.DiceManager.rollDie(RollsArray));
         }
         gainLevel() {
-            switch (this.normalizeTextLowerCase(this.classType)) {
-                case ("paladin"):
-
-                    break;
-                case ("barbarian"):
-
-                    break;
-                case ("cleric"):
-
-                    break;
-                case ("druid"):
-
-                    break;
-                case ("fighter"):
-
-                    break;
-                case ("monk"):
-
-                    break;
-                case ("ranger"):
-
-                    break;
-                case ("rogue"):
-
-                    break;
-                case ("sorcerer"):
-
-                    break;
-                case ("warlock"):
-
-                    break;
-                case ("wizard"):
-
-                    break;
-            }
+           this.level += 1;
         }
+        
     }

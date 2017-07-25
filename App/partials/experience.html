@@ -1,0 +1,12 @@
+ <main ng-controller="experienceController" class="section">
+    <input class="input xpInput" ng-model="experienceToGain">
+    <button class="button" ng-click="gainExperience(experienceToGain)">Gain {{ex6perienceToGain}} Experience</button>
+    <button class="button" ng-click="resetExperience(player)">Reset XP</button>
+    <section class="section experienceSection">
+        <div class="experience-bar">
+            <div id="experience-slider" class="experience-bar-slider">
+                <p ng-bind="player.experience"></p> 
+            </div>    
+        </div>
+    </section>
+</main>
