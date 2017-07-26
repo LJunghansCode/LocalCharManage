@@ -54,7 +54,8 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                 scope.equipmentList = new DynamicList(scope.player.equipment);
                 scope.spells = new DynamicList(scope.player.spellList);
                 scope.playerNotes = new DynamicList(scope.player.notes, 'Notes');
-                    if (scope.user.email === scope.player.accountEmail) {
+                //CHECK OWNERSHIP
+                if (scope.user.email === scope.player.accountEmail) {
                         scope.player.youOwnThis = true;
                     }
                 scope.templates = [{
@@ -217,6 +218,7 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
             scope.updateAndSave(scope.player);
             if (stat.title === 'Level' || stat.title === 'Spell Casting Class') {
                 let slots = scope.player.spellSlots;
+                scope.player.resetExperience();
                 scope.spellSlots = slots.returnSpellSlotArray(slots.createSpellSlots(scope.player.level, scope.player.spellcastingClass));
             }
             stat.editing = false;

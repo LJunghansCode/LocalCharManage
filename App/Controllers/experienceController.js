@@ -1,21 +1,30 @@
 app.controller('experienceController', ['$window', '$scope', '$route', 'playerFactory', function (window, scope, route, playerFactory) {
     //set Slider
-    scope.slideExperience = (widthString) => {
-        const xpslider = document.getElementById('experience-slider');
-        xpslider.style.width = widthString;
+     scope.LevelGuide = new LevelGuide();
+     scope.returnWidthPercent = (player) => {
+         console.log(player.experience)
+        if(player.experience === undefined || player.experience === null || player.experience === 0){
+            let classObj = {'width': '0%'};
+            return classObj;
+        }
+       
+        player.level = parseInt(player.level);
+        let xpNeeded = scope.LevelGuide.experienceNeeded(player.level);
+        console.log(xpNeeded)
+        var currExperience = player.experience;
+        var decimalOfTotal = (currExperience / xpNeeded);
+        var percToSet = Math.floor(decimalOfTotal * 100);
+        if (percToSet >= 100) {
+
+            percToSet = 0;
+        }
+        var widthString = percToSet + "%";
+        var classObj = {'width': widthString};
+        return classObj;
     };
-    (() => {
-        scope.experienceNeeded = new LevelGuide().experienceNeeded(scope.player.level);
-        let decimalOfTotal = (scope.player.experience / scope.experienceNeeded);
-        let percToSet = Math.floor(decimalOfTotal * 100);
-        let widthString = percToSet + "%";
-        scope.slideExperience(widthString);
-    })();
-    scope.resetExperience = (player) =>{
+    scope.resetExperience = (player) => {
         player.resetExperience();
-        scope.slideExperience('0%');
         scope.updateAndSave(player);
-        window.location.reload();
     };
     scope.updateAndSave = (player) => {
         playerFactory.updateAndSave(player, (data) => {
@@ -28,19 +37,11 @@ app.controller('experienceController', ['$window', '$scope', '$route', 'playerFa
             }
         });
     };
-    scope.gainExperience = (toGain) => {
-        if (toGain <= 0 || toGain === undefined) {
-            return;
+    scope.gainExperience = (toGain, player) => {
+        if(player.experience === 0 || player.experience === undefined || player.experience === null){
+            scope.player.gainExperience(0);
         }
         let valueToSlide = scope.player.gainExperience(toGain);
-        let decimalOfTotal = (valueToSlide.currentExperience / valueToSlide.experienceNeeded);
-        let percToSet = Math.floor(decimalOfTotal * 100);
-        if (percToSet >= 100) {
-
-            percToSet = 0;
-        }
-        let widthString = percToSet + "%";
-        scope.slideExperience(widthString);
         scope.updateAndSave(scope.player);
     };
 }]);

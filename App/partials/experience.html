@@ -1,12 +1,13 @@
- <main ng-controller="experienceController" class="section">
+ <main ng-if="player.level" ng-controller="experienceController" class="section">
     <input class="input xpInput" ng-model="experienceToGain">
-    <button class="button" ng-click="gainExperience(experienceToGain)">Gain {{ex6perienceToGain}} Experience</button>
+    <button class="button" ng-click="gainExperience(experienceToGain, player)">Gain {{ex6perienceToGain}} Experience</button>
     <button class="button" ng-click="resetExperience(player)">Reset XP</button>
     <section class="section experienceSection">
         <div class="experience-bar">
-            <div id="experience-slider" class="experience-bar-slider">
+            <div ng-style="returnWidthPercent(player)" id="experience-slider" class="experience-bar-slider">
                 <p ng-bind="player.experience"></p> 
             </div>    
         </div>
     </section>
 </main>
+<p class="section" ng-if="!player.level">Enter a Level for Experience</p>

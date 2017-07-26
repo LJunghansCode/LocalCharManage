@@ -60,7 +60,6 @@
             }
             return lowerCase;
         }
-
         organizeStatsArray() {
             //In order of Appearance
             const masterStatArraysObj = {

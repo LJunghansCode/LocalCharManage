@@ -14,6 +14,8 @@ module.exports = (() => {
        PlayerController.newPlayer = (req, res) => {
             var sess = req.session;
             var playerToMake = new Player(req.body);
+            playerToMake.experience = 0;
+            playerToMake.level = 1;
             if(sess.user){
                 playerToMake.accountEmail = sess.user.email;
                 sess.user.players.push(playerToMake);
