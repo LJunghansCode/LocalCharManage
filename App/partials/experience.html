@@ -1,4 +1,4 @@
- <main ng-if="player.level" ng-controller="experienceController" class="section">
+ <main ng-if="player.level && player.youOwnThis" ng-controller="experienceController" class="section">
     <input class="input xpInput" ng-model="experienceToGain">
     <button class="button" ng-click="gainExperience(experienceToGain, player)">Gain {{ex6perienceToGain}} Experience</button>
     <button class="button" ng-click="resetExperience(player)">Reset XP</button>
