@@ -1,14 +1,17 @@
  <section class="hero is-light">
-  <div class="hero-body">
-    <div class="container">
-        <h1 class="title">Player Sheet Co.</h1>
+  <div class="columns hero-body">
+    <div class="column container">
+        <h1 class="title is-1 is-centered">Player Sheet Co.</h1>
         <h3 class="subtitle" ng-if="user">Welcome Back</h3>
         <h3 class="title " ng-if="user" ng-bind="user.user_name"></h3> 
     </div>
-    <div ng-if="!user">
+    <div class="column"ng-if="!user">
       <p> Lets get started!  Please <a class="subtitle"href="/#!/login">create an account</a>
         to get access to saving. </p>
         <p>Or, <a class="subtitle" href="/#!/players"> just try out a character sheet </a>(you wont be able to save)</p> 
+    </div>
+    <div ng-if="!user" class="column container">
+        <h1 class="title">Existing user?<a class="subtitle" href="/#!/login"> Login!</a></h1>
     </div>
   </div>
 </section>

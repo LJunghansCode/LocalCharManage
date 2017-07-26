@@ -21,7 +21,7 @@
             <button ng-disabled="!player.youOwnThis" ng-click="editStat(stat);" class="is-primary button  ">
                     <span class="icon"><i ng-class="ifEdit(stat);"></i></span> 
                     <span ng-bind="stat.title"></span>
-                     </button>
+            </button>
         </div>
         <div class="message-body">
             <p class="playerStatItem" ng-if="!stat.editing && !player.editing" ng-bind="player[stat.stat]"></p>
