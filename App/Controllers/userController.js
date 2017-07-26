@@ -27,7 +27,7 @@ app.controller('userController', [ '$window', '$location', '$scope', '$route', '
                     if(returnedData.data.message !== "Welcome Back!"){
                         window.location.reload();
                     } else {
-                        console.log('you logged in')
+                        
                         loc.path('/players');
                     }
                     

@@ -15,25 +15,6 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                 var P = data.data.playerFound;
                 let playerOnDisplay = new Player(P._id, P.accountEmail, P.campaign, P.realName, P.name, P.race, P.classType, P.alignment, P.sex, P.size, P.age, P.height, P.weight, P.level, P.initiative, P.speed, P.strength, P.dexterity, P.constitution, P.intelligence, P.wisdom, P.charisma, P.currentHitPoints, P.tempHitPoints, P.spellList, P.skills, P.personalityTraits, P.ideals, P.bonds, P.flaws, P.attacksSpellcasting, P.featuresTraits, P.equipment, P.proficiencies, P.languages, P.appearance, P.alliesOrganizations, P.backStory, P.treasureInventory, P.spellcastingClass, P.spellcastingAbility, P.spellSaveDC, P.spellSaveBonus, P.armorClass, P.proficiencyBonus, P.borderColor, P.companions, P.notes, P.experience);
                 scope.player = playerOnDisplay;
-                let primaryStats = [{
-                    stat: "strength",
-                    value: scope.player.strength
-                }, {
-                    stat: "dexterity",
-                    value: scope.player.dexterity
-                }, {
-                    stat: "constitution",
-                    value: scope.player.constitution
-                }, {
-                    stat: "intelligence",
-                    value: scope.player.intelligence
-                }, {
-                    stat: "wisdom",
-                    value: scope.player.wisdom
-                }, {
-                    stat: "charisma",
-                    value: scope.player.charisma
-                }];
                 //Get Modifiers
                 scope.player.calculateModifiers();
                 //Get Spell Slots
@@ -47,6 +28,7 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                 scope.charDetails = masterStat.charDetails;
                 scope.primaryStats = masterStat.primaryStats;
                 scope.spellDetails = masterStat.spellDetails;
+                //Check for skillmap Existince.
                 if(scope.player.skills === undefined) {
                     scope.player.skills = {};
                     scope.updateAndSave(scope.player);
