@@ -2,7 +2,6 @@ app.controller('experienceController', ['$window', '$scope', '$route', 'playerFa
     //set Slider
      scope.LevelGuide = new LevelGuide();
      scope.returnWidthPercent = (player) => {
-         console.log(player.experience)
         if(player.experience === undefined || player.experience === null || player.experience === 0){
             let classObj = {'width': '0%'};
             return classObj;
@@ -10,7 +9,6 @@ app.controller('experienceController', ['$window', '$scope', '$route', 'playerFa
        
         player.level = parseInt(player.level);
         let xpNeeded = scope.LevelGuide.experienceNeeded(player.level);
-        console.log(xpNeeded)
         var currExperience = player.experience;
         var decimalOfTotal = (currExperience / xpNeeded);
         var percToSet = Math.floor(decimalOfTotal * 100);
