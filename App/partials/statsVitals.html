@@ -16,8 +16,20 @@
 </article>
 <article class="column">
     <p class="title">Skills</p>
-    <button ng-disabled="!player.youOwnThis" class="button is-primary fa fa-plus" ng-if="player.youOwnThis" ng-click="skillList.addItem()"></button>
-    <section class="section">
+    <!--<button ng-disabled="!player.youOwnThis" class="button is-primary fa fa-plus" ng-if="player.youOwnThis" ng-click="skillList.addItem()"></button>-->
+    <p class="menu-label">Skills, click to mark proficiencies</p>
+    <div class="section">
+            <div ng-repeat="skill in skillList">
+                <aside  class="menu">                    
+                    <p class="menu-label" ng-bind="skill.title"></p>
+                        <!--Okay this is confusing, it's the skill of the primary skill being reapeated as parent list-->
+                        <ul ng-repeat="s in skill.skills" class="skillMenu menu-list">
+                            <li class="skill-item" ng-click="addSkill(s.statName);" ng-class="ifPlayerHasSkill(s.statName)" ><a ng-bind="s.title"></a></li>
+                    </ul>  
+                </aside> 
+            </div>
+    </div>
+    <!--<section class="section">
         <div class="message" ng-repeat="skill in skillList.list">
             <div class="message-header">
                 <p ng-bind="skill.name"> </p>
@@ -32,5 +44,5 @@
                 <p class="cardDescription" ng-if="!skill.editing" ng-bind="skill.stat"></p>
             </div>
         </div>
-    </section>
+    </section>-->
 </article>

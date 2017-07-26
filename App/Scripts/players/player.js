@@ -299,5 +299,17 @@
         gainLevel() {
            this.level += 1;
         }
+        toggleSkill(skill) {
+            if(!this.skills){
+                this.skills = {};
+            }
+            var skillMapObject = this.skills;
+            if(skillMapObject[skill]){
+               delete skillMapObject[skill];
+            }else{
+               skillMapObject[skill] = true;
+            }
+        }
+        
         
     }

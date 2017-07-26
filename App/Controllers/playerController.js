@@ -47,9 +47,12 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                 scope.charDetails = masterStat.charDetails;
                 scope.primaryStats = masterStat.primaryStats;
                 scope.spellDetails = masterStat.spellDetails;
-
+                if(scope.player.skills === undefined) {
+                    scope.player.skills = {};
+                    scope.updateAndSave(scope.player);
+                }
                 scope.vitals = masterStat.vitals;
-                scope.skillList = new DynamicList(scope.player.skills);
+                scope.skillList = new SkillLib().returnLibrary();
                 scope.companions = new DynamicList(scope.player.companions);
                 scope.equipmentList = new DynamicList(scope.player.equipment);
                 scope.spells = new DynamicList(scope.player.spellList);
@@ -143,6 +146,21 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
             });
         }
     };
+    //Main Stat Edit Toggle
+    scope.editStat = (stat) => {
+        //Check to see if spellSlots will change...
+        if (stat.editing !== true) {
+            stat.editing = true;
+        } else {
+            scope.updateAndSave(scope.player);
+            if (stat.title === 'Level' || stat.title === 'Spell Casting Class') {
+                let slots = scope.player.spellSlots;
+                scope.player.resetExperience();
+                scope.spellSlots = slots.returnSpellSlotArray(slots.createSpellSlots(scope.player.level, scope.player.spellcastingClass));
+            }
+            stat.editing = false;
+        }
+    };
     //For html access to saving
     scope.updateAndSave = (player) => {
         playerFactory.updateAndSave(player, (data) => {
@@ -164,22 +182,32 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
             }
         });
     };
-    //----------------------
 
-    //PLAYER CLASS ACCESS
+
     scope.statModCalc = (stat) => {
         let statMod = scope.player.singleModCalc(stat);
         return statMod;
     };
     //UI TOGGLES
 
+    //Class controller for skills
+    scope.addSkill = (skill) => {
+        scope.player.toggleSkill(skill);
+        scope.updateAndSave(scope.player);
+    };
+    scope.ifPlayerHasSkill = (skill) => {
+        if(scope.player.skills[skill]){
+            return 'is-prof';
+        } else {
+            return;
+        }
+    };
+    //Template swap for partial views
     scope.templateSwap = (template) => {
         scope.currentTemplate = template;
         scope.templateUrl = template.url;
     };
-    scope.searchDate = (date) => {
-        scope.noteSearch = date;
-    };
+    //Check Active Template for css class
     scope.ifActiveTemplate = (template) => {
         if(template.name === scope.currentTemplate.name){
             return 'is-active';
@@ -187,6 +215,11 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
             return;
         }
     };
+    //Assign note search this date
+    scope.searchDate = (date) => {
+        scope.noteSearch = date;
+    };
+    //Campaign Join Modal
     scope.toggleJoinCampaign = () => {
         let modal = document.getElementById("campaignModal");
         if (modal.classList.contains('is-active')) {
@@ -195,6 +228,7 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
             modal.classList.add('is-active');
         }
     };
+    //Delete Modal
     scope.toggleDeletePlayer = () => {
         let modal = document.getElementById("deleteModal");
         if (modal.classList.contains('is-active')) {
@@ -203,6 +237,7 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
             modal.classList.add('is-active');
         }
     };
+    //Icon swap on fields
     scope.ifEdit = (stat) => {
         if(stat.editing === true || scope.player.editing === true){
             return  'fa fa-save';
@@ -210,20 +245,8 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
             return 'fa fa-pencil';
         }
     };
-    scope.editStat = (stat) => {
-        //Check to see if spellSlots will change...
-        if (stat.editing !== true) {
-            stat.editing = true;
-        } else {
-            scope.updateAndSave(scope.player);
-            if (stat.title === 'Level' || stat.title === 'Spell Casting Class') {
-                let slots = scope.player.spellSlots;
-                scope.player.resetExperience();
-                scope.spellSlots = slots.returnSpellSlotArray(slots.createSpellSlots(scope.player.level, scope.player.spellcastingClass));
-            }
-            stat.editing = false;
-        }
-    };
+
+    //Toggle whole player edit
     scope.toggleEdit = (p) => {
         if (p.editing !== true) {
             p.editing = true;
