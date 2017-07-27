@@ -8,13 +8,11 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
     
     if (routeParams.id) {
         playerFactory.getPlayer(routeParams.id, (data) => {
-            if (data.data.playerFound) {
+            if (data.player) {
                 ////////////////////////
                //Player Class Creation//
-               ////////////////////////
-                var P = data.data.playerFound;
-                let playerOnDisplay = new Player(P._id, P.accountEmail, P.campaign, P.realName, P.name, P.race, P.classType, P.alignment, P.sex, P.size, P.age, P.height, P.weight, P.level, P.initiative, P.speed, P.strength, P.dexterity, P.constitution, P.intelligence, P.wisdom, P.charisma, P.currentHitPoints, P.tempHitPoints, P.spellList, P.skills, P.personalityTraits, P.ideals, P.bonds, P.flaws, P.attacksSpellcasting, P.featuresTraits, P.equipment, P.proficiencies, P.languages, P.appearance, P.alliesOrganizations, P.backStory, P.treasureInventory, P.spellcastingClass, P.spellcastingAbility, P.spellSaveDC, P.spellSaveBonus, P.armorClass, P.proficiencyBonus, P.borderColor, P.companions, P.notes, P.experience);
-                scope.player = playerOnDisplay;
+               ///////////////////////
+                scope.player = data.player;
                 //Get Modifiers
                 scope.player.calculateModifiers();
                 //Get Spell Slots
@@ -56,11 +54,7 @@ app.controller('playerController', ['$location', '$timeout', '$scope', '$route',
                         url: './../partials/spellInfo.html'
                     },
                     {
-                        name: 'Equipment',
-                        url: './../partials/equip.html'
-                    },
-                    {
-                        name: 'Details and Inventory',
+                        name: 'Details Inventory and Equipment',
                         url: './../partials/details.html'
                     },
                     {

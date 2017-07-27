@@ -17,3 +17,54 @@
         </div>
     </div>
 </article>
+<article class="column">
+        <p class="cardTitle title is-3"> {{player.name}}'s Equipment List </p>
+        <button ng-disabled="!player.youOwnThis" class="cardAddButton button is-small is-primary fa fa-plus" ng-if="player.youOwnThis"
+            ng-click="equipmentList.addItem()"></button>
+        <div data-ng-repeat="equipment in equipmentList.list | orderBy: '-'">
+            <div class="spellCard card">
+                <div class="card-header">
+                    <p ng-bind="equipment.name" class="subTitle card-header-title"></p>
+                   <button class="button is-info" ng-disabled="!player.youOwnThis" ng-click="editStat(equipment)">
+                        <i class="icon"><span ng-class="equipmentList.ifEditReturnIcon(equipment)" ></span> </i>
+                    </button>
+                    <button class="button is-danger" ng-disabled="!player.youOwnThis" ng-click="equipmentList.deleteItem(equipment);updateAndSave(player)">
+                        <i class="icon"><span class="fa fa-trash-o"></span></i>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <input ng-if="equipment.editing" placeholder="Equipment name" ng-model="equipment.name" class="input">
+                    <section class="cardDetailsSegment">
+                        <p class="cardDataInline" ng-if="!equipment.editing">Weight: </p>
+                        <p class="cardDataInline" ng-if="!equipment.editing" ng-bind="equipment.weight"></p> <input ng-if="equipment.editing" placeholder="Weight" ng-model="equipment.weight" class="input">
+                    </section>
+                    <section class="cardDetailsSegment">
+                        <p class="cardDataInline" ng-if="!equipment.editing">AC: </p>
+                        <p class="cardDataInline" ng-if="!equipment.editing" ng-bind="equipment.armorClass"></p> <input ng-if="equipment.editing" placeholder="Armor Class" ng-model="equipment.armorClass" class="input">
+                    </section>
+                    <p class="cardDataInline" ng-if="!equipment.editing">Damage: </p>
+                    <p class="cardDataInline" ng-if="!equipment.editing" ng-bind="equipment.damage"></p> <input ng-if="equipment.editing" placeholder="Damage" ng-model="equipment.damage" class="input">
+                    <section class="cardDetailsSegment">
+                        <p class="cardDataInline" ng-if="!equipment.editing">Stealth: </p>
+                        <p class="cardDataInline" ng-if="!equipment.editing" ng-bind="equipment.stealth"></p> <input ng-if="equipment.editing" placeholder="Stealth" ng-model="equipment.stealth" class="input">
+                    </section>
+                    <section class="cardDetailsSegment">
+                        <p class="cardDataInline" ng-if="!equipment.editing">Type: </p>
+                        <p class="cardDataInline" ng-if="!equipment.editing" ng-bind="equipment.type"></p> <input ng-if="equipment.editing" placeholder="Damage/Armor Type" ng-model="equipment.type" class="input">
+                    </section>
+                     <section class="cardDetailsSegment">
+                        <p class="cardDataInline" ng-if="!equipment.editing">Range: </p>
+                        <p class="cardDataInline" ng-if="!equipment.editing" ng-bind="equipment.range"></p> <input ng-if="equipment.editing" placeholder="Range" ng-model="equipment.range" class="input">
+                    </section>
+                     <section class="cardDetailsSegment">
+                        <p class="cardDataInline" ng-if="!equipment.editing">Item Type: </p>
+                        <p class="cardDataInline" ng-if="!equipment.editing" ng-bind="equipment.itemType"></p> <input ng-if="equipment.editing" placeholder="Item Type" ng-model="equipment.itemType" class="input">
+                    </section>
+                </div>
+                <div class="card-footer">
+
+                </div>
+            </div>
+        </div>
+    
+</article>
